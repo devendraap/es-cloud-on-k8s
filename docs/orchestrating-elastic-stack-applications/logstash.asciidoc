@@ -19,10 +19,14 @@ This section describes how to configure and deploy Logstash with ECK.
 ** <<{p}-logstash-volumes,Configuring Volumes>>
 ** <<{p}-logstash-pipelines-es,Using Elasticsearch in Logstash Pipelines>>
 ** <<{p}-logstash-expose-services,Exposing Services>>
+* <<{p}-logstash-securing-api,Securing Logstash API>>
 * <<{p}-logstash-configuration-examples,Configuration examples>>
 * <<{p}-logstash-advanced-configuration,Advanced Configuration>>
 ** <<{p}-logstash-jvm-options,Setting JVM Options>>
 ** <<{p}-logstash-scaling-logstash,Scaling Logstash>>
+* <<{p}-logstash-custom-plugins>>
+* <<{p}-logstash-jar-files>>
+* <<{p}-logstash-scaling-logstash>>
 * <<{p}-logstash-technical-preview-limitations,Technical Preview Limitations>>
 
 
@@ -300,7 +304,7 @@ By default, a PersistentVolume called `logstash-data` is created, that maps to `
 
 For production workloads, you should define your own volume claim template with the desired storage capacity and (optionally) the Kubernetes link:https://kubernetes.io/docs/concepts/storage/storage-classes/[storage class] to associate with the persistent volume. To override this volume claim for `data` usages, the name of this volume claim must be `logstash-data`.
 
-This example updates the default data template to increase the storage to `2Gi` for the logstash data folder:
+This example updates the default data template to increase the storage to `2Gi` for the {ls} data folder:
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
@@ -699,6 +703,121 @@ spec:
 The name of the container in the Pod template must be `logstash`.
 
 
+[id="{p}-logstash-securing-api"]
+== Securing Logstash API
+
+[id="{p}-logstash-https"]
+=== Enable HTTPS
+
+Access to the link:https://www.elastic.co/guide/en/logstash/current/monitoring-logstash.html#monitoring-api-security[Logstash Monitoring APIs] use HTTPS by default - the operator will set the values  `api.ssl.enabled: true`, `api.ssl.keystore.path` and `api.ssl.keystore.password`.
+
+You can further secure the {ls} Monitoring APIs by requiring HTTP Basic authentication by setting `api.auth.type: basic`, and providing the relevant credentials `api.auth.basic.username` and `api.auth.basic.password`:
+
+[source,yaml,subs="attributes,+macros,callouts"]
+----
+apiVersion: v1
+kind: Secret
+metadata:
+  name: logstash-api-secret
+stringData:
+  API_USERNAME: "AWESOME_USER"   <1>
+  API_PASSWORD: "T0p_Secret"     <1>
+---
+apiVersion: logstash.k8s.elastic.co/v1alpha1
+kind: Logstash
+metadata:
+  name: logstash-sample
+spec:
+  version: {version}
+  count: 1
+  config:
+    api.auth.type: basic
+    api.auth.basic.username: "${API_USERNAME}"   <3>
+    api.auth.basic.password: "${API_PASSWORD}"   <3>
+  podTemplate:
+    spec:
+      containers:
+        - name: logstash
+          envFrom:
+            - secretRef:
+                name: logstash-api-secret   <2>
+----
+<1> Store the username and password in a Secret.
+<2> Map the username and password to the environment variables of the Pod.
+<3> At Logstash startup, `${API_USERNAME}` and `${API_PASSWORD}` are replaced by the value of environment variables. Check link:https://www.elastic.co/guide/en/logstash/current/environment-variables.html[using environment variables] for more details.
+
+An alternative is to set up <<{p}-logstash-keystore, keystore>> to resolve `${API_USERNAME}` and `${API_PASSWORD}`
+
+NOTE: The variable substitution in `config` does not support the default value syntax.
+
+[id="{p}-logstash-http-tls-keystore"]
+=== TLS keystore
+
+The TLS Keystore is automatically generated and includes a certificate and a private key, with default password protection set to `changeit`.
+This password can be modified by configuring the `api.ssl.keystore.password` value.
+
+[source,yaml,subs="attributes"]
+----
+apiVersion: logstash.k8s.elastic.co/v1alpha1
+kind: Logstash
+metadata:
+  name: logstash-sample
+spec:
+  count: 1
+  version: {version}
+  config:
+    api.ssl.keystore.password: "${SSL_KEYSTORE_PASSWORD}"
+----
+
+
+[id="{p}-logstash-http-custom-tls"]
+=== Provide your own certificate
+
+If you want to use your own certificate, the required configuration is similar to Elasticsearch. Configure the certificate in `api` Service. Check <<{p}-custom-http-certificate>>.
+
+[source,yaml,subs="attributes,+macros,callouts"]
+----
+apiVersion: logstash.k8s.elastic.co/v1alpha1
+kind: Logstash
+metadata:
+  name: logstash-sample
+spec:
+  version: {version}
+  count: 1
+  elasticsearchRef:
+    name: "elasticsearch-sample"
+  services:
+    - name: api   <1>
+      tls:
+        certificate:
+          secretName: my-cert
+----
+<1> The service name `api` is reserved for {ls} monitoring endpoint.
+
+[id="{p}-logstash-http-disable-tls"]
+=== Disable TLS
+
+You can disable TLS by disabling the generation of the self-signed certificate in the API service definition
+
+[source,yaml,subs="attributes"]
+----
+apiVersion: logstash.k8s.elastic.co/v1alpha1
+kind: Logstash
+metadata:
+  name: logstash-sample
+spec:
+  version: {version}
+  count: 1
+  elasticsearchRef:
+    name: "elasticsearch-sample"
+  services:
+    - name: api
+      tls:
+        selfSignedCertificate:
+          disabled: true
+----
+
+
 [id="{p}-logstash-configuration-examples"]
 == Configuration examples
 
@@ -847,7 +966,7 @@ kind: Logstash
 metadata:
   name: logstash-sample
 spec:
-  version: 8.8.0
+  version: {version}
   count: 1
   pipelines:
     - pipeline.id: main
@@ -874,12 +993,147 @@ spec:
 <1> Value of password to protect the Logstash keystore
 <2> The syntax for referencing keys is identical to the syntax for environment variables
 
+[id="{p}-logstash-custom-plugins"]
+== Working with custom plugins
+
+experimental[]
+
+When running {ls} with plugins outside of those included in the standard, distribution, you can install those plugins in one of two ways - either by using an `initContainer` to install plugins before the main container starts, or creating a custom Docker image that includes the installed plugins. Refer to <<{p}-bundles-plugins>> for a run down of which option might be most suitable for you.
+
+To add plugins, both of these options require the `bin/logstash-plugin` utility to be run to add the plugin(s) to the {ls} pod before it starts.
+
+=== Adding a plugin using an initContainer
+
+This example sets up an `initContainer` to install the `logstash-filter-tld` plugin:
+
+[source,yaml]
+----
+spec:
+  podTemplate:
+    spec:
+      initContainers:
+      - name: install-plugins
+        command: ["/bin/sh"]
+        args: ["-c", "bin/logstash-plugin install logstash-filter-tld"]
+----
+
+The init container inherits:
+
+* The image of the main container image, if one is not explicitly set.
+* The volume mounts from the main container unless a volume mount with the same name and mount path is present in the init container definition.
+* The Pod name and IP address environment variables.
+
+
+=== Adding a plugin using a custom image
+
+This example installs the same plugin, but uses a custom image to install the plugin.
+
+First, create a Dockerfile based on the {ls} Docker image, running `bin/logstash-plugin install` to install the appropriate plugin(s):
+
+[subs="attributes,+macros,callouts"]
+----
+FROM docker.elastic.co/logstash/logstash:{version}
+
+RUN bin/logstash-plugin install logstash-filter-tld
+----
+
+Then after building and deploying the custom image (refer to <<{p}-custom-images>> for more details), include it in the {ls} manifest:
+
+[source,yaml]
+----
+spec:
+  count: 1
+  version: {version} <1>
+  image: <CUSTOM_IMAGE>
+----
+<1> Providing the correct version is always required as ECK reasons about APIs and capabilities available to it based on the version field.
+
+
+[id="{p}-logstash-jar-files"]
+== Working with plugins that require additional files
+
+Running {ls} may require additional files, such as JAR files needed to load JDBC drivers when using a JDBC or JMS plugin. To add these files, there are two options available - using an `initContainer` to add files before the main container start, or creating a custom Docker image that includes the required files. Refer to <<{p}-bundles-plugins>> for a run down of which option might be most suitable for you.
+
+
+=== Adding files using an initContainer
+
+This example creates an `initContainer` to download a PostgreSQL JDBC driver JAR file, and place it in a volume mount accessible to the main `container`, and then use it in a JDBC input in the pipeline configuration.
+
+[source,yaml]
+----
+spec:
+  podTemplate:
+    spec:
+      initContainers:
+      - name: download-postgres
+        command: ["/bin/sh"]
+        args: ["-c", "curl -o /data/postgresql.jar -L https://jdbc.postgresql.org/download/postgresql-42.6.0.jar"]
+        volumeMounts:
+          - name: workdir
+            mountPath: /data
+      containers:
+        - name: logstash
+          volumeMounts:
+            - name: workdir
+              mountPath: /usr/share/logstash/jars <1>
+  pipelines:
+    - pipeline.id: main
+      config.string: |
+        input {
+          jdbc {
+             jdbc_driver_library => "/usr/share/logstash/jars/postgresql.jar"
+             jdbc_driver_class => "org.postgresql.Driver"
+             <2>
+          }
+        }
+----
+<1> Referring to the external file should match the `mountPath` of the `container`
+<2> Remainder of plugin configuration goes here
+
+=== Adding files using a custom image
+
+This example downloads the same `postgres` JDBC driver, and adds it to the {ls} classpath in the Docker image.
+
+First, create a Dockerfile based on the {ls} Docker image.
+Download the JDBC driver, and save it alongside the other JAR files in the {ls} classpath:
+
+From docker.elastic.co/logstash/logstash:{version}, run: 
+[source,js]
+----
+curl -o /usr/share/logstash/logstash-core/lib/jars/postgresql.jar -L https://jdbc.postgresql.org/download/postgresql-42.6.0.jar <1>
+----
+<1> Placing the JAR file in the `/usr/share/logstash/logstash-core/lib/jars` folder adds it to the {ls} classpath.
+
+After you build and deploy the custom image, include it in the {ls} manifest.
+(Check out <<{p}-custom-images>> for more details.)
+
+[source,yaml]
+----
+  count: 1
+  version: {version} <1>
+  image: <CUSTOM_IMAGE>
+  pipelines:
+    - pipeline.id: main
+      config.string: |
+        input {
+          jdbc {
+              <2>
+             jdbc_driver_class => "org.postgresql.Driver"
+              <3>
+          }
+        }
+
+----
+<1> Providing the correct version is always required as ECK reasons about APIs and capabilities available to it based on the version field.
+<2> Note that when you place the JAR file on the {ls} classpath, you do not need to specify the `jdbc_driver_library` location in the plugin configuration.
+<3> Remainder of plugin configuration goes here
+
 [id="{p}-logstash-scaling-logstash"]
 == Scaling Logstash
 
 experimental[]
 
-The ability to scale Logstash is highly dependent on the pipeline configurations, and the plugins used in those pipelines. Not all Logstash deployments can be scaled horizontally by increasing the number of Logstash Pods defined in the Logstash resource.
+The ability to scale {ls} is highly dependent on the pipeline configurations, and the plugins used in those pipelines. Not all {ls} deployments can be scaled horizontally by increasing the number of {ls} Pods defined in the Logstash resource.
 Increasing the number of Pods can cause data loss/duplication, or Pods running idle because they are unable to be utilized.
 
 These risks are especially likely with plugins that:

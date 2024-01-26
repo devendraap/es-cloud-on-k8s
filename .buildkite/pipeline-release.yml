@@ -10,7 +10,7 @@ steps:
         commands:
           - .buildkite/scripts/release/k8s-manifests.sh
         agents:
-          image: docker.elastic.co/ci-agent-images/cloud-k8s-operator/buildkite-agent:bfddf2b3
+          image: docker.elastic.co/ci-agent-images/cloud-k8s-operator/buildkite-agent:3efd6572
           memory: "2G"
 
       - label: "copy images to dockerhub"
@@ -29,6 +29,6 @@ steps:
         if: | # merge-main or tags
           ( build.branch == "main" && build.source != "schedule" )
           || build.tag != null
-        command: buildkite-agent pipeline upload .buildkite/pipeline-release-helm.yml
-        env:
-          HELM_DRY_RUN: false
+        command: |
+          sed "s|HELM_DRY_RUN:.*|HELM_DRY_RUN: false|" .buildkite/pipeline-release-helm.yml \
+            | buildkite-agent pipeline upload
