@@ -25,9 +25,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/config"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/retry"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/retry"
 )
 
 const (
@@ -186,7 +186,7 @@ func IsGKE(v version.Version) bool {
 
 func SkipUntilResolution(t *testing.T, knownIssueNumber int) {
 	t.Helper()
-	t.Skipf("Skip until we understand why it is failing, see https://github.com/elastic/cloud-on-k8s/issues/%d", knownIssueNumber)
+	t.Skipf("Skip until we understand why it is failing, see https://github.com/devendra/es-cloud-on-k8s/issues/%d", knownIssueNumber)
 }
 
 // This simulates "kubectl delete elastic" in the e2e namespace.
@@ -209,7 +209,7 @@ func deleteTestResources(ctx context.Context) error {
 		return err
 	}
 	for _, resource := range resources {
-		if strings.Contains(resource.GroupVersion, "k8s.elastic.co") {
+		if strings.Contains(resource.GroupVersion, "k8s.acceldata.io") {
 			groupVersionToResourceListMap[resource.GroupVersion] = resource.APIResources
 		}
 	}

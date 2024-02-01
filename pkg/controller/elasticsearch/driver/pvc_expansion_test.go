@@ -21,11 +21,11 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/comparison"
-	controllerscheme "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/scheme"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/comparison"
+	controllerscheme "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/scheme"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var (
@@ -222,7 +222,7 @@ func Test_handleVolumeExpansion(t *testing.T) {
 				require.NoError(t, err)
 				require.Equal(t,
 					map[string]appsv1.StatefulSet{
-						"elasticsearch.k8s.elastic.co/recreate-" + tt.args.actualSset.Name: *wantUpdatedSset},
+						"elasticsearch.k8s.acceldata.io/recreate-" + tt.args.actualSset.Name: *wantUpdatedSset},
 					toRecreate)
 			} else {
 				require.Empty(t, retrievedES.Annotations)
@@ -329,9 +329,9 @@ func Test_recreateStatefulSets(t *testing.T) {
 			name: "StatefulSet to delete",
 			args: args{
 				runtimeObjs: []client.Object{sset1, pod1}, // sset exists with the same UID
-				es:          *withAnnotation(es(), "elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
+				es:          *withAnnotation(es(), "elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
 			},
-			wantES:          *withAnnotation(es(), "elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
+			wantES:          *withAnnotation(es(), "elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
 			wantSsets:       nil,                             // deleted
 			wantPods:        []corev1.Pod{*pod1WithOwnerRef}, // owner ref set to the ES resource
 			wantRecreations: 1,
@@ -340,9 +340,9 @@ func Test_recreateStatefulSets(t *testing.T) {
 			name: "StatefulSet to create",
 			args: args{
 				runtimeObjs: []client.Object{pod1}, // sset doesn't exist
-				es:          *withAnnotation(es(), "elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
+				es:          *withAnnotation(es(), "elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
 			},
-			wantES: *withAnnotation(es(), "elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
+			wantES: *withAnnotation(es(), "elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
 			// created, no UUID due to how the fake client creates objects
 			wantSsets:       []appsv1.StatefulSet{{ObjectMeta: metav1.ObjectMeta{Namespace: "ns", Name: "sset1"}}},
 			wantPods:        []corev1.Pod{*pod1}, // unmodified
@@ -352,7 +352,7 @@ func Test_recreateStatefulSets(t *testing.T) {
 			name: "StatefulSet already recreated: remove the annotation",
 			args: args{
 				runtimeObjs: []client.Object{sset1DifferentUID, pod1WithOwnerRef}, // sset recreated
-				es:          *withAnnotation(es(), "elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
+				es:          *withAnnotation(es(), "elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
 			},
 			wantES:          *es(),                                    // annotation removed
 			wantSsets:       []appsv1.StatefulSet{*sset1DifferentUID}, // same
@@ -364,12 +364,12 @@ func Test_recreateStatefulSets(t *testing.T) {
 			args: args{
 				runtimeObjs: []client.Object{sset1, sset2, pod1},
 				es: *withAnnotation(withAnnotation(es(),
-					"elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
-					"elasticsearch.k8s.elastic.co/recreate-sset2", sset2JSON),
+					"elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
+					"elasticsearch.k8s.acceldata.io/recreate-sset2", sset2JSON),
 			},
 			wantES: *withAnnotation(withAnnotation(es(),
-				"elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
-				"elasticsearch.k8s.elastic.co/recreate-sset2", sset2JSON),
+				"elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
+				"elasticsearch.k8s.acceldata.io/recreate-sset2", sset2JSON),
 			wantSsets:       nil,
 			wantPods:        []corev1.Pod{*pod1WithOwnerRef}, // ownerRef removed
 			wantRecreations: 2,
@@ -379,7 +379,7 @@ func Test_recreateStatefulSets(t *testing.T) {
 			args: args{
 				runtimeObjs: []client.Object{sset1DifferentUID, pod1}, // sset recreated
 				es: *withAnnotation(withAnnotation(es(),
-					"elasticsearch.k8s.elastic.co/recreate-sset1", sset1JSON),
+					"elasticsearch.k8s.acceldata.io/recreate-sset1", sset1JSON),
 					"another-annotation-key", sset2JSON),
 			},
 			// sset annotation removed, other annotation preserved

@@ -1,12 +1,12 @@
 # This manifest can be used for offline tests, ensuring that user node increased is taken into account by the controller event if the cluster is not available.
 # Data min nodes is increased from to 3 to 9
 # ML min nodes is increased from to 1 to 3
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   annotations:
-    common.k8s.elastic.co/controller-version: 1.4.0
-    elasticsearch.k8s.elastic.co/cluster-uuid: FghvC9XFS16wDXdAusm9yg
+    common.k8s.acceldata.io/controller-version: 1.4.0
+    elasticsearch.k8s.acceldata.io/cluster-uuid: FghvC9XFS16wDXdAusm9yg
   name: testes
   namespace: testns
   uid: 0e400c1f-57ff-4d6e-99e7-ce9ab8a83930

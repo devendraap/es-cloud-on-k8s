@@ -23,17 +23,17 @@ link:https://www.elastic.co/guide/en/fleet/current/elastic-agent-installation.ht
 
 [source,sh]
 ----
-# If you installed using the Helm defaults, the name of the webhook would be elastic-operator.elastic-system.k8s.elastic.co
+# If you installed using the Helm defaults, the name of the webhook would be elastic-operator.elastic-system.k8s.acceldata.io
 # If the operator name or namespace was changed during the installation, the name would reflect those changes.
-WEBHOOK=$(kubectl get validatingwebhookconfiguration --no-headers -o custom-columns=NAME:.metadata.name | grep 'k8s.elastic.co')
+WEBHOOK=$(kubectl get validatingwebhookconfiguration --no-headers -o custom-columns=NAME:.metadata.name | grep 'k8s.acceldata.io')
 kubectl patch validatingwebhookconfiguration "$WEBHOOK" \
-    --patch='{"webhooks": [{"name": "elastic-es-validation-v1.k8s.elastic.co", "matchPolicy": "Exact"}, {"name": "elastic-es-validation-v1beta1.k8s.elastic.co", "matchPolicy": "Exact"}]}'
+    --patch='{"webhooks": [{"name": "elastic-es-validation-v1.k8s.acceldata.io", "matchPolicy": "Exact"}, {"name": "elastic-es-validation-v1beta1.k8s.acceldata.io", "matchPolicy": "Exact"}]}'
 ----
 
 * Elastic Agent currently writes its runtime state into the filesystem of its container. As a consequence, the identity of the Elastic Agent changes on container restarts and any internal state of applications run by that Elastic Agent is lost. As a workaround, you can mount the agent-data `hostPath` volume into the Elastic Agent container in the location where the process writes its runtime state. You also have to run the Elastic Agent as the root user to be able to access the `hostPath` volume, as shown in the following example:
 [source,yaml]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent

@@ -3,4 +3,4 @@
   $ kubectl get es {{ include "elasticsearch.fullname" . }} -n {{ .Release.Namespace }}
 
 2. Check Elasticsearch pod status
-  $ kubectl get pods --namespace={{ .Release.Namespace }} -l elasticsearch.k8s.elastic.co/cluster-name={{ include "elasticsearch.fullname" . }}
+  $ kubectl get pods --namespace={{ .Release.Namespace }} -l elasticsearch.k8s.acceldata.io/cluster-name={{ include "elasticsearch.fullname" . }}

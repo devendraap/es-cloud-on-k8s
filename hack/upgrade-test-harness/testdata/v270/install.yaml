@@ -36,7 +36,7 @@ metadata:
     control-plane: elastic-operator
     app.kubernetes.io/version: "2.7.0"
 data:
-  eck.yaml: "log-verbosity: 0\nmetrics-port: 0\ncontainer-registry: docker.elastic.co\ncontainer-suffix: \nmax-concurrent-reconciles: 3\nca-cert-validity: 8760h\nca-cert-rotate-before: 24h\ncert-validity: 8760h\ncert-rotate-before: 24h\nexposed-node-labels: [topology.kubernetes.io/.*,failure-domain.beta.kubernetes.io/.*]\nset-default-security-context: auto-detect\nkube-client-timeout: 60s\nelasticsearch-client-timeout: 180s\ndisable-telemetry: false\ndistribution-channel: all-in-one\nvalidate-storage-class: true\nenable-webhook: true\nwebhook-name: elastic-webhook.k8s.elastic.co\nenable-leader-election: true\nelasticsearch-observation-interval: 10s"
+  eck.yaml: "log-verbosity: 0\nmetrics-port: 0\ncontainer-registry: docker.elastic.co\ncontainer-suffix: \nmax-concurrent-reconciles: 3\nca-cert-validity: 8760h\nca-cert-rotate-before: 24h\ncert-validity: 8760h\ncert-rotate-before: 24h\nexposed-node-labels: [topology.kubernetes.io/.*,failure-domain.beta.kubernetes.io/.*]\nset-default-security-context: auto-detect\nkube-client-timeout: 60s\nelasticsearch-client-timeout: 180s\ndisable-telemetry: false\ndistribution-channel: all-in-one\nvalidate-storage-class: true\nenable-webhook: true\nwebhook-name: elastic-webhook.k8s.acceldata.io\nenable-leader-election: true\nelasticsearch-observation-interval: 10s"
 ---
 # Source: eck-operator/templates/cluster-roles.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -121,7 +121,7 @@ rules:
   - patch
   - delete
 - apiGroups:
-  - elasticsearch.k8s.elastic.co
+  - elasticsearch.k8s.acceldata.io
   resources:
   - elasticsearches
   - elasticsearches/status
@@ -134,7 +134,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - autoscaling.k8s.elastic.co
+  - autoscaling.k8s.acceldata.io
   resources:
   - elasticsearchautoscalers
   - elasticsearchautoscalers/status
@@ -147,7 +147,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - kibana.k8s.elastic.co
+  - kibana.k8s.acceldata.io
   resources:
   - kibanas
   - kibanas/status
@@ -160,7 +160,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - apm.k8s.elastic.co
+  - apm.k8s.acceldata.io
   resources:
   - apmservers
   - apmservers/status
@@ -173,7 +173,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - enterprisesearch.k8s.elastic.co
+  - enterprisesearch.k8s.acceldata.io
   resources:
   - enterprisesearches
   - enterprisesearches/status
@@ -186,7 +186,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - beat.k8s.elastic.co
+  - beat.k8s.acceldata.io
   resources:
   - beats
   - beats/status
@@ -199,7 +199,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - agent.k8s.elastic.co
+  - agent.k8s.acceldata.io
   resources:
   - agents
   - agents/status
@@ -212,7 +212,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - maps.k8s.elastic.co
+  - maps.k8s.acceldata.io
   resources:
   - elasticmapsservers
   - elasticmapsservers/status
@@ -225,7 +225,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - stackconfigpolicy.k8s.elastic.co
+  - stackconfigpolicy.k8s.acceldata.io
   resources:
   - stackconfigpolicies
   - stackconfigpolicies/status
@@ -278,31 +278,31 @@ metadata:
     control-plane: elastic-operator
     app.kubernetes.io/version: "2.7.0"
 rules:
-- apiGroups: ["elasticsearch.k8s.elastic.co"]
+- apiGroups: ["elasticsearch.k8s.acceldata.io"]
   resources: ["elasticsearches"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["autoscaling.k8s.elastic.co"]
+- apiGroups: ["autoscaling.k8s.acceldata.io"]
   resources: ["elasticsearchautoscalers"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["apm.k8s.elastic.co"]
+- apiGroups: ["apm.k8s.acceldata.io"]
   resources: ["apmservers"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["kibana.k8s.elastic.co"]
+- apiGroups: ["kibana.k8s.acceldata.io"]
   resources: ["kibanas"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["enterprisesearch.k8s.elastic.co"]
+- apiGroups: ["enterprisesearch.k8s.acceldata.io"]
   resources: ["enterprisesearches"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["beat.k8s.elastic.co"]
+- apiGroups: ["beat.k8s.acceldata.io"]
   resources: ["beats"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["agent.k8s.elastic.co"]
+- apiGroups: ["agent.k8s.acceldata.io"]
   resources: ["agents"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["maps.k8s.elastic.co"]
+- apiGroups: ["maps.k8s.acceldata.io"]
   resources: ["elasticmapsservers"]
   verbs: ["get", "list", "watch"]
-- apiGroups: ["stackconfigpolicy.k8s.elastic.co"]
+- apiGroups: ["stackconfigpolicy.k8s.acceldata.io"]
   resources: ["stackconfigpolicies"]
   verbs: ["get", "list", "watch"]
 ---
@@ -317,31 +317,31 @@ metadata:
     control-plane: elastic-operator
     app.kubernetes.io/version: "2.7.0"
 rules:
-- apiGroups: ["elasticsearch.k8s.elastic.co"]
+- apiGroups: ["elasticsearch.k8s.acceldata.io"]
   resources: ["elasticsearches"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["autoscaling.k8s.elastic.co"]
+- apiGroups: ["autoscaling.k8s.acceldata.io"]
   resources: ["elasticsearchautoscalers"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["apm.k8s.elastic.co"]
+- apiGroups: ["apm.k8s.acceldata.io"]
   resources: ["apmservers"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["kibana.k8s.elastic.co"]
+- apiGroups: ["kibana.k8s.acceldata.io"]
   resources: ["kibanas"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["enterprisesearch.k8s.elastic.co"]
+- apiGroups: ["enterprisesearch.k8s.acceldata.io"]
   resources: ["enterprisesearches"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["beat.k8s.elastic.co"]
+- apiGroups: ["beat.k8s.acceldata.io"]
   resources: ["beats"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["agent.k8s.elastic.co"]
+- apiGroups: ["agent.k8s.acceldata.io"]
   resources: ["agents"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["maps.k8s.elastic.co"]
+- apiGroups: ["maps.k8s.acceldata.io"]
   resources: ["elasticmapsservers"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
-- apiGroups: ["stackconfigpolicy.k8s.elastic.co"]
+- apiGroups: ["stackconfigpolicy.k8s.acceldata.io"]
   resources: ["stackconfigpolicies"]
   verbs: ["create", "delete", "deletecollection", "patch", "update"]
 ---
@@ -464,7 +464,7 @@ spec:
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  name: elastic-webhook.k8s.elastic.co
+  name: elastic-webhook.k8s.acceldata.io
   labels:
     control-plane: elastic-operator
     app.kubernetes.io/version: "2.7.0"
@@ -476,13 +476,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-agent-k8s-elastic-co-v1alpha1-agent
   failurePolicy: Ignore
-  name: elastic-agent-validation-v1alpha1.k8s.elastic.co
+  name: elastic-agent-validation-v1alpha1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - agent.k8s.elastic.co
+    - agent.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:
@@ -497,13 +497,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-apm-k8s-elastic-co-v1-apmserver
   failurePolicy: Ignore
-  name: elastic-apm-validation-v1.k8s.elastic.co
+  name: elastic-apm-validation-v1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - apm.k8s.elastic.co
+    - apm.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -518,13 +518,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-apm-k8s-elastic-co-v1beta1-apmserver
   failurePolicy: Ignore
-  name: elastic-apm-validation-v1beta1.k8s.elastic.co
+  name: elastic-apm-validation-v1beta1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - apm.k8s.elastic.co
+    - apm.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -539,13 +539,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-beat-k8s-elastic-co-v1beta1-beat
   failurePolicy: Ignore
-  name: elastic-beat-validation-v1beta1.k8s.elastic.co
+  name: elastic-beat-validation-v1beta1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - beat.k8s.elastic.co
+    - beat.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -560,13 +560,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-enterprisesearch-k8s-elastic-co-v1-enterprisesearch
   failurePolicy: Ignore
-  name: elastic-ent-validation-v1.k8s.elastic.co
+  name: elastic-ent-validation-v1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - enterprisesearch.k8s.elastic.co
+    - enterprisesearch.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -581,13 +581,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-enterprisesearch-k8s-elastic-co-v1beta1-enterprisesearch
   failurePolicy: Ignore
-  name: elastic-ent-validation-v1beta1.k8s.elastic.co
+  name: elastic-ent-validation-v1beta1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - enterprisesearch.k8s.elastic.co
+    - enterprisesearch.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -602,13 +602,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-elasticsearch-k8s-elastic-co-v1-elasticsearch
   failurePolicy: Ignore
-  name: elastic-es-validation-v1.k8s.elastic.co
+  name: elastic-es-validation-v1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - elasticsearch.k8s.elastic.co
+    - elasticsearch.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -623,13 +623,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-elasticsearch-k8s-elastic-co-v1beta1-elasticsearch
   failurePolicy: Ignore
-  name: elastic-es-validation-v1beta1.k8s.elastic.co
+  name: elastic-es-validation-v1beta1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - elasticsearch.k8s.elastic.co
+    - elasticsearch.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -644,13 +644,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-ems-k8s-elastic-co-v1alpha1-mapsservers
   failurePolicy: Ignore
-  name: elastic-ems-validation-v1alpha1.k8s.elastic.co
+  name: elastic-ems-validation-v1alpha1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - maps.k8s.elastic.co
+    - maps.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:
@@ -665,13 +665,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-kibana-k8s-elastic-co-v1-kibana
   failurePolicy: Ignore
-  name: elastic-kb-validation-v1.k8s.elastic.co
+  name: elastic-kb-validation-v1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - kibana.k8s.elastic.co
+    - kibana.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -686,13 +686,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-kibana-k8s-elastic-co-v1beta1-kibana
   failurePolicy: Ignore
-  name: elastic-kb-validation-v1beta1.k8s.elastic.co
+  name: elastic-kb-validation-v1beta1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - kibana.k8s.elastic.co
+    - kibana.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -707,13 +707,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-autoscaling-k8s-elastic-co-v1alpha1-elasticsearchautoscaler
   failurePolicy: Ignore
-  name: elastic-esa-validation-v1alpha1.k8s.elastic.co
+  name: elastic-esa-validation-v1alpha1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - autoscaling.k8s.elastic.co
+    - autoscaling.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:
@@ -728,13 +728,13 @@ webhooks:
       namespace: elastic-system
       path: /validate-scp-k8s-elastic-co-v1alpha1-stackconfigpolicies
   failurePolicy: Ignore
-  name: elastic-scp-validation-v1alpha1.k8s.elastic.co
+  name: elastic-scp-validation-v1alpha1.k8s.acceldata.io
   matchPolicy: Exact
   admissionReviewVersions: [v1, v1beta1]
   sideEffects: None
   rules:
   - apiGroups:
-    - stackconfigpolicy.k8s.elastic.co
+    - stackconfigpolicy.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:

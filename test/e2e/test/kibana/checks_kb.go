@@ -11,8 +11,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 type KbChecks struct {

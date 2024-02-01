@@ -15,9 +15,9 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
-	agentv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
+	agentv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
 )
 
 func asJSON(obj interface{}) []byte {
@@ -152,7 +152,7 @@ func Test_validatingWebhook_Handle(t *testing.T) {
 					},
 				},
 			},
-			want: admission.Denied(`Agent.agent.k8s.elastic.co "testAgent" is invalid: spec.version: Invalid value: "0.10.0": Unsupported version: version 0.10.0 is lower than the lowest supported version of 7.10.0`),
+			want: admission.Denied(`Agent.agent.k8s.acceldata.io "testAgent" is invalid: spec.version: Invalid value: "0.10.0": Unsupported version: version 0.10.0 is lower than the lowest supported version of 7.10.0`),
 		},
 		{
 			name: "delete agent is always allowed",
@@ -299,7 +299,7 @@ func Test_validatingWebhook_Handle(t *testing.T) {
 					},
 				},
 			},
-			want: admission.Denied(`Agent.agent.k8s.elastic.co "testAgent" is invalid: spec.version: Forbidden: Version downgrades are not supported`),
+			want: admission.Denied(`Agent.agent.k8s.acceldata.io "testAgent" is invalid: spec.version: Forbidden: Version downgrades are not supported`),
 		},
 	}
 	for _, tt := range tests {

@@ -19,13 +19,13 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/util/jsonpath"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	commonhash "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	commonhash "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (

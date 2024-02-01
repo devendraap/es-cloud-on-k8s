@@ -14,7 +14,7 @@ The ECK operator can be run in an air-gapped environment without access to the o
 By default ECK does not require you to specify the container image for each Elastic Stack application you deploy.
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart

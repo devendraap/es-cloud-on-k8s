@@ -16,8 +16,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/utils/ptr"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
 )
 
 func TestElasticsearchHealth_Less(t *testing.T) {
@@ -339,8 +339,8 @@ func Test_AssociationConfs(t *testing.T) {
 			Name:      "esmon",
 			Namespace: "default",
 			Annotations: map[string]string{
-				"association.k8s.elastic.co/es-conf-4154131866": `{"authSecretName":"es-default-metrics-beat-es-mon-user","authSecretKey":"default-es-default-esmon-beat-es-mon-user","caCertProvided":true,"caSecretName":"es-es-monitoring-default-metrics-ca","url":"https://metrics-es-http.default.svc:9200","version":"8.0.0"}`,
-				"association.k8s.elastic.co/es-conf-611214426":  `{"authSecretName":"es-default-logs-beat-es-mon-user","authSecretKey":"default-es-default-esmon-beat-es-mon-user","caCertProvided":true,"caSecretName":"es-es-monitoring-default-logs-ca","url":"https://logs-es-http.default.svc:9200","version":"8.0.0"}`,
+				"association.k8s.acceldata.io/es-conf-4154131866": `{"authSecretName":"es-default-metrics-beat-es-mon-user","authSecretKey":"default-es-default-esmon-beat-es-mon-user","caCertProvided":true,"caSecretName":"es-es-monitoring-default-metrics-ca","url":"https://metrics-es-http.default.svc:9200","version":"8.0.0"}`,
+				"association.k8s.acceldata.io/es-conf-611214426":  `{"authSecretName":"es-default-logs-beat-es-mon-user","authSecretKey":"default-es-default-esmon-beat-es-mon-user","caCertProvided":true,"caSecretName":"es-es-monitoring-default-logs-ca","url":"https://logs-es-http.default.svc:9200","version":"8.0.0"}`,
 			},
 		},
 		Spec: ElasticsearchSpec{

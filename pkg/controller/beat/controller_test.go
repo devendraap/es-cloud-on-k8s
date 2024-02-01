@@ -16,12 +16,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	beatv1beta1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	beatv1beta1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func TestReconcileBeat_Reconcile(t *testing.T) {
@@ -154,7 +154,7 @@ func TestReconcileBeat_Reconcile(t *testing.T) {
 			},
 			want:      reconcile.Result{},
 			wantErr:   true,
-			errString: `Beat.beat.k8s.elastic.co "superreallylongbeatsnamecausesvalidationissues" is invalid: metadata.name: Too long: must have at most 36 bytes`,
+			errString: `Beat.beat.k8s.acceldata.io "superreallylongbeatsnamecausesvalidationissues" is invalid: metadata.name: Too long: must have at most 36 bytes`,
 			//nolint:thelper
 			validate: func(t *testing.T, c k8s.Client) {
 				beat := beatv1beta1.Beat{}

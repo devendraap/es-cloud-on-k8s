@@ -7,13 +7,13 @@ package labels
 import (
 	"strconv"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/maps"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/maps"
 )
 
 const (
-	credentialsLabel = "eck.k8s.elastic.co/credentials" //nolint:gosec
+	credentialsLabel = "eck.k8s.acceldata.io/credentials" //nolint:gosec
 	// StackConfigPolicyOnDeleteLabelName is a label used to indicate if an object should be reset or deleted on deletion of its stack config policy.
-	StackConfigPolicyOnDeleteLabelName = "asset.policy.k8s.elastic.co/on-delete"
+	StackConfigPolicyOnDeleteLabelName = "asset.policy.k8s.acceldata.io/on-delete"
 	// OrphanSecretResetOnPolicyDelete is used to set the data field of a secret to an empty map when the associated StackConfigPolicy or Elasticsearch is deleted.
 	OrphanSecretResetOnPolicyDelete = "reset"
 	// OrphanSecretDeleteOnPolicyDelete is used to delete the secret when the associated StackConfigPolicy or Elasticsearch is deleted.

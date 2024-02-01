@@ -1,5 +1,5 @@
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: ekmnt
@@ -74,7 +74,7 @@ spec:
           traffic.sidecar.istio.io/excludeOutboundPorts: "9300"
           traffic.sidecar.istio.io/excludeInboundPorts: "9300"
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: ekmnt

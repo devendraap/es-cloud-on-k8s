@@ -11,8 +11,8 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
 )
 
 func Test_checkNodeSetNameUniqueness(t *testing.T) {
@@ -50,7 +50,7 @@ func Test_checkNodeSetNameUniqueness(t *testing.T) {
 		{
 			name: "good spec with 2 nodeSets",
 			es: esv1.Elasticsearch{
-				TypeMeta: metav1.TypeMeta{APIVersion: "elasticsearch.k8s.elastic.co/v1"},
+				TypeMeta: metav1.TypeMeta{APIVersion: "elasticsearch.k8s.acceldata.io/v1"},
 				Spec: esv1.ElasticsearchSpec{
 					Version:  "7.4.0",
 					NodeSets: []esv1.NodeSet{{Name: "foo", Count: 1}, {Name: "bar", Count: 1}},
@@ -61,7 +61,7 @@ func Test_checkNodeSetNameUniqueness(t *testing.T) {
 		{
 			name: "duplicate nodeSet",
 			es: esv1.Elasticsearch{
-				TypeMeta: metav1.TypeMeta{APIVersion: "elasticsearch.k8s.elastic.co/v1"},
+				TypeMeta: metav1.TypeMeta{APIVersion: "elasticsearch.k8s.acceldata.io/v1"},
 				Spec: esv1.ElasticsearchSpec{
 					Version:  "7.4.0",
 					NodeSets: []esv1.NodeSet{{Name: "foo", Count: 1}, {Name: "foo", Count: 1}},
@@ -427,7 +427,7 @@ func Test_noUnknownFields(t *testing.T) {
 		{
 			name: "good annotation",
 			es: GetEsWithLastApplied(
-				`{"apiVersion":"elasticsearch.k8s.elastic.co/v1","kind":"Elasticsearch"` +
+				`{"apiVersion":"elasticsearch.k8s.acceldata.io/v1","kind":"Elasticsearch"` +
 					`,"metadata":{"annotations":{},"name":"quickstart","namespace":"default"},` +
 					`"spec":{"nodeSets":[{"config":{"node.store.allow_mmap":false},"count":1,` +
 					`"name":"default"}],"version":"7.5.1"}}`),
@@ -439,7 +439,7 @@ func Test_noUnknownFields(t *testing.T) {
 		{
 			name: "bad annotation",
 			es: GetEsWithLastApplied(
-				`{"apiVersion":"elasticsearch.k8s.elastic.co/v1","kind":"Elasticsearch"` +
+				`{"apiVersion":"elasticsearch.k8s.acceldata.io/v1","kind":"Elasticsearch"` +
 					`,"metadata":{"annotations":{},"name":"quickstart","namespace":"default"},` +
 					`"spec":{"nodeSets":[{"config":{"node.store.allow_mmap":false},"count":1,` +
 					`"name":"default","wrongthing":true}],"version":"7.5.1"}}`),

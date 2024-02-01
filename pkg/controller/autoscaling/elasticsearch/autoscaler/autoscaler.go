@@ -7,7 +7,7 @@ package autoscaler
 import (
 	corev1 "k8s.io/api/core/v1"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
 )
 
 // GetResources calculates the resources required by all the NodeSets managed by a same autoscaling policy.
@@ -46,14 +46,14 @@ func (ctx *Context) scaleVertically() v1alpha1.NodeResources {
 
 	// If no memory has been returned by the autoscaling API, but the user has expressed the intent to manage memory
 	// using the autoscaling specification then we derive the memory from the storage if available.
-	// See https://github.com/elastic/cloud-on-k8s/issues/4076
+	// See https://github.com/devendra/es-cloud-on-k8s/issues/4076
 	if !nodeResources.HasRequest(corev1.ResourceMemory) && ctx.AutoscalingSpec.IsMemoryDefined() &&
 		ctx.AutoscalingSpec.IsStorageDefined() && nodeResources.HasRequest(corev1.ResourceStorage) {
 		nodeResources.SetRequest(corev1.ResourceMemory, memoryFromStorage(nodeResources.GetRequest(corev1.ResourceStorage), *ctx.AutoscalingSpec.StorageRange, *ctx.AutoscalingSpec.MemoryRange))
 	}
 
 	// Same as above, if CPU limits have been expressed by the user in the autoscaling specification then we adjust CPU request according to the memory request.
-	// See https://github.com/elastic/cloud-on-k8s/issues/4021
+	// See https://github.com/devendra/es-cloud-on-k8s/issues/4021
 	if !nodeResources.HasRequest(corev1.ResourceCPU) && ctx.AutoscalingSpec.IsCPUDefined() &&
 		ctx.AutoscalingSpec.IsMemoryDefined() && nodeResources.HasRequest(corev1.ResourceMemory) {
 		nodeResources.SetRequest(corev1.ResourceCPU, cpuFromMemory(nodeResources.GetRequest(corev1.ResourceMemory), *ctx.AutoscalingSpec.MemoryRange, *ctx.AutoscalingSpec.CPURange))

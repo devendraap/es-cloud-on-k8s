@@ -14,10 +14,10 @@ import (
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/types"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
 )
 
 func TestKillOneDataNode(t *testing.T) {
@@ -97,7 +97,7 @@ func TestDeleteServices(t *testing.T) {
 			// We do not do more checks here, and, particularly, we don't check that the Endpoints resource
 			// gets (re)created. There seems to be a bug/race condition in K8s/GKE that occasionally delays Endpoints
 			// resource creation when services are quickly created/deleted/created, leading to a flaky test.
-			// More details in https://github.com/elastic/cloud-on-k8s/issues/2602.
+			// More details in https://github.com/devendra/es-cloud-on-k8s/issues/2602.
 		}
 	}, b).RunSequential(t)
 }

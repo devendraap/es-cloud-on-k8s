@@ -24,28 +24,28 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"sigs.k8s.io/controller-runtime/pkg/source"
 
-	apmv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/driver"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/events"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/finalizer"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/keystore"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/labels"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	apmv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/driver"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/events"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/finalizer"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/keystore"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/labels"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 const (
 	controllerName           = "apmserver-controller"
-	configHashAnnotationName = "apm.k8s.elastic.co/config-hash"
+	configHashAnnotationName = "apm.k8s.acceldata.io/config-hash"
 
 	// ApmBaseDir is the base directory of the APM server
 	ApmBaseDir = "/usr/share/apm-server"
@@ -324,7 +324,7 @@ func reconcileApmServerToken(ctx context.Context, c k8s.Client, as *apmv1.ApmSer
 	}
 
 	// Don't set an ownerRef for the APM token secret, likely to be copied into different namespaces.
-	// See https://github.com/elastic/cloud-on-k8s/issues/3986.
+	// See https://github.com/devendra/es-cloud-on-k8s/issues/3986.
 	return reconciler.ReconcileSecretNoOwnerRef(ctx, c, expectedApmServerSecret, as)
 }
 

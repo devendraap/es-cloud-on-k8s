@@ -5,13 +5,13 @@
 package v1alpha1
 
 import (
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
 )
 
 // GetIdentityLabels will return the common Elastic assigned labels for the Elastic Agent.
 func (a *Agent) GetIdentityLabels() map[string]string {
 	return map[string]string{
-		commonv1.TypeLabelName:      "agent",
-		"agent.k8s.elastic.co/name": a.Name,
+		commonv1.TypeLabelName:        "agent",
+		"agent.k8s.acceldata.io/name": a.Name,
 	}
 }

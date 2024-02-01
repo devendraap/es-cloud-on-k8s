@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/exec"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/exec"
 )
 
 //go:embed install/kyverno.yaml

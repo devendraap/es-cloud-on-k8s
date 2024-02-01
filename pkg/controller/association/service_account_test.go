@@ -20,10 +20,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var (
@@ -60,12 +60,12 @@ var (
 			Name:      "kibana-sample-kibana-user",
 			UID:       types.UID("6f5cb31d-69c4-409d-8b8d-8eafafc6bbd7"),
 			Labels: map[string]string{
-				"eck.k8s.elastic.co/credentials":                 "true",
-				"elasticsearch.k8s.elastic.co/cluster-name":      "elasticsearch-sample",
-				"elasticsearch.k8s.elastic.co/cluster-namespace": "e2e-mercury",
-				"kibanaassociation.k8s.elastic.co/name":          "kibana-sample",
-				"kibanaassociation.k8s.elastic.co/namespace":     "e2e-venus",
-				"kibanaassociation.k8s.elastic.co/type":          "elasticsearch",
+				"eck.k8s.acceldata.io/credentials":                 "true",
+				"elasticsearch.k8s.acceldata.io/cluster-name":      "elasticsearch-sample",
+				"elasticsearch.k8s.acceldata.io/cluster-namespace": "e2e-mercury",
+				"kibanaassociation.k8s.acceldata.io/name":          "kibana-sample",
+				"kibanaassociation.k8s.acceldata.io/namespace":     "e2e-venus",
+				"kibanaassociation.k8s.acceldata.io/type":          "elasticsearch",
 			},
 			ResourceVersion: "3442951",
 		},
@@ -84,12 +84,12 @@ var (
 			UID:             types.UID("0c60f0f4-5847-48b7-b539-c76746a7394f"),
 			ResourceVersion: "3443557",
 			Labels: map[string]string{
-				"common.k8s.elastic.co/type":                     "service-account-token",
-				"elasticsearch.k8s.elastic.co/cluster-name":      "elasticsearch-sample",
-				"elasticsearch.k8s.elastic.co/cluster-namespace": "e2e-mercury",
-				"kibanaassociation.k8s.elastic.co/name":          "kibana-sample",
-				"kibanaassociation.k8s.elastic.co/namespace":     "e2e-venus",
-				"kibanaassociation.k8s.elastic.co/type":          "elasticsearch",
+				"common.k8s.acceldata.io/type":                     "service-account-token",
+				"elasticsearch.k8s.acceldata.io/cluster-name":      "elasticsearch-sample",
+				"elasticsearch.k8s.acceldata.io/cluster-namespace": "e2e-mercury",
+				"kibanaassociation.k8s.acceldata.io/name":          "kibana-sample",
+				"kibanaassociation.k8s.acceldata.io/namespace":     "e2e-venus",
+				"kibanaassociation.k8s.acceldata.io/type":          "elasticsearch",
 			},
 		},
 		Data: map[string][]byte{
@@ -175,11 +175,11 @@ func Test_ReconcileServiceAccounts(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			commonLabels := map[string]string{
-				"elasticsearch.k8s.elastic.co/cluster-name":      "elasticsearch-sample",
-				"elasticsearch.k8s.elastic.co/cluster-namespace": "e2e-mercury",
-				"kibanaassociation.k8s.elastic.co/type":          "elasticsearch",
-				"kibanaassociation.k8s.elastic.co/name":          "kibana-sample",
-				"kibanaassociation.k8s.elastic.co/namespace":     "e2e-venus",
+				"elasticsearch.k8s.acceldata.io/cluster-name":      "elasticsearch-sample",
+				"elasticsearch.k8s.acceldata.io/cluster-namespace": "e2e-mercury",
+				"kibanaassociation.k8s.acceldata.io/type":          "elasticsearch",
+				"kibanaassociation.k8s.acceldata.io/name":          "kibana-sample",
+				"kibanaassociation.k8s.acceldata.io/namespace":     "e2e-venus",
 			}
 			applicationSecretName := types.NamespacedName{Namespace: "e2e-venus", Name: "kibana-sample-kibana-user"}
 			elasticsearchSecretName := types.NamespacedName{Namespace: "e2e-mercury", Name: "e2e-venus-kibana-sample-kibana-user"}

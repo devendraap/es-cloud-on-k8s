@@ -15,18 +15,18 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	apmv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	esuser "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	apmv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	esuser "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (
-	ApmAssociationLabelName         = "apmassociation.k8s.elastic.co/name"
-	ApmAssociationLabelNamespace    = "apmassociation.k8s.elastic.co/namespace"
-	KibanaAssociationLabelName      = "kibanaassociation.k8s.elastic.co/name"
-	KibanaAssociationLabelNamespace = "kibanaassociation.k8s.elastic.co/namespace"
+	ApmAssociationLabelName         = "apmassociation.k8s.acceldata.io/name"
+	ApmAssociationLabelNamespace    = "apmassociation.k8s.acceldata.io/namespace"
+	KibanaAssociationLabelName      = "kibanaassociation.k8s.acceldata.io/name"
+	KibanaAssociationLabelNamespace = "kibanaassociation.k8s.acceldata.io/namespace"
 )
 
 func newUserSecret(

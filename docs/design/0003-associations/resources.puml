@@ -16,9 +16,9 @@ class User << (R,darkseagreen) >> {
         name: my-cluster-id-foo // <-- convention to avoid collisions
     .. Labels ..
     ... **Option 1** ...
-        elasticsearch.k8s.elastic.co/cluster: my-cluster-id
+        elasticsearch.k8s.acceldata.io/cluster: my-cluster-id
     ... **Option 2** ...
-        k8s.elastic.co/relations: {"cluster": "my-cluster-id"}
+        k8s.acceldata.io/relations: {"cluster": "my-cluster-id"}
     --
     .. Spec ..
         username: foo
@@ -31,7 +31,7 @@ class User << (R,darkseagreen) >> {
     ..  **Option 3** ..
         clusterSelector:
         \t matchLabels:
-        \t \t elasticsearch.k8s.elastic.co/cluster: my-cluster-id
+        \t \t elasticsearch.k8s.acceldata.io/cluster: my-cluster-id
 }
 
 ElasticsearchCluster -> User: lists and applies

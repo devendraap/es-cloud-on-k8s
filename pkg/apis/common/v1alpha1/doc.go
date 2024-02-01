@@ -4,5 +4,5 @@
 
 // Package v1alpha1 contains API schema definitions for common types used by all resources.
 // +kubebuilder:object:generate=true
-// +groupName=common.k8s.elastic.co
+// +groupName=common.k8s.acceldata.io
 package v1alpha1

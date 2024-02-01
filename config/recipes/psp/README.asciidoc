@@ -53,7 +53,7 @@ Note that this Pod Security Policy requires Elasticsearch and other stack applic
 
 [source,yaml]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: quickstart

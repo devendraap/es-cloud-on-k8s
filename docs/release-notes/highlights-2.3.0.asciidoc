@@ -34,7 +34,7 @@ The most recent generation of a resource processed by the operator, also known a
 
 [source,yaml]
 ----
-apiVersion: resource.k8s.elastic.co/v1
+apiVersion: resource.k8s.acceldata.io/v1
 metadata:
   name: resource-name
   namespace: default

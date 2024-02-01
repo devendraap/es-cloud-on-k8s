@@ -15,9 +15,9 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/util/retry"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/exec"
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/runner/kyverno"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/vault"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/exec"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/runner/kyverno"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/vault"
 )
 
 const (

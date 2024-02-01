@@ -56,13 +56,13 @@ spec:
   subsets:
     - name: ingest
       labels:
-        elasticsearch.k8s.elastic.co/node-master: "false"
-        elasticsearch.k8s.elastic.co/node-data: "false"
-        elasticsearch.k8s.elastic.co/node-ingest: "true"
-        elasticsearch.k8s.elastic.co/node-ml: "false"
+        elasticsearch.k8s.acceldata.io/node-master: "false"
+        elasticsearch.k8s.acceldata.io/node-data: "false"
+        elasticsearch.k8s.acceldata.io/node-ingest: "true"
+        elasticsearch.k8s.acceldata.io/node-ml: "false"
     - name: coordinating
       labels:
-        elasticsearch.k8s.elastic.co/node-master: "false"
-        elasticsearch.k8s.elastic.co/node-data: "false"
-        elasticsearch.k8s.elastic.co/node-ingest: "false"
-        elasticsearch.k8s.elastic.co/node-ml: "false"
+        elasticsearch.k8s.acceldata.io/node-master: "false"
+        elasticsearch.k8s.acceldata.io/node-data: "false"
+        elasticsearch.k8s.acceldata.io/node-ingest: "false"
+        elasticsearch.k8s.acceldata.io/node-ml: "false"

@@ -9,26 +9,26 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 
-	agentv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	eslabel "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/rbac"
+	agentv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	eslabel "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/rbac"
 )
 
 const (
 	// AgentAssociationLabelName marks resources created for an association originating from Agent with the
 	// Agent name.
-	AgentAssociationLabelName = "agentassociation.k8s.elastic.co/name"
+	AgentAssociationLabelName = "agentassociation.k8s.acceldata.io/name"
 	// AgentAssociationLabelNamespace marks resources created for an association originating from Agent with the
 	// Agent namespace.
-	AgentAssociationLabelNamespace = "agentassociation.k8s.elastic.co/namespace"
+	AgentAssociationLabelNamespace = "agentassociation.k8s.acceldata.io/namespace"
 	// AgentAssociationLabelType marks resources created for an association originating from Agent
 	// with the target resource type (e.g. "elasticsearch").
-	AgentAssociationLabelType = "agentassociation.k8s.elastic.co/type"
+	AgentAssociationLabelType = "agentassociation.k8s.acceldata.io/type"
 )
 
 func AddAgentES(mgr manager.Manager, accessReviewer rbac.AccessReviewer, params operator.Parameters) error {

@@ -17,12 +17,12 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/comparison"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/comparison"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func TestReconcileTransportCertificatesSecrets(t *testing.T) {
@@ -71,9 +71,9 @@ func TestReconcileTransportCertificatesSecrets(t *testing.T) {
 				assert.Equal(t, 5, len(transportCerts1.Data))
 				// Check that ca.crt exists
 				assert.Equal(t, testRSACABytes, transportCerts1.Data["ca.crt"])
-				// Check the labels elasticsearch.k8s.elastic.co/cluster-name and elasticsearch.k8s.elastic.co/statefulset-name
-				assert.Equal(t, testEsName, transportCerts1.Labels["elasticsearch.k8s.elastic.co/cluster-name"])
-				assert.Equal(t, "test-es-name-es-sset1", transportCerts1.Labels["elasticsearch.k8s.elastic.co/statefulset-name"])
+				// Check the labels elasticsearch.k8s.acceldata.io/cluster-name and elasticsearch.k8s.acceldata.io/statefulset-name
+				assert.Equal(t, testEsName, transportCerts1.Labels["elasticsearch.k8s.acceldata.io/cluster-name"])
+				assert.Equal(t, "test-es-name-es-sset1", transportCerts1.Labels["elasticsearch.k8s.acceldata.io/statefulset-name"])
 
 				transportCerts2 := getSecret(secrets, "test-es-name-es-sset2-es-transport-certs")
 				assert.NotNil(t, transportCerts2)
@@ -81,9 +81,9 @@ func TestReconcileTransportCertificatesSecrets(t *testing.T) {
 				assert.Equal(t, 7, len(transportCerts2.Data))
 				// Check that ca.crt exists
 				assert.Equal(t, testRSACABytes, transportCerts2.Data["ca.crt"])
-				// Check the labels elasticsearch.k8s.elastic.co/cluster-name and elasticsearch.k8s.elastic.co/statefulset-name
-				assert.Equal(t, testEsName, transportCerts2.Labels["elasticsearch.k8s.elastic.co/cluster-name"])
-				assert.Equal(t, "test-es-name-es-sset2", transportCerts2.Labels["elasticsearch.k8s.elastic.co/statefulset-name"])
+				// Check the labels elasticsearch.k8s.acceldata.io/cluster-name and elasticsearch.k8s.acceldata.io/statefulset-name
+				assert.Equal(t, testEsName, transportCerts2.Labels["elasticsearch.k8s.acceldata.io/cluster-name"])
+				assert.Equal(t, "test-es-name-es-sset2", transportCerts2.Labels["elasticsearch.k8s.acceldata.io/statefulset-name"])
 
 				transportCerts3 := getSecret(secrets, "test-es-name-es-sset3-es-transport-certs")
 				assert.NotNil(t, transportCerts3)
@@ -91,9 +91,9 @@ func TestReconcileTransportCertificatesSecrets(t *testing.T) {
 				assert.Equal(t, 9, len(transportCerts3.Data))
 				// Check that ca.crt exists
 				assert.Equal(t, testRSACABytes, transportCerts3.Data["ca.crt"])
-				// Check the labels elasticsearch.k8s.elastic.co/cluster-name and elasticsearch.k8s.elastic.co/statefulset-name
-				assert.Equal(t, testEsName, transportCerts3.Labels["elasticsearch.k8s.elastic.co/cluster-name"])
-				assert.Equal(t, "test-es-name-es-sset3", transportCerts3.Labels["elasticsearch.k8s.elastic.co/statefulset-name"])
+				// Check the labels elasticsearch.k8s.acceldata.io/cluster-name and elasticsearch.k8s.acceldata.io/statefulset-name
+				assert.Equal(t, testEsName, transportCerts3.Labels["elasticsearch.k8s.acceldata.io/cluster-name"])
+				assert.Equal(t, "test-es-name-es-sset3", transportCerts3.Labels["elasticsearch.k8s.acceldata.io/statefulset-name"])
 			},
 		},
 		{
@@ -128,9 +128,9 @@ func TestReconcileTransportCertificatesSecrets(t *testing.T) {
 				assert.Equal(t, 5, len(transportCerts1.Data))
 				// Check that ca.crt exists
 				assert.Equal(t, bytes.Join([][]byte{testRSACABytes, extraCA}, nil), transportCerts1.Data["ca.crt"])
-				// Check the labels elasticsearch.k8s.elastic.co/cluster-name and elasticsearch.k8s.elastic.co/statefulset-name
-				assert.Equal(t, testEsName, transportCerts1.Labels["elasticsearch.k8s.elastic.co/cluster-name"])
-				assert.Equal(t, "test-es-name-es-sset1", transportCerts1.Labels["elasticsearch.k8s.elastic.co/statefulset-name"])
+				// Check the labels elasticsearch.k8s.acceldata.io/cluster-name and elasticsearch.k8s.acceldata.io/statefulset-name
+				assert.Equal(t, testEsName, transportCerts1.Labels["elasticsearch.k8s.acceldata.io/cluster-name"])
+				assert.Equal(t, "test-es-name-es-sset1", transportCerts1.Labels["elasticsearch.k8s.acceldata.io/statefulset-name"])
 
 				transportCerts2 := getSecret(secrets, "test-es-name-es-sset2-es-transport-certs")
 				assert.NotNil(t, transportCerts2)
@@ -138,9 +138,9 @@ func TestReconcileTransportCertificatesSecrets(t *testing.T) {
 				assert.Equal(t, 5, len(transportCerts2.Data))
 				// Check that ca.crt exists
 				assert.Equal(t, bytes.Join([][]byte{testRSACABytes, extraCA}, nil), transportCerts2.Data["ca.crt"])
-				// Check the labels elasticsearch.k8s.elastic.co/cluster-name and elasticsearch.k8s.elastic.co/statefulset-name
-				assert.Equal(t, testEsName, transportCerts2.Labels["elasticsearch.k8s.elastic.co/cluster-name"])
-				assert.Equal(t, "test-es-name-es-sset2", transportCerts2.Labels["elasticsearch.k8s.elastic.co/statefulset-name"])
+				// Check the labels elasticsearch.k8s.acceldata.io/cluster-name and elasticsearch.k8s.acceldata.io/statefulset-name
+				assert.Equal(t, testEsName, transportCerts2.Labels["elasticsearch.k8s.acceldata.io/cluster-name"])
+				assert.Equal(t, "test-es-name-es-sset2", transportCerts2.Labels["elasticsearch.k8s.acceldata.io/statefulset-name"])
 			},
 		},
 		{

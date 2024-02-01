@@ -13,8 +13,8 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/elastic/cloud-on-k8s/hack/helm/release/internal/helm"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/vault"
+	"github.com/devendra/es-cloud-on-k8s/hack/helm/release/internal/helm"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/vault"
 )
 
 const (

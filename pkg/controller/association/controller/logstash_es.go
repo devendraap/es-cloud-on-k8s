@@ -9,27 +9,27 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	eslabel "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/rbac"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	eslabel "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/rbac"
 )
 
 const (
 	// LogstashAssociationLabelName marks resources created for an association originating from Logstash with the
 	// Logstash name.
-	LogstashAssociationLabelName = "logstashassociation.k8s.elastic.co/name"
+	LogstashAssociationLabelName = "logstashassociation.k8s.acceldata.io/name"
 	// LogstashAssociationLabelNamespace marks resources created for an association originating from Logstash with the
 	// Logstash namespace.
-	LogstashAssociationLabelNamespace = "logstashassociation.k8s.elastic.co/namespace"
+	LogstashAssociationLabelNamespace = "logstashassociation.k8s.acceldata.io/namespace"
 	// LogstashAssociationLabelType marks resources created for an association originating from Logstash
 	// with the target resource type (e.g. "elasticsearch").
-	LogstashAssociationLabelType = "logstashassociation.k8s.elastic.co/type"
+	LogstashAssociationLabelType = "logstashassociation.k8s.acceldata.io/type"
 )
 
 func AddLogstashES(mgr manager.Manager, accessReviewer rbac.AccessReviewer, params operator.Parameters) error {

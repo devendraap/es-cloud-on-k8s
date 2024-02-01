@@ -44,7 +44,7 @@ Add the following specification to create a minimal Logstash deployment that wil
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -102,7 +102,7 @@ quickstart        3           3          4s    {version}
 +
 [source,sh]
 ----
-kubectl get pods --selector='logstash.k8s.elastic.co/name=quickstart'
+kubectl get pods --selector='logstash.k8s.acceldata.io/name=quickstart'
 ----
 +
 [source,sh]
@@ -135,7 +135,7 @@ Define the Logstash configuration (the ECK equivalent to `logstash.yml`) in the 
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -155,7 +155,7 @@ spec:
 Alternatively, you can provide the configuration through a Secret specified in the `spec.configRef` section. The Secret must have an `logstash.yml` entry with these settings:
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -186,7 +186,7 @@ Define Logstash pipelines in the `spec.pipelines` section (the ECK equivalent to
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -217,7 +217,7 @@ spec:
 Alternatively, you can provide the pipeline configuration through a Secret specified in the `spec.pipelinesRef` element. The Secret must have a `logstash.yml` entry with this configuration:
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -260,7 +260,7 @@ Logstash on ECK supports all options present in `pipelines.yml`, including setti
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -309,7 +309,7 @@ This example updates the default data template to increase the storage to `2Gi` 
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash
@@ -334,7 +334,7 @@ This example shows how to setup separate storage for a PQ:
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash
@@ -370,7 +370,7 @@ This example shows how to configure {ls} with a Dead Letter Queue setup on the m
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash
@@ -455,7 +455,7 @@ This example shows how to configure a {ls} resource to drain the queue and incre
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash
@@ -544,7 +544,7 @@ different Elasticsearch instances, one of which is in a separate namespace:
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -606,7 +606,7 @@ stringData:
   password: REDACTED <3>
   ca.crt: REDACTED <4>
 ---
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -675,7 +675,7 @@ This example demonstrates how to create a Logstash deployment with increased hea
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample
@@ -724,7 +724,7 @@ stringData:
   API_USERNAME: "AWESOME_USER"   <1>
   API_PASSWORD: "T0p_Secret"     <1>
 ---
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample
@@ -759,7 +759,7 @@ This password can be modified by configuring the `api.ssl.keystore.password` val
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample
@@ -778,7 +778,7 @@ If you want to use your own certificate, the required configuration is similar t
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample
@@ -802,7 +802,7 @@ You can disable TLS by disabling the generation of the self-signed certificate i
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample
@@ -957,7 +957,7 @@ To do, this, set the  `LS_JAVA_OPTS` environment variable in the container defin
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart
@@ -998,7 +998,7 @@ metadata:
 stringData:
   HELLO: Hallo
 ---
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample
@@ -1184,7 +1184,7 @@ These risks are especially likely with plugins that:
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: quickstart

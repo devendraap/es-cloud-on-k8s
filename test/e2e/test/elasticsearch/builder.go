@@ -17,13 +17,13 @@ import (
 	"k8s.io/utils/ptr"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/cmd/run"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/cmd/run"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 // defaultMutationToleratedFailures is the number of continuous health checks failures tolerated during a mutation.
@@ -312,7 +312,7 @@ func (b Builder) WithNodeSet(nodeSet esv1.NodeSet) Builder {
 	nodeSet.Config.Data["logger.org.elasticsearch.cluster.service.MasterService"] = "trace"
 
 	// Propagates test-name label from top level resource.
-	// Can be removed when https://github.com/elastic/cloud-on-k8s/issues/2652 is implemented.
+	// Can be removed when https://github.com/devendra/es-cloud-on-k8s/issues/2652 is implemented.
 	if nodeSet.PodTemplate.Labels == nil {
 		nodeSet.PodTemplate.Labels = map[string]string{}
 	}
@@ -494,7 +494,7 @@ func (b Builder) WithLabel(key, value string) Builder {
 
 // WithPodLabel sets the label in pod templates across all node sets.
 // All invocations can be removed when
-// https://github.com/elastic/cloud-on-k8s/issues/2652 is implemented.
+// https://github.com/devendra/es-cloud-on-k8s/issues/2652 is implemented.
 func (b Builder) WithPodLabel(key, value string) Builder {
 	for i := range b.Elasticsearch.Spec.NodeSets {
 		if b.Elasticsearch.Spec.NodeSets[i].PodTemplate.Labels == nil {
@@ -546,7 +546,7 @@ func (b Builder) GetMetricsCluster() *types.NamespacedName {
 // TolerateMutationChecksFailures relaxes the continuous health check performed during a mutation by accepting a given number of failures.
 // When a new index is created at the same time as the mutation, the shutdown node API currently does not prevent shutting down a node
 // which has a new uninitialized replica, resulting in a cluster with red health status for a few seconds while the node comes back.
-// https://github.com/elastic/cloud-on-k8s/issues/5795.
+// https://github.com/devendra/es-cloud-on-k8s/issues/5795.
 func (b Builder) TolerateMutationChecksFailures() Builder {
 	b.mutationToleratedChecksFailureCount = defaultMutationToleratedFailures
 	return b

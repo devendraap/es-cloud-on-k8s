@@ -16,28 +16,28 @@ import (
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/utils/ptr"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
-	commonassociation "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/logstash/network"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/logstash/stackmon"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/logstash/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/maps"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	commonassociation "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/logstash/network"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/logstash/stackmon"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/logstash/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/maps"
 )
 
 const (
 	defaultFsGroup = 1000
 
 	// ConfigHashAnnotationName is an annotation used to store the Logstash config hash.
-	ConfigHashAnnotationName = "logstash.k8s.elastic.co/config-hash"
+	ConfigHashAnnotationName = "logstash.k8s.acceldata.io/config-hash"
 
 	// VersionLabelName is a label used to track the version of a Logstash Pod.
-	VersionLabelName = "logstash.k8s.elastic.co/version"
+	VersionLabelName = "logstash.k8s.acceldata.io/version"
 )
 
 var (

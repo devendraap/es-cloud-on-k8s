@@ -6,7 +6,7 @@
 
 CI_IMAGE               ?= docker.elastic.co/ci-agent-images/cloud-k8s-operator/buildkite-agent:3efd6572
 ROOT_DIR               := $(CURDIR)/..
-GO_MOUNT_PATH          ?= /go/src/github.com/elastic/cloud-on-k8s
+GO_MOUNT_PATH          ?= /go/src/github.com/devendra/es-cloud-on-k8s
 export VAULT_ROOT_PATH = secret/ci/elastic-cloud-on-k8s
 # volume used to share files between CI container and containers launched by deployer
 ECK_CI_VOLUME          := eck-ci-home-$(shell date '+%N')

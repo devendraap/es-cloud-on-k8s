@@ -19,14 +19,14 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/certificates/transport"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/rbac"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/certificates/transport"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/rbac"
 )
 
 type clusterBuilder struct {
@@ -107,10 +107,10 @@ func remoteCa(localNamespace, localName, remoteNamespace, remoteName string) *co
 			Namespace: localNamespace,
 			Name:      remoteCASecretName(localName, remoteNamespacedName),
 			Labels: map[string]string{
-				"common.k8s.elastic.co/type":                            "remote-ca",
-				"elasticsearch.k8s.elastic.co/cluster-name":             localName,
-				"elasticsearch.k8s.elastic.co/remote-cluster-name":      remoteName,
-				"elasticsearch.k8s.elastic.co/remote-cluster-namespace": remoteNamespace,
+				"common.k8s.acceldata.io/type":                            "remote-ca",
+				"elasticsearch.k8s.acceldata.io/cluster-name":             localName,
+				"elasticsearch.k8s.acceldata.io/remote-cluster-name":      remoteName,
+				"elasticsearch.k8s.acceldata.io/remote-cluster-namespace": remoteNamespace,
 			},
 		},
 		Data: map[string][]byte{

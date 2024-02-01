@@ -7,8 +7,8 @@ package manifests
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/operatorhub/cmd/flags"
-	hub "github.com/elastic/cloud-on-k8s/v2/hack/operatorhub/internal/operatorhub"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/operatorhub/cmd/flags"
+	hub "github.com/devendra/es-cloud-on-k8s/v2/hack/operatorhub/internal/operatorhub"
 )
 
 // Command will return the generate-manifests command

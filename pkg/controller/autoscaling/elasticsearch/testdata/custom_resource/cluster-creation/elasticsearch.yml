@@ -1,11 +1,11 @@
 # Brand new Elasticsearch resource with dedicated data and ml tiers.
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: testes
   namespace: testns
   annotations:
-    common.k8s.elastic.co/controller-version: 1.4.0
+    common.k8s.acceldata.io/controller-version: 1.4.0
 spec:
   version: 7.11.0
   nodeSets:

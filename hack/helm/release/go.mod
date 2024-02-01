@@ -1,4 +1,4 @@
-module github.com/elastic/cloud-on-k8s/hack/helm/release
+module github.com/devendra/es-cloud-on-k8s/hack/helm/release
 
 go 1.21
 
@@ -6,7 +6,7 @@ toolchain go1.21.6
 
 require (
 	cloud.google.com/go/storage v1.37.0
-	github.com/elastic/cloud-on-k8s/v2 v2.11.1
+	github.com/devendra/es-cloud-on-k8s/v2 v2.11.1
 	github.com/google/go-cmp v0.6.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
@@ -15,9 +15,9 @@ require (
 	helm.sh/helm/v3 v3.14.0
 )
 
-replace github.com/elastic/cloud-on-k8s/v2 => ../../..
+replace github.com/devendra/es-cloud-on-k8s/v2 => ../../..
 
-// pulled by github.com/google/go-containerregistry pulled by github.com/elastic/cloud-on-k8s/v2
+// pulled by github.com/google/go-containerregistry pulled by github.com/devendra/es-cloud-on-k8s/v2
 // incompatible with oras.land/oras-go v1.2.3 pulled by helm.sh/helm/v3
 exclude github.com/docker/docker v24.0.0+incompatible
 

@@ -88,4 +88,4 @@ helm install my-release -f values.yaml .
 
 ## Contributing
 
-This chart is maintained at [github.com/elastic/cloud-on-k8s](https://github.com/elastic/cloud-on-k8s/tree/main/deploy/eck-stack).
+This chart is maintained at [github.com/devendra/es-cloud-on-k8s](https://github.com/elastic/cloud-on-k8s/tree/main/deploy/eck-stack).

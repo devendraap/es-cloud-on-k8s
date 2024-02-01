@@ -22,14 +22,14 @@ import (
 	"k8s.io/utils/ptr"
 	"k8s.io/utils/strings/slices"
 
-	beatv1beta1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/bootstrap"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	beatv1beta1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/bootstrap"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_buildPodTemplate(t *testing.T) {
@@ -152,13 +152,13 @@ func Test_buildPodTemplate(t *testing.T) {
 			want: want{
 				initContainers: 0,
 				labels: map[string]string{
-					"beat.k8s.elastic.co/name":    "beat-name",
-					"beat.k8s.elastic.co/version": "7.15.0",
-					"common.k8s.elastic.co/type":  "beat",
+					"beat.k8s.acceldata.io/name":    "beat-name",
+					"beat.k8s.acceldata.io/version": "7.15.0",
+					"common.k8s.acceldata.io/type":  "beat",
 				},
 				annotations: map[string]string{
 					// SHA224 should be the same as the initial one.
-					"beat.k8s.elastic.co/config-hash": "3214735720",
+					"beat.k8s.acceldata.io/config-hash": "3214735720",
 				},
 			},
 		},
@@ -196,13 +196,13 @@ func Test_buildPodTemplate(t *testing.T) {
 			want: want{
 				initContainers: 1,
 				labels: map[string]string{
-					"beat.k8s.elastic.co/name":    "beat-name",
-					"beat.k8s.elastic.co/version": "7.15.0",
-					"common.k8s.elastic.co/type":  "beat",
+					"beat.k8s.acceldata.io/name":    "beat-name",
+					"beat.k8s.acceldata.io/version": "7.15.0",
+					"common.k8s.acceldata.io/type":  "beat",
 				},
 				annotations: map[string]string{
 					// SHA224 should be the same as the initial one.
-					"beat.k8s.elastic.co/config-hash": "3214735720",
+					"beat.k8s.acceldata.io/config-hash": "3214735720",
 				},
 			},
 		},
@@ -265,13 +265,13 @@ func Test_buildPodTemplate(t *testing.T) {
 			want: want{
 				initContainers: 2,
 				labels: map[string]string{
-					"beat.k8s.elastic.co/name":    "beat-name",
-					"beat.k8s.elastic.co/version": "7.15.0",
-					"common.k8s.elastic.co/type":  "beat",
+					"beat.k8s.acceldata.io/name":    "beat-name",
+					"beat.k8s.acceldata.io/version": "7.15.0",
+					"common.k8s.acceldata.io/type":  "beat",
 				},
 				annotations: map[string]string{
 					// The sum below should reflect the version of the Secret which contain the secure settings.
-					"beat.k8s.elastic.co/config-hash": "4263282862",
+					"beat.k8s.acceldata.io/config-hash": "4263282862",
 				},
 			},
 		},

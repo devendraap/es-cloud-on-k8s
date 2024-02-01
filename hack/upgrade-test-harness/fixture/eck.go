@@ -259,17 +259,17 @@ func getMinVersionFromPods(ctx *TestContext, kind string) (*semver.Version, erro
 func labelSelectorFor(kind string) (string, error) {
 	switch kind {
 	case "elasticsearch":
-		return "elasticsearch.k8s.elastic.co/cluster-name=" + esName, nil
+		return "elasticsearch.k8s.acceldata.io/cluster-name=" + esName, nil
 	case "kibana":
-		return "kibana.k8s.elastic.co/name=" + kbName, nil
+		return "kibana.k8s.acceldata.io/name=" + kbName, nil
 	case "apmserver":
-		return "apm.k8s.elastic.co/name=" + apmName, nil
+		return "apm.k8s.acceldata.io/name=" + apmName, nil
 	case "enterprisesearch":
-		return "enterprisesearch.k8s.elastic.co/name=" + entName, nil
+		return "enterprisesearch.k8s.acceldata.io/name=" + entName, nil
 	case "beat":
-		return "beat.k8s.elastic.co/name=" + beatName, nil
+		return "beat.k8s.acceldata.io/name=" + beatName, nil
 	case "logstash":
-		return "logstash.k8s.elastic.co/name=" + logstashName, nil
+		return "logstash.k8s.acceldata.io/name=" + logstashName, nil
 	}
 
 	return "", fmt.Errorf("%s is not a supported kind", kind)

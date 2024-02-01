@@ -9,17 +9,17 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/util/intstr"
 
-	emsv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
+	emsv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
 )
 
 const (
 	HTTPPort                 = 8080
-	configHashAnnotationName = "maps.k8s.elastic.co/config-hash"
+	configHashAnnotationName = "maps.k8s.acceldata.io/config-hash"
 	logVolumeMountPath       = "/var/log/elastic-maps-server"
 )
 

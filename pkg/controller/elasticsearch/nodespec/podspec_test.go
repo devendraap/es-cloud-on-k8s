@@ -17,21 +17,21 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/utils/ptr"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	policyv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
-	commonannotation "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/annotation"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/keystore"
-	common "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/initcontainer"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	esvolume "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	policyv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
+	commonannotation "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/annotation"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/keystore"
+	common "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/initcontainer"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	esvolume "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 type esSampleBuilder struct {
@@ -308,22 +308,22 @@ func TestBuildPodTemplateSpec(t *testing.T) {
 	expected := corev1.PodTemplateSpec{
 		ObjectMeta: metav1.ObjectMeta{
 			Labels: map[string]string{
-				"common.k8s.elastic.co/type":                    "elasticsearch",
-				"elasticsearch.k8s.elastic.co/cluster-name":     "name",
-				"elasticsearch.k8s.elastic.co/http-scheme":      "https",
-				"elasticsearch.k8s.elastic.co/node-data":        "false",
-				"elasticsearch.k8s.elastic.co/node-ingest":      "true",
-				"elasticsearch.k8s.elastic.co/node-master":      "true",
-				"elasticsearch.k8s.elastic.co/node-ml":          "true",
-				"elasticsearch.k8s.elastic.co/statefulset-name": "name-es-nodeset-1",
-				"elasticsearch.k8s.elastic.co/version":          "7.2.0",
-				"pod-template-label-name":                       "pod-template-label-value",
+				"common.k8s.acceldata.io/type":                    "elasticsearch",
+				"elasticsearch.k8s.acceldata.io/cluster-name":     "name",
+				"elasticsearch.k8s.acceldata.io/http-scheme":      "https",
+				"elasticsearch.k8s.acceldata.io/node-data":        "false",
+				"elasticsearch.k8s.acceldata.io/node-ingest":      "true",
+				"elasticsearch.k8s.acceldata.io/node-master":      "true",
+				"elasticsearch.k8s.acceldata.io/node-ml":          "true",
+				"elasticsearch.k8s.acceldata.io/statefulset-name": "name-es-nodeset-1",
+				"elasticsearch.k8s.acceldata.io/version":          "7.2.0",
+				"pod-template-label-name":                         "pod-template-label-value",
 			},
 			Annotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash":               "267866193",
-				"pod-template-annotation-name":                           "pod-template-annotation-value",
-				"co.elastic.logs/module":                                 "elasticsearch",
-				"policy.k8s.elastic.co/elasticsearch-config-mounts-hash": "2095567618",
+				"elasticsearch.k8s.acceldata.io/config-hash":               "267866193",
+				"pod-template-annotation-name":                             "pod-template-annotation-value",
+				"co.elastic.logs/module":                                   "elasticsearch",
+				"policy.k8s.acceldata.io/elasticsearch-config-mounts-hash": "2095567618",
 			},
 		},
 		Spec: corev1.PodSpec{
@@ -400,7 +400,7 @@ func Test_buildAnnotations(t *testing.T) {
 		{
 			name: "Sample Elasticsearch resource",
 			expectedAnnotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash": "533641620",
+				"elasticsearch.k8s.acceldata.io/config-hash": "533641620",
 			},
 		},
 		{
@@ -413,25 +413,25 @@ func Test_buildAnnotations(t *testing.T) {
 				},
 			},
 			expectedAnnotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash": "3131886472",
+				"elasticsearch.k8s.acceldata.io/config-hash": "3131886472",
 			},
 		},
 		{
 			name: "Simple Elasticsearch resource, with downward node labels",
 			args: args{
-				esAnnotations: map[string]string{"eck.k8s.elastic.co/downward-node-labels": "topology.kubernetes.io/zone"},
+				esAnnotations: map[string]string{"eck.k8s.acceldata.io/downward-node-labels": "topology.kubernetes.io/zone"},
 			},
 			expectedAnnotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash": "757126536",
+				"elasticsearch.k8s.acceldata.io/config-hash": "757126536",
 			},
 		},
 		{
 			name: "Simple Elasticsearch resource, with other downward node labels",
 			args: args{
-				esAnnotations: map[string]string{"eck.k8s.elastic.co/downward-node-labels": "topology.kubernetes.io/zone,topology.kubernetes.io/region"},
+				esAnnotations: map[string]string{"eck.k8s.acceldata.io/downward-node-labels": "topology.kubernetes.io/zone,topology.kubernetes.io/region"},
 			},
 			expectedAnnotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash": "3605766330",
+				"elasticsearch.k8s.acceldata.io/config-hash": "3605766330",
 			},
 		},
 		{
@@ -443,7 +443,7 @@ func Test_buildAnnotations(t *testing.T) {
 				scriptsContent: "scripts content",
 			},
 			expectedAnnotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash": "99942575",
+				"elasticsearch.k8s.acceldata.io/config-hash": "99942575",
 			},
 		},
 		{
@@ -455,7 +455,7 @@ func Test_buildAnnotations(t *testing.T) {
 				scriptsContent: "scripts content",
 			},
 			expectedAnnotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash": "83164956",
+				"elasticsearch.k8s.acceldata.io/config-hash": "83164956",
 			},
 		},
 		{
@@ -467,7 +467,7 @@ func Test_buildAnnotations(t *testing.T) {
 				scriptsContent: "another scripts content",
 			},
 			expectedAnnotations: map[string]string{
-				"elasticsearch.k8s.elastic.co/config-hash": "1050348692",
+				"elasticsearch.k8s.acceldata.io/config-hash": "1050348692",
 			},
 		},
 		{

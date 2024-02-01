@@ -13,19 +13,19 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	v1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/auditbeat"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/filebeat"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/heartbeat"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/journalbeat"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/metricbeat"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/packetbeat"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon/validations"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/beat"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/kibana"
+	v1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/auditbeat"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/filebeat"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/heartbeat"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/journalbeat"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/metricbeat"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/packetbeat"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon/validations"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/beat"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/kibana"
 )
 
 func TestFilebeatDefaultConfig(t *testing.T) {
@@ -237,7 +237,7 @@ processors:
 func TestAuditbeatConfig(t *testing.T) {
 	if test.Ctx().Provider == "kind" {
 		// kind doesn't support configuring required settings
-		// see https://github.com/elastic/cloud-on-k8s/issues/3328 for more context
+		// see https://github.com/devendra/es-cloud-on-k8s/issues/3328 for more context
 		t.SkipNow()
 	}
 

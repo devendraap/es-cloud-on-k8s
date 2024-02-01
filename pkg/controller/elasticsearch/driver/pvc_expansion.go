@@ -17,17 +17,17 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/sset"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/validation"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/sset"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/validation"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 const (
 	// RecreateStatefulSetAnnotationPrefix is used to annotate the Elasticsearch resource
 	// with StatefulSets to recreate. The StatefulSet name is appended to this name.
-	RecreateStatefulSetAnnotationPrefix = "elasticsearch.k8s.elastic.co/recreate-"
+	RecreateStatefulSetAnnotationPrefix = "elasticsearch.k8s.acceldata.io/recreate-"
 )
 
 // handleVolumeExpansion works around the immutability of VolumeClaimTemplates in StatefulSets by:

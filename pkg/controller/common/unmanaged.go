@@ -10,13 +10,13 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 const (
 	// ManagedAnnotation annotation
-	LegacyPauseAnnoation = "common.k8s.elastic.co/pause"
-	ManagedAnnotation    = "eck.k8s.elastic.co/managed"
+	LegacyPauseAnnoation = "common.k8s.acceldata.io/pause"
+	ManagedAnnotation    = "eck.k8s.acceldata.io/managed"
 )
 
 // IsUnmanaged checks if a given resource is currently unmanaged.

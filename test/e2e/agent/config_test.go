@@ -15,13 +15,13 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	v1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/agent"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/beat"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/kibana"
+	v1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/agent"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/beat"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/kibana"
 )
 
 func TestSystemIntegrationConfig(t *testing.T) {
@@ -203,7 +203,7 @@ func fleetConfigForKibana(t *testing.T, agentVersion string, esRef v1.ObjectSele
 	}
 	if v.GTE(version.MustParse("7.16.0")) {
 		// Starting with 7.16.0 we explicitly declare policies instead of relying on the default ones.
-		// This is mandatory starting with 8.0.0. See https://github.com/elastic/cloud-on-k8s/issues/5262.
+		// This is mandatory starting with 8.0.0. See https://github.com/devendra/es-cloud-on-k8s/issues/5262.
 		if err := yaml.Unmarshal([]byte(E2EFleetPolicies), &kibanaConfig); err != nil {
 			t.Fatalf("Unable to parse Fleet policies: %v", err)
 		}

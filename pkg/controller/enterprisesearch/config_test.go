@@ -16,11 +16,11 @@ import (
 	"k8s.io/client-go/tools/record"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	entv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	entv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func entWithConfigRef(secretName string) entv1.EnterpriseSearch {
@@ -581,9 +581,9 @@ func TestReconcileConfig(t *testing.T) {
 			assert.Equal(t, "sample-ent-config", got.Name)
 			assert.Equal(t, "ns", got.Namespace)
 			assert.Equal(t, map[string]string{
-				"common.k8s.elastic.co/type":           "enterprise-search",
-				"eck.k8s.elastic.co/credentials":       "true",
-				"enterprisesearch.k8s.elastic.co/name": "sample",
+				"common.k8s.acceldata.io/type":           "enterprise-search",
+				"eck.k8s.acceldata.io/credentials":       "true",
+				"enterprisesearch.k8s.acceldata.io/name": "sample",
 			}, got.Labels)
 
 			// secret data should contain the expected entries

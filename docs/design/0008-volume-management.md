@@ -122,7 +122,7 @@ Once the pod has been deleted the PVC can be deleted by K8S.
 ### Option 2: handle PVC deletion with an annotation
 
 A tombstone is set on the PVC as an annotation.
-The annotation `elasticsearch.k8s.elastic.co/delete` can be set on a PVC with the following values:
+The annotation `elasticsearch.k8s.acceldata.io/delete` can be set on a PVC with the following values:
 
 * `graceful`:  migrate the data, delete the node and the PVC.
 * `force`: discard the data, the operator does not try to reuse the PVC, the PVC is deleted by the Elastic operator.

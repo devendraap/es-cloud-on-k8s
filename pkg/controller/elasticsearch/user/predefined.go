@@ -13,14 +13,14 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/labels"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user/filerealm"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/cryptutil"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/labels"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user/filerealm"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/cryptutil"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (
@@ -65,7 +65,7 @@ func reconcileElasticUser(
 		},
 		secretName,
 		// Don't set an ownerRef for the elastic user secret, likely to be copied into different namespaces.
-		// See https://github.com/elastic/cloud-on-k8s/issues/3986.
+		// See https://github.com/devendra/es-cloud-on-k8s/issues/3986.
 		false,
 		passwordHasher,
 	)

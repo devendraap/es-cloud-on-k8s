@@ -31,7 +31,7 @@ spec:
       to:
         - namespaceSelector:
             matchExpressions:
-              - key: "eck.k8s.elastic.co/tenant"
+              - key: "eck.k8s.acceldata.io/tenant"
                 operator: In
                 values:
                 {{- range .Values.managedNamespaces }}
@@ -39,7 +39,7 @@ spec:
                 {{- end }}
           podSelector:
             matchLabels:
-              common.k8s.elastic.co/type: "elasticsearch"
+              common.k8s.acceldata.io/type: "elasticsearch"
 {{- if or .Values.webhook.enabled (gt $metricsPort 0) }}
   ingress:
 {{- if .Values.webhook.enabled }}

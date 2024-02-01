@@ -36,7 +36,7 @@ Deploying {ems} can be done with a simple manifest:
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: maps.k8s.elastic.co/v1alpha1
+apiVersion: maps.k8s.acceldata.io/v1alpha1
 kind: ElasticMapsServer
 metadata:
   name: quickstart
@@ -58,7 +58,7 @@ Versions of {ems} prior to 7.14 need a connection to Elasticseach to verify the 
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: maps.k8s.elastic.co/v1alpha1
+apiVersion: maps.k8s.acceldata.io/v1alpha1
 kind: ElasticMapsServer
 metadata:
   name: quickstart
@@ -151,7 +151,7 @@ The following example demonstrates how to create a {ems} deployment which mounts
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: maps.k8s.elastic.co/v1alpha1
+apiVersion: maps.k8s.acceldata.io/v1alpha1
 kind: ElasticMapsServer
 metadata:
   name: quickstart
@@ -197,7 +197,7 @@ The following example demonstrates how to set the log level to `debug`:
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: maps.k8s.elastic.co/v1alpha1
+apiVersion: maps.k8s.acceldata.io/v1alpha1
 kind: ElasticMapsServer
 metadata:
   name: quickstart
@@ -211,7 +211,7 @@ spec:
 Alternatively, settings can be provided through a Secret specified in the `configRef` element:
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: maps.k8s.elastic.co/v1alpha1
+apiVersion: maps.k8s.acceldata.io/v1alpha1
 kind: ElasticMapsServer
 metadata:
   name: quickstart

@@ -95,7 +95,7 @@ webhook:
   # manageCerts determines whether the operator manages the webhook certificates automatically.
   manageCerts: true
   # name of the webhook
-  name: elastic-webhook.k8s.elastic.co
+  name: elastic-webhook.k8s.acceldata.io
   # name of the service used to expose the webhook.
   serviceName: elastic-webhook-server
 

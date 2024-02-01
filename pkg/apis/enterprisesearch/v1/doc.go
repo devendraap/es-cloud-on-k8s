@@ -4,5 +4,5 @@
 
 // Package v1beta1 contains API schema definitions for managing Enterprise Search resources.
 // +kubebuilder:object:generate=true
-// +groupName=enterprisesearch.k8s.elastic.co
+// +groupName=enterprisesearch.k8s.acceldata.io
 package v1

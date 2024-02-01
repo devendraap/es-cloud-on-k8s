@@ -79,7 +79,7 @@ NOTE: A namespace other than the default namespaces (default, kube-system, kube-
 ----
 cat $$<<$$EOF | oc apply -n elastic -f -
 # This sample sets up an Elasticsearch cluster with an OpenShift route
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: elasticsearch-sample
@@ -120,7 +120,7 @@ Use the following code to create a Kibana instance and a "passthrough" route to 
 [source,shell,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | oc apply -n elastic -f -
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -187,7 +187,7 @@ scc "anyuid" added to: ["system:serviceaccount:elastic:apm-server"]
 [source,shell,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | oc apply -n elastic -f -
-apiVersion: apm.k8s.elastic.co/{eck_crd_version}
+apiVersion: apm.k8s.acceldata.io/{eck_crd_version}
 kind: ApmServer
 metadata:
   name: apm-server-sample
@@ -256,7 +256,7 @@ oc adm policy add-scc-to-user privileged -z heartbeat -n elastic
 +
 [source,yaml,subs="attributes"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: heartbeat
@@ -302,7 +302,7 @@ Some Beats may require additional permissions. For example, `Filebeat` needs add
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: filebeat
@@ -358,7 +358,7 @@ oc adm policy add-scc-to-user hostaccess -z elastic-agent -n elastic
 +
 [source,yaml,subs="attributes"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: my-agent

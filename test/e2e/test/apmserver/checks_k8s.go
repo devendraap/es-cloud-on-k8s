@@ -8,11 +8,11 @@ import (
 	"context"
 	"fmt"
 
-	apmv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/checks"
+	apmv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/checks"
 )
 
 func (b Builder) CheckK8sTestSteps(k *test.K8sClient) test.StepList {
@@ -37,17 +37,17 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: apmName + "-apm-config",
 				Keys: []string{"apm-server.yml"},
 				Labels: map[string]string{
-					"apm.k8s.elastic.co/name":    apmName,
-					"common.k8s.elastic.co/type": "apm-server",
+					"apm.k8s.acceldata.io/name":    apmName,
+					"common.k8s.acceldata.io/type": "apm-server",
 				},
 			},
 			{
 				Name: apmName + "-apm-token",
 				Keys: []string{"secret-token"},
 				Labels: map[string]string{
-					"apm.k8s.elastic.co/name":        apmName,
-					"common.k8s.elastic.co/type":     "apm-server",
-					"eck.k8s.elastic.co/credentials": "true",
+					"apm.k8s.acceldata.io/name":        apmName,
+					"common.k8s.acceldata.io/type":     "apm-server",
+					"eck.k8s.acceldata.io/credentials": "true",
 				},
 			},
 		}
@@ -57,19 +57,19 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: apmName + "-apm-es-ca",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"apmassociation.k8s.elastic.co/name":        apmName,
-						"apmassociation.k8s.elastic.co/namespace":   apmNamespace,
-						"elasticsearch.k8s.elastic.co/cluster-name": b.ApmServer.Spec.ElasticsearchRef.Name,
+						"apmassociation.k8s.acceldata.io/name":        apmName,
+						"apmassociation.k8s.acceldata.io/namespace":   apmNamespace,
+						"elasticsearch.k8s.acceldata.io/cluster-name": b.ApmServer.Spec.ElasticsearchRef.Name,
 					},
 				},
 				test.ExpectedSecret{
 					Name: apmName + "-apm-user",
 					Keys: []string{b.ApmServer.Namespace + "-" + apmName + "-apm-user"},
 					Labels: map[string]string{
-						"apmassociation.k8s.elastic.co/name":        apmName,
-						"apmassociation.k8s.elastic.co/namespace":   apmNamespace,
-						"eck.k8s.elastic.co/credentials":            "true",
-						"elasticsearch.k8s.elastic.co/cluster-name": b.ApmServer.Spec.ElasticsearchRef.Name,
+						"apmassociation.k8s.acceldata.io/name":        apmName,
+						"apmassociation.k8s.acceldata.io/namespace":   apmNamespace,
+						"eck.k8s.acceldata.io/credentials":            "true",
+						"elasticsearch.k8s.acceldata.io/cluster-name": b.ApmServer.Spec.ElasticsearchRef.Name,
 					},
 				},
 			)
@@ -80,24 +80,24 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: apmName + "-apm-http-ca-internal",
 					Keys: []string{"tls.crt", "tls.key"},
 					Labels: map[string]string{
-						"apm.k8s.elastic.co/name":    apmName,
-						"common.k8s.elastic.co/type": "apm-server",
+						"apm.k8s.acceldata.io/name":    apmName,
+						"common.k8s.acceldata.io/type": "apm-server",
 					},
 				},
 				test.ExpectedSecret{
 					Name: apmName + "-apm-http-certs-internal",
 					Keys: []string{"tls.crt", "tls.key", "ca.crt"},
 					Labels: map[string]string{
-						"apm.k8s.elastic.co/name":    apmName,
-						"common.k8s.elastic.co/type": "apm-server",
+						"apm.k8s.acceldata.io/name":    apmName,
+						"common.k8s.acceldata.io/type": "apm-server",
 					},
 				},
 				test.ExpectedSecret{
 					Name: apmName + "-apm-http-certs-public",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"apm.k8s.elastic.co/name":    apmName,
-						"common.k8s.elastic.co/type": "apm-server",
+						"apm.k8s.acceldata.io/name":    apmName,
+						"common.k8s.acceldata.io/type": "apm-server",
 					},
 				},
 			)
@@ -125,8 +125,8 @@ func CheckStatus(b Builder, k *test.K8sClient) test.Step {
 			if err := test.CheckSelector(
 				as.Status.Selector,
 				map[string]string{
-					"apm.k8s.elastic.co/name":    as.Name,
-					"common.k8s.elastic.co/type": "apm-server",
+					"apm.k8s.acceldata.io/name":    as.Name,
+					"common.k8s.acceldata.io/type": "apm-server",
 				}); err != nil {
 				return err
 			}

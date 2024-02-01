@@ -15,16 +15,16 @@ import (
 	"k8s.io/apimachinery/pkg/api/equality"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/hints"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/nodespec"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/stringsutil"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/hints"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/nodespec"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/stringsutil"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 type esClusterChecks struct {

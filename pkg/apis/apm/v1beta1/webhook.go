@@ -14,9 +14,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 const (
@@ -39,7 +39,7 @@ var (
 	}
 )
 
-// +kubebuilder:webhook:path=/validate-apm-k8s-elastic-co-v1beta1-apmserver,mutating=false,failurePolicy=ignore,groups=apm.k8s.elastic.co,resources=apmservers,verbs=create;update,versions=v1beta1,name=elastic-apm-validation-v1beta1.k8s.elastic.co,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
+// +kubebuilder:webhook:path=/validate-apm-k8s-elastic-co-v1beta1-apmserver,mutating=false,failurePolicy=ignore,groups=apm.k8s.acceldata.io,resources=apmservers,verbs=create;update,versions=v1beta1,name=elastic-apm-validation-v1beta1.k8s.acceldata.io,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
 
 var _ webhook.Validator = &ApmServer{}
 

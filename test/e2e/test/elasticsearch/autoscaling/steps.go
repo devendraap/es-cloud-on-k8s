@@ -12,19 +12,19 @@ import (
 	"github.com/pkg/errors"
 	v1 "k8s.io/api/core/v1"
 
-	autoscalingv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	autoscalingv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
 )
 
 // NewAutoscalingCapacityTest creates a step whose purpose is to validate that the Elasticsearch autoscaling API response
 // does contain a non empty current/observed storage capacity for a policy with a data role.
 // The observed capacity is not only used to decide when to scale up, but also to alert the user if the volume capacity
 // is greater than the claimed capacity.
-// See https://github.com/elastic/cloud-on-k8s/issues/4469 and https://github.com/elastic/cloud-on-k8s/pull/4493#discussion_r635869407
+// See https://github.com/devendra/es-cloud-on-k8s/issues/4469 and https://github.com/devendra/es-cloud-on-k8s/pull/4493#discussion_r635869407
 func NewAutoscalingCapacityTest(es esv1.Elasticsearch, k8sClient *test.K8sClient) test.Step {
 	return test.Step{
 		Name: "Autoscaling API response must contain the observed capacity",

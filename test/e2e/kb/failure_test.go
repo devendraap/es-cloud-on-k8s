@@ -15,10 +15,10 @@ import (
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/types"
 
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/kibana"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/kibana"
 )
 
 func TestKillKibanaPod(t *testing.T) {

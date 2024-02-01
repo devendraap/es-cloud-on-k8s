@@ -12,9 +12,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/utils/ptr"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
 )
 
 const (
@@ -29,13 +29,13 @@ const (
 	//
 	//   metadata:
 	//     annotations:
-	//       eck.k8s.elastic.co/disable-upgrade-predicates="if_yellow_only_restart_upgrading_nodes_with_unassigned_replicas"
-	DisableUpgradePredicatesAnnotation = "eck.k8s.elastic.co/disable-upgrade-predicates"
+	//       eck.k8s.acceldata.io/disable-upgrade-predicates="if_yellow_only_restart_upgrading_nodes_with_unassigned_replicas"
+	DisableUpgradePredicatesAnnotation = "eck.k8s.acceldata.io/disable-upgrade-predicates"
 	// DownwardNodeLabelsAnnotation holds an optional list of expected node labels to be set as annotations on the Elasticsearch Pods.
-	DownwardNodeLabelsAnnotation = "eck.k8s.elastic.co/downward-node-labels"
+	DownwardNodeLabelsAnnotation = "eck.k8s.acceldata.io/downward-node-labels"
 	// SuspendAnnotation allows users to annotate the Elasticsearch resource with the names of Pods they want to suspend
 	// for debugging purposes.
-	SuspendAnnotation = "eck.k8s.elastic.co/suspend"
+	SuspendAnnotation = "eck.k8s.acceldata.io/suspend"
 	// ElasticsearchAutoscalingSpecAnnotationName is the name of the annotation used to store the autoscaling specification.
 	// Deprecated: the autoscaling annotation has been deprecated in favor of the ElasticsearchAutoscaler custom resource.
 	ElasticsearchAutoscalingSpecAnnotationName = "elasticsearch.alpha.elastic.co/autoscaling-spec"

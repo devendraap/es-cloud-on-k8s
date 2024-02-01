@@ -1,5 +1,5 @@
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: hulk
@@ -34,7 +34,7 @@ spec:
       node.roles: ["ml"]
       node.store.allow_mmap: false
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: hulk
@@ -50,7 +50,7 @@ spec:
   elasticsearchRef:
     name: hulk
 ---
-apiVersion: apm.k8s.elastic.co/v1
+apiVersion: apm.k8s.acceldata.io/v1
 kind: ApmServer
 metadata:
   name: hulk

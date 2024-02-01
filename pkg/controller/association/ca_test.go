@@ -13,13 +13,13 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const kibanaESAssociationName = "kibana-es"
@@ -150,7 +150,7 @@ func TestReconcileAssociation_reconcileCASecret(t *testing.T) {
 			wantCACertProvided: false,
 		},
 		{
-			// See the use case described in https://github.com/elastic/cloud-on-k8s/issues/2136
+			// See the use case described in https://github.com/devendra/es-cloud-on-k8s/issues/2136
 			name:               "ES CA secret exists but is empty",
 			client:             k8s.NewFakeClient(&es, &esEmptyCA),
 			kibana:             kibanaFixture,
@@ -168,8 +168,8 @@ func TestReconcileAssociation_reconcileCASecret(t *testing.T) {
 						return map[string]string{}
 					},
 					AssociationName:                       "kibana-es",
-					AssociationResourceNameLabelName:      "elasticsearch.k8s.elastic.co/cluster-name",
-					AssociationResourceNamespaceLabelName: "elasticsearch.k8s.elastic.co/cluster-namespace",
+					AssociationResourceNameLabelName:      "elasticsearch.k8s.acceldata.io/cluster-name",
+					AssociationResourceNamespaceLabelName: "elasticsearch.k8s.acceldata.io/cluster-namespace",
 				},
 				Client:     tt.client,
 				watches:    watches.DynamicWatches{},
@@ -177,7 +177,7 @@ func TestReconcileAssociation_reconcileCASecret(t *testing.T) {
 			}
 
 			// re-use the one used for ES association, but it could be anything else
-			caSecretServiceLabelName := "elasticsearch.k8s.elastic.co/cluster-name"
+			caSecretServiceLabelName := "elasticsearch.k8s.acceldata.io/cluster-name"
 
 			got, err := r.ReconcileCASecret(
 				context.Background(),

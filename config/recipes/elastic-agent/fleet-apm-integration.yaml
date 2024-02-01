@@ -1,4 +1,4 @@
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana
@@ -54,7 +54,7 @@ spec:
           - name: host
             value: 0.0.0.0:8200    
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch
@@ -66,7 +66,7 @@ spec:
     config:
       node.store.allow_mmap: false
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server
@@ -88,7 +88,7 @@ spec:
         securityContext:
           runAsUser: 0
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata: 
   name: elastic-agent
@@ -113,7 +113,7 @@ metadata:
   name: apm
 spec:
   selector:
-    agent.k8s.elastic.co/name: elastic-agent
+    agent.k8s.acceldata.io/name: elastic-agent
   ports:
   - protocol: TCP
     port: 8200

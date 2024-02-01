@@ -16,18 +16,18 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	policyv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/maps"
+	policyv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/maps"
 )
 
 // labels set on secrets which cannot rely on owner references due to https://github.com/kubernetes/kubernetes/issues/65200,
 // but should still be garbage-collected (best-effort) by the operator upon owner deletion.
 const (
-	SoftOwnerNamespaceLabel = "eck.k8s.elastic.co/owner-namespace"
-	SoftOwnerNameLabel      = "eck.k8s.elastic.co/owner-name"
-	SoftOwnerKindLabel      = "eck.k8s.elastic.co/owner-kind"
+	SoftOwnerNamespaceLabel = "eck.k8s.acceldata.io/owner-namespace"
+	SoftOwnerNameLabel      = "eck.k8s.acceldata.io/owner-name"
+	SoftOwnerKindLabel      = "eck.k8s.acceldata.io/owner-kind"
 )
 
 func WithPostUpdate(f func()) func(p *Params) {
@@ -100,7 +100,7 @@ func SoftOwnerRefFromLabels(labels map[string]string) (SoftOwnerRef, bool) {
 // copied into other namespaces by the end user.
 // Because of the k8s bug mentioned above, the ownerReference could trigger a racy garbage collection
 // that deletes all child resources, potentially resulting in data loss.
-// See https://github.com/elastic/cloud-on-k8s/issues/3986 for more details.
+// See https://github.com/devendra/es-cloud-on-k8s/issues/3986 for more details.
 //
 // Since they won't have an ownerReference specified, reconciled secrets will not be deleted automatically on parent deletion.
 // To account for that, we add labels to reference the "soft owner", for garbage collection by the operator on parent resource deletion.

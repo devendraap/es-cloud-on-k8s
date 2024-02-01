@@ -2,34 +2,34 @@ newVersion: 2.12.0-SNAPSHOT
 prevVersion: 2.11.0
 stackVersion: 8.13.0-SNAPSHOT
 crds:
-  - name: elasticsearches.elasticsearch.k8s.elastic.co
+  - name: elasticsearches.elasticsearch.k8s.acceldata.io
     displayName: Elasticsearch Cluster
     description: Instance of an Elasticsearch cluster
-  - name: elasticsearchautoscalers.autoscaling.k8s.elastic.co
+  - name: elasticsearchautoscalers.autoscaling.k8s.acceldata.io
     displayName: Elasticsearch Autoscaler
     description: Instance of an Elasticsearch autoscaler
-  - name: kibanas.kibana.k8s.elastic.co
+  - name: kibanas.kibana.k8s.acceldata.io
     displayName: Kibana
     description: Kibana instance
-  - name: apmservers.apm.k8s.elastic.co
+  - name: apmservers.apm.k8s.acceldata.io
     displayName: APM Server
     description: APM Server instance
-  - name: enterprisesearches.enterprisesearch.k8s.elastic.co
+  - name: enterprisesearches.enterprisesearch.k8s.acceldata.io
     displayName: Enterprise Search
     description: Enterprise Search instance
-  - name: beats.beat.k8s.elastic.co
+  - name: beats.beat.k8s.acceldata.io
     displayName: Beats
     description: Beats instance
-  - name: agents.agent.k8s.elastic.co
+  - name: agents.agent.k8s.acceldata.io
     displayName: Elastic Agent
     description: Elastic Agent instance
-  - name: elasticmapsservers.maps.k8s.elastic.co
+  - name: elasticmapsservers.maps.k8s.acceldata.io
     displayName: Elastic Maps Server
     description: Elastic Maps Server instance
-  - name: stackconfigpolicies.stackconfigpolicy.k8s.elastic.co
+  - name: stackconfigpolicies.stackconfigpolicy.k8s.acceldata.io
     displayName: Elastic Stack Config Policy
     description: Elastic Stack Config Policy
-  - name: logstashes.logstash.k8s.elastic.co
+  - name: logstashes.logstash.k8s.acceldata.io
     displayName: Logstash
     description: Logstash instance
 packages:

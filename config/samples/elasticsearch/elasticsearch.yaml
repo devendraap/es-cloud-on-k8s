@@ -1,10 +1,10 @@
 # This sample sets up an Elasticsearch cluster with 3 nodes.
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   # uncomment the lines below to copy the specified node labels as pod annotations and use it as an environment variable in the Pods
   #annotations:
-  #  eck.k8s.elastic.co/downward-node-labels: "topology.kubernetes.io/zone"
+  #  eck.k8s.acceldata.io/downward-node-labels: "topology.kubernetes.io/zone"
   name: elasticsearch-sample
 spec:
   version: 8.12.0
@@ -58,8 +58,8 @@ spec:
         #    whenUnsatisfiable: DoNotSchedule
         #    labelSelector:
         #      matchLabels:
-        #        elasticsearch.k8s.elastic.co/cluster-name: elasticsearch-sample
-        #        elasticsearch.k8s.elastic.co/statefulset-name: elasticsearch-sample-es-default
+        #        elasticsearch.k8s.acceldata.io/cluster-name: elasticsearch-sample
+        #        elasticsearch.k8s.acceldata.io/statefulset-name: elasticsearch-sample-es-default
     count: 3
   #   # request 2Gi of persistent data storage for pods in this topology element
   #   volumeClaimTemplates:

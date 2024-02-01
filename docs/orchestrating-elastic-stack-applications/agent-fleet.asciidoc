@@ -23,7 +23,7 @@ This section describes how to configure and deploy Elastic Agent in link:https:/
 [source,yaml,subs="attributes,callouts,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server-quickstart
@@ -46,7 +46,7 @@ spec:
         securityContext:
           runAsUser: 0 <1>
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent-quickstart
@@ -70,7 +70,7 @@ spec:
         - name: agent-data
           emptyDir: {}
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana-quickstart
@@ -116,7 +116,7 @@ spec:
             package:
               name: system
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch-quickstart
@@ -210,7 +210,7 @@ fleet-server-quickstart    green    1           1          {version}    19s
 +
 [source,sh]
 ----
-kubectl get pods --selector='agent.k8s.elastic.co/name=elastic-agent-quickstart'
+kubectl get pods --selector='agent.k8s.acceldata.io/name=elastic-agent-quickstart'
 ----
 +
 [source,sh]
@@ -243,7 +243,7 @@ To run both Fleet Server and Elastic Agent in Fleet-managed mode, set the `mode`
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent-sample
@@ -255,7 +255,7 @@ To run Fleet Server, set the `fleetServerEnabled` configuration element to `true
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server-sample
@@ -272,7 +272,7 @@ To have Fleet running properly, the following settings must be correctly set in 
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -330,7 +330,7 @@ Both Fleet Server and Elastic Agent in Fleet mode can be automatically set up wi
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server-sample
@@ -343,7 +343,7 @@ ECK can also facilitate the connection between Elastic Agents and a ECK-managed 
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent-sample
@@ -359,7 +359,7 @@ NOTE: Currently, Elastic Agent in Fleet mode supports only a single output, so o
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server-sample
@@ -389,7 +389,7 @@ Similarly, you can set the link:https://kubernetes.io/docs/tasks/manage-daemon/u
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent-sample
@@ -412,7 +412,7 @@ Some Elastic Agent features, such as the link:https://epr.elastic.co/package/kub
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent-sample
@@ -489,7 +489,7 @@ ECK uses the default policy to enroll Elastic Agents in Fleet and the default Fl
 [source,yaml]
 ----
 
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server-sample
@@ -516,7 +516,7 @@ To run Elastic Agent with an `emptyDir` volume.
 
 [source,yaml]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server
@@ -537,7 +537,7 @@ To run Elastic Agent with a `hostPath` volume and a `DaemonSet` to maintain perm
 
 [source,yaml]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server-sample
@@ -548,7 +548,7 @@ spec:
   deployment: {}
 ...
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent-sample
@@ -629,7 +629,7 @@ When running Agent in fleet mode as a non-root user Kibana must be configured in
 [source,yaml]
 ----
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana-sample

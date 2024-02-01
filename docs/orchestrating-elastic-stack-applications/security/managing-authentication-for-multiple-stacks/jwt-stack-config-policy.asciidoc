@@ -26,7 +26,7 @@ elasticsearch:
          order: -98
          token_type: id_token
          client_authentication.type: shared_secret
-         allowed_issuer: "https://es.k8s.elastic.co"
+         allowed_issuer: "https://es.k8s.acceldata.io"
          allowed_audiences: [ "elasticsearch" ]
          allowed_subjects: ["elastic-user"]
          allowed_signature_algorithms: [RS512]
@@ -85,7 +85,7 @@ securityRoleMappings:
 The following example demonstrates how an Elastic Stack configuration policy can be used to configure a JWT realm:
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: stackconfigpolicy.k8s.elastic.co/v1alpha1
+apiVersion: stackconfigpolicy.k8s.acceldata.io/v1alpha1
 kind: StackConfigPolicy
 metadata:
   name: test-stack-config-policy
@@ -109,7 +109,7 @@ spec:
          order: -98
          token_type: id_token
          client_authentication.type: shared_secret
-         allowed_issuer: "https://es.k8s.elastic.co"
+         allowed_issuer: "https://es.k8s.acceldata.io"
          allowed_audiences: [ "elasticsearch" ]
          allowed_subjects: ["elastic-user"]
          allowed_signature_algorithms: [RS512]

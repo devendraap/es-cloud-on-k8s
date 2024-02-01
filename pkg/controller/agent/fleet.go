@@ -22,20 +22,20 @@ import (
 	"k8s.io/client-go/tools/record"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	agentv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	v1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/events"
-	commonhttp "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/http"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/net"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/stringsutil"
+	agentv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	v1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/events"
+	commonhttp "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/http"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/net"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/stringsutil"
 )
 
-const FleetTokenAnnotation = "fleet.eck.k8s.elastic.co/token" //nolint:gosec
+const FleetTokenAnnotation = "fleet.eck.k8s.acceldata.io/token" //nolint:gosec
 
 var errNoMatchingTokenFound = errors.New("no matching active enrollment token found")
 

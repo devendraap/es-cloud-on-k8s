@@ -31,7 +31,7 @@ spec:
                 - Pod
               selector:
                 matchExpressions:
-                  - {key: common.k8s.elastic.co/type, operator: NotIn, values: [beat, agent]}
+                  - {key: common.k8s.acceldata.io/type, operator: NotIn, values: [beat, agent]}
                   - {key: app.kubernetes.io/name, operator: NotIn, values: [max-map-count-setter]}
       validate:
         message: >-
@@ -86,7 +86,7 @@ spec:
               - Pod
             selector:
               matchExpressions:
-                - {key: common.k8s.elastic.co/type, operator: NotIn, values: [beat, agent]}
+                - {key: common.k8s.acceldata.io/type, operator: NotIn, values: [beat, agent]}
                 - {key: app.kubernetes.io/name, operator: NotIn, values: [max-map-count-setter]}
       validate:
         message: >-
@@ -147,7 +147,7 @@ spec:
                 - Pod
               selector:
                 matchExpressions:
-                  - {key: common.k8s.elastic.co/type, operator: NotIn, values: [beat, agent]}
+                  - {key: common.k8s.acceldata.io/type, operator: NotIn, values: [beat, agent]}
       validate:
         message: >-
           HostPath volumes are forbidden. The field spec.volumes[*].hostPath must be unset.
@@ -195,7 +195,7 @@ spec:
                 - Pod
               selector:
                 matchExpressions:
-                  - {key: common.k8s.elastic.co/type, operator: NotIn, values: [beat, agent]}
+                  - {key: common.k8s.acceldata.io/type, operator: NotIn, values: [beat, agent]}
                   - {key: app.kubernetes.io/name, operator: NotIn, values: [max-map-count-setter]}
       validate:
         message: "Auto-mounting of Service Account tokens is not allowed."

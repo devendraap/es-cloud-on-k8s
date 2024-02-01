@@ -9,7 +9,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/autoscaling"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/autoscaling"
 
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -20,10 +20,10 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/util/validation/field"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 func validPVCNaming(proposed esv1.Elasticsearch) field.ErrorList {

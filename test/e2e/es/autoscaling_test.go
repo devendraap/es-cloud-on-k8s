@@ -14,22 +14,22 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/nodespec"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch/autoscaling"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/nodespec"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch/autoscaling"
 )
 
 // TestAutoscaling ensures that the operator is compatible with the autoscaling Elasticsearch API.
 // The purpose of this test is only to assess that there is no regression at the API level. It only relies on the
 // fixed decider to generate scaling events, other deciders, like storage deciders or ML deciders are not exercised.
-// Note that only the node count and the memory limit of the deployed Pods are validated for now, see https://github.com/elastic/cloud-on-k8s/issues/4411.
+// Note that only the node count and the memory limit of the deployed Pods are validated for now, see https://github.com/devendra/es-cloud-on-k8s/issues/4411.
 func TestAutoscaling(t *testing.T) {
 	// only execute this test if we have a test license to work with
 	if test.Ctx().TestLicense == "" {

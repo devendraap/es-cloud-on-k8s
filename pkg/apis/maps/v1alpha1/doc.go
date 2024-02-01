@@ -4,5 +4,5 @@
 
 // Package v1alpha1 contains API schema definitions for managing Elastic Maps Server resources.
 // +kubebuilder:object:generate=true
-// +groupName=maps.k8s.elastic.co
+// +groupName=maps.k8s.acceldata.io
 package v1alpha1

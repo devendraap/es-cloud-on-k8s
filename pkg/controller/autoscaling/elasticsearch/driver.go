@@ -16,13 +16,13 @@ import (
 	"go.elastic.co/apm/v2"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/autoscaling/elasticsearch/autoscaler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/autoscaling/elasticsearch/status"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/services"
-	logconf "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/autoscaling/elasticsearch/autoscaler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/autoscaling/elasticsearch/status"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/services"
+	logconf "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 func (r *baseReconcileAutoscaling) reconcileInternal(

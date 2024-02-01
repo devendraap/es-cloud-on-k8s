@@ -14,9 +14,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 const (
@@ -40,7 +40,7 @@ var (
 	}
 )
 
-// +kubebuilder:webhook:path=/validate-enterprisesearch-k8s-elastic-co-v1-enterprisesearch,mutating=false,failurePolicy=ignore,groups=enterprisesearch.k8s.elastic.co,resources=enterprisesearches,verbs=create;update,versions=v1,name=elastic-ent-validation-v1.k8s.elastic.co,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
+// +kubebuilder:webhook:path=/validate-enterprisesearch-k8s-elastic-co-v1-enterprisesearch,mutating=false,failurePolicy=ignore,groups=enterprisesearch.k8s.acceldata.io,resources=enterprisesearches,verbs=create;update,versions=v1,name=elastic-ent-validation-v1.k8s.acceldata.io,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
 
 var _ webhook.Validator = &EnterpriseSearch{}
 

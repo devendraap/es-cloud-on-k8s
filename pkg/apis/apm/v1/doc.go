@@ -4,5 +4,5 @@
 
 // Package v1 contains API schema definitions for managing APM Server resources.
 // +kubebuilder:object:generate=true
-// +groupName=apm.k8s.elastic.co
+// +groupName=apm.k8s.acceldata.io
 package v1

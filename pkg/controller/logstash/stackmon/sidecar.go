@@ -11,20 +11,20 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/logstash/configs"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/logstash/network"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/logstash/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/logstash/configs"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/logstash/network"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/logstash/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (
 	// cfgHashAnnotation is used to store a hash of the Metricbeat and Filebeat configurations.
-	cfgHashAnnotation = "logstash.k8s.elastic.co/monitoring-config-hash"
+	cfgHashAnnotation = "logstash.k8s.acceldata.io/monitoring-config-hash"
 )
 
 func Metricbeat(ctx context.Context, client k8s.Client, logstash logstashv1alpha1.Logstash, apiServer configs.APIServer) (stackmon.BeatSidecar, error) {

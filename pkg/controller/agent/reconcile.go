@@ -19,15 +19,15 @@ import (
 
 	"github.com/pkg/errors"
 
-	agentv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/daemonset"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/deployment"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/statefulset"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/pointer"
+	agentv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/daemonset"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/deployment"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/statefulset"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/pointer"
 )
 
 func reconcilePodVehicle(params Params, podTemplate corev1.PodTemplateSpec) (*reconciler.Results, agentv1alpha1.AgentStatus) {

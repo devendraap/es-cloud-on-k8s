@@ -30,7 +30,7 @@ Managing both APM Server and Elasticsearch by ECK allows a smooth and secured in
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: apm.k8s.elastic.co/{eck_crd_version}
+apiVersion: apm.k8s.acceldata.io/{eck_crd_version}
 kind: ApmServer
 metadata:
   name: apm-server-quickstart
@@ -64,7 +64,7 @@ And you can list all the Pods belonging to a given deployment:
 +
 [source,sh]
 ----
-kubectl get pods --selector='apm.k8s.elastic.co/name=apm-server-quickstart'
+kubectl get pods --selector='apm.k8s.acceldata.io/name=apm-server-quickstart'
 ----
 +
 [source,sh]
@@ -91,7 +91,7 @@ link:https://www.elastic.co/guide/en/kibana/current/agent-configuration.html[APM
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: apm.k8s.elastic.co/{eck_crd_version}
+apiVersion: apm.k8s.acceldata.io/{eck_crd_version}
 kind: ApmServer
 metadata:
   name: apm-server-quickstart
@@ -113,7 +113,7 @@ To customize the configuration of the APM Server, use the `config` element in th
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: apm.k8s.elastic.co/{eck_crd_version}
+apiVersion: apm.k8s.acceldata.io/{eck_crd_version}
 kind: ApmServer
 metadata:
   name: apm-server-quickstart
@@ -148,7 +148,7 @@ kubectl create secret generic apm-secret-settings --from-literal=ES_PASSWORD=ase
 +
 [source,yaml,subs="attributes"]
 ----
-apiVersion: apm.k8s.elastic.co/{eck_crd_version}
+apiVersion: apm.k8s.acceldata.io/{eck_crd_version}
 kind: ApmServer
 metadata:
   name: apm-server-quickstart
@@ -188,7 +188,7 @@ Here is a complete example with a password stored in the Keystore, as described 
 +
 [source,yaml,subs="attributes"]
 ----
-apiVersion: apm.k8s.elastic.co/{eck_crd_version}
+apiVersion: apm.k8s.acceldata.io/{eck_crd_version}
 kind: ApmServer
 metadata:
   name: apm-server-quickstart
@@ -250,7 +250,7 @@ To retrieve the list of all the APM Services, use the following command:
 
 [source,sh]
 ----
-kubectl get service --selector='common.k8s.elastic.co/type=apm-server'
+kubectl get service --selector='common.k8s.acceldata.io/type=apm-server'
 ----
 
 [source,sh]

@@ -97,7 +97,7 @@ Example full Elastic Stack configuration policy to configure oidc
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: stackconfigpolicy.k8s.elastic.co/v1alpha1
+apiVersion: stackconfigpolicy.k8s.acceldata.io/v1alpha1
 kind: StackConfigPolicy
 metadata:
   name: test-stack-config-policy
@@ -152,7 +152,7 @@ spec:
 +
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: quickstart

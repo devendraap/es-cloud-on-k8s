@@ -15,12 +15,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/utils/ptr"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	commonv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	commonv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var (
@@ -505,7 +505,7 @@ func TestValidateElasticsearchAutoscaler(t *testing.T) {
 				},
 				checker: yesCheck,
 			},
-			wantValidationError: ptr.To[string]("ElasticsearchAutoscaler.autoscaling.k8s.elastic.co \"esa\" is invalid: Elasticsearch.spec.nodeSets[0]: Invalid value: []string{\"volume1\", \"volume2\"}: autoscaling supports only one volume claim"),
+			wantValidationError: ptr.To[string]("ElasticsearchAutoscaler.autoscaling.k8s.acceldata.io \"esa\" is invalid: Elasticsearch.spec.nodeSets[0]: Invalid value: []string{\"volume1\", \"volume2\"}: autoscaling supports only one volume claim"),
 		},
 		{
 			name: "ML policy with roles [ml, remote_cluster_client] succeeds",
@@ -591,7 +591,7 @@ func TestValidateElasticsearchAutoscaler(t *testing.T) {
 				},
 				checker: yesCheck,
 			},
-			wantValidationError: ptr.To[string]("ElasticsearchAutoscaler.autoscaling.k8s.elastic.co \"esa\" is invalid: spec.policies[2].name: Invalid value: \"ml\": ML nodes must be in a dedicated NodeSet"),
+			wantValidationError: ptr.To[string]("ElasticsearchAutoscaler.autoscaling.k8s.acceldata.io \"esa\" is invalid: spec.policies[2].name: Invalid value: \"ml\": ML nodes must be in a dedicated NodeSet"),
 		},
 	}
 	for _, tt := range tests {

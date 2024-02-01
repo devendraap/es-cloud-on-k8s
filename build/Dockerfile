@@ -7,7 +7,7 @@ ARG SNAPSHOT
 ARG GO_TAGS
 ARG LICENSE_PUBKEY
 
-WORKDIR /go/src/github.com/elastic/cloud-on-k8s
+WORKDIR /go/src/github.com/devendra/es-cloud-on-k8s
 
 # Cache go dependencies
 COPY Makefile go.mod go.sum ./
@@ -45,8 +45,8 @@ LABEL io.k8s.description="Elastic Cloud on Kubernetes automates the deployment, 
       org.opencontainers.image.version="$VERSION" \
       org.opencontainers.image.url="https://github.com/elastic/cloud-on-k8s/"
 
-COPY --from=builder /go/src/github.com/elastic/cloud-on-k8s/elastic-operator /elastic-operator
-COPY --from=builder /go/src/github.com/elastic/cloud-on-k8s/eck.yaml         /conf/eck.yaml
+COPY --from=builder /go/src/github.com/devendra/es-cloud-on-k8s/elastic-operator /elastic-operator
+COPY --from=builder /go/src/github.com/devendra/es-cloud-on-k8s/eck.yaml         /conf/eck.yaml
 
 # Copy NOTICE.txt and LICENSE.txt into the image
 COPY *.txt /licenses/

@@ -13,8 +13,8 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func TestRemoveAll(t *testing.T) {
@@ -23,14 +23,14 @@ func TestRemoveAll(t *testing.T) {
 			Name:      "foo",
 			Namespace: "bar",
 			Finalizers: []string{
-				"finalizer.elasticsearch.k8s.elastic.co/secure-settings-secret",
+				"finalizer.elasticsearch.k8s.acceldata.io/secure-settings-secret",
 				"finalizer.foo.bar.com/secure-settings-secret",
-				"finalizer.elasticsearch.k8s.elastic.co/http-certificates-secret",
-				"finalizer.elasticsearch.k8s.elastic.co/observer",
-				"finalizer.association.apmserver.k8s.elastic.co/external-user",
-				"finalizer.apmserver.k8s.elastic.co/secure-settings-secret",
-				"finalizer.kibana.k8s.elastic.co/secure-settings-secret",
-				"finalizer.association.kibana.k8s.elastic.co/elasticsearch",
+				"finalizer.elasticsearch.k8s.acceldata.io/http-certificates-secret",
+				"finalizer.elasticsearch.k8s.acceldata.io/observer",
+				"finalizer.association.apmserver.k8s.acceldata.io/external-user",
+				"finalizer.apmserver.k8s.acceldata.io/secure-settings-secret",
+				"finalizer.kibana.k8s.acceldata.io/secure-settings-secret",
+				"finalizer.association.kibana.k8s.acceldata.io/elasticsearch",
 				"finalizer.foo.bar.co/elasticsearch",
 			},
 		},

@@ -7,7 +7,7 @@ ARG SNAPSHOT
 ARG GO_TAGS
 ARG LICENSE_PUBKEY
 
-WORKDIR /go/src/github.com/elastic/cloud-on-k8s
+WORKDIR /go/src/github.com/devendra/es-cloud-on-k8s
 
 # Cache go dependencies
 COPY Makefile go.mod go.sum ./
@@ -45,8 +45,8 @@ LABEL name="Elastic Cloud on Kubernetes" \
       description="Elastic Cloud on Kubernetes automates the deployment, provisioning, management, and orchestration of Elasticsearch, Kibana, APM Server, Beats, and Enterprise Search on Kubernetes" \
       io.k8s.description="Elastic Cloud on Kubernetes automates the deployment, provisioning, management, and orchestration of Elasticsearch, Kibana, APM Server, Beats, and Enterprise Search on Kubernetes"
 
-COPY --from=builder /go/src/github.com/elastic/cloud-on-k8s/elastic-operator .
-COPY --from=builder /go/src/github.com/elastic/cloud-on-k8s/eck.yaml         /conf/eck.yaml
+COPY --from=builder /go/src/github.com/devendra/es-cloud-on-k8s/elastic-operator .
+COPY --from=builder /go/src/github.com/devendra/es-cloud-on-k8s/eck.yaml         /conf/eck.yaml
 
 # Copy NOTICE.txt and LICENSE.txt into the image
 COPY *.txt /licenses/

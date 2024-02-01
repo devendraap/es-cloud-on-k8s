@@ -9,5 +9,5 @@ const (
 	TypeLabelValue = "beat"
 
 	// NameLabelName is used to represent a Beat in k8s resources.
-	NameLabelName = "beat.k8s.elastic.co/name"
+	NameLabelName = "beat.k8s.acceldata.io/name"
 )

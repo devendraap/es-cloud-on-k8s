@@ -3,7 +3,7 @@ FROM docker.io/library/golang:1.21.6
 
 ARG GO_TAGS
 
-WORKDIR /go/src/github.com/elastic/cloud-on-k8s
+WORKDIR /go/src/github.com/devendra/es-cloud-on-k8s
 
 ENV ECK_DIAG_VERSION=1.5.2
 RUN curl -fsSLO https://github.com/elastic/eck-diagnostics/releases/download/${ECK_DIAG_VERSION}/eck-diagnostics_${ECK_DIAG_VERSION}_Linux_x86_64.tar.gz && \
@@ -24,7 +24,7 @@ COPY config/ config/
 COPY test/ test/
 
 # non-root user to support restricted security policies
-RUN chown -R 1001 /go/src/github.com/elastic/cloud-on-k8s
+RUN chown -R 1001 /go/src/github.com/devendra/es-cloud-on-k8s
 USER 1001
 
 # go generate pub key
@@ -33,7 +33,7 @@ RUN LICENSE_PUBKEY=/license.key go generate -tags="${GO_TAGS}" ./pkg/... ./cmd/.
 
 # Set r/w permissions for user members of root group (GID=0) to support OpenShift Container Platform running containers
 # using arbitrarily assigned user ID, which is always member of the root group.
-RUN chgrp -R 0 /.cache/go-build/ /go/src/github.com/elastic/cloud-on-k8s && \
-    chmod -R g=u /.cache/go-build/ /go/src/github.com/elastic/cloud-on-k8s
+RUN chgrp -R 0 /.cache/go-build/ /go/src/github.com/devendra/es-cloud-on-k8s && \
+    chmod -R g=u /.cache/go-build/ /go/src/github.com/devendra/es-cloud-on-k8s
 
 ENTRYPOINT ["test/e2e/run.sh"]

@@ -4,5 +4,5 @@
 
 // Package v1alpha1 contains API schema definitions for managing StackConfigPolicy resources.
 // +kubebuilder:object:generate=true
-// +groupName=stackconfigpolicy.k8s.elastic.co
+// +groupName=stackconfigpolicy.k8s.acceldata.io
 package v1alpha1

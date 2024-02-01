@@ -20,22 +20,22 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/about"
-	agentv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	entv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/comparison"
-	common_name "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/name"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	eslabel "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/services"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/rbac"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/about"
+	agentv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	entv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/comparison"
+	common_name "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/name"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	eslabel "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/services"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/rbac"
 )
 
 var (
@@ -66,8 +66,8 @@ var (
 		AssociatedShortName: "kb",
 		Labels: func(associated types.NamespacedName) map[string]string {
 			return map[string]string{
-				"kibanaassociation.k8s.elastic.co/name":      associated.Name,
-				"kibanaassociation.k8s.elastic.co/namespace": associated.Namespace,
+				"kibanaassociation.k8s.acceldata.io/name":      associated.Name,
+				"kibanaassociation.k8s.acceldata.io/namespace": associated.Namespace,
 			}
 		},
 		ReferencedResourceVersion: func(c k8s.Client, esRef commonv1.ObjectSelector) (string, error) {
@@ -88,9 +88,9 @@ var (
 			return es.Status.Version, nil
 		},
 		AssociationType:                       "elasticsearch",
-		AssociationConfAnnotationNameBase:     "association.k8s.elastic.co/es-conf",
-		AssociationResourceNameLabelName:      "elasticsearch.k8s.elastic.co/cluster-name",
-		AssociationResourceNamespaceLabelName: "elasticsearch.k8s.elastic.co/cluster-namespace",
+		AssociationConfAnnotationNameBase:     "association.k8s.acceldata.io/es-conf",
+		AssociationResourceNameLabelName:      "elasticsearch.k8s.acceldata.io/cluster-name",
+		AssociationResourceNamespaceLabelName: "elasticsearch.k8s.acceldata.io/cluster-namespace",
 		ElasticsearchUserCreation: &ElasticsearchUserCreation{
 			ElasticsearchRef: func(c k8s.Client, association commonv1.Association) (bool, commonv1.ObjectSelector, error) {
 				return true, association.AssociationRef(), nil
@@ -156,15 +156,15 @@ var (
 			Namespace: esNamespace,
 			Name:      "kbns-kbname-kibana-user",
 			Labels: map[string]string{
-				"common.k8s.elastic.co/type":                     "user",
-				"elasticsearch.k8s.elastic.co/cluster-name":      "esname",
-				"elasticsearch.k8s.elastic.co/cluster-namespace": esNamespace,
-				"kibanaassociation.k8s.elastic.co/name":          "kbname",
-				"kibanaassociation.k8s.elastic.co/namespace":     "kbns",
+				"common.k8s.acceldata.io/type":                     "user",
+				"elasticsearch.k8s.acceldata.io/cluster-name":      "esname",
+				"elasticsearch.k8s.acceldata.io/cluster-namespace": esNamespace,
+				"kibanaassociation.k8s.acceldata.io/name":          "kbname",
+				"kibanaassociation.k8s.acceldata.io/namespace":     "kbns",
 			},
 			OwnerReferences: []metav1.OwnerReference{
 				{
-					APIVersion:         "elasticsearch.k8s.elastic.co/v1",
+					APIVersion:         "elasticsearch.k8s.acceldata.io/v1",
 					Kind:               "Elasticsearch",
 					Name:               "esname",
 					Controller:         &varTrue,
@@ -184,14 +184,14 @@ var (
 			Namespace: kibanaNamespace,
 			Name:      "kbname-kb-es-ca",
 			Labels: map[string]string{
-				"elasticsearch.k8s.elastic.co/cluster-name":      "esname",
-				"elasticsearch.k8s.elastic.co/cluster-namespace": "esns",
-				"kibanaassociation.k8s.elastic.co/name":          "kbname",
-				"kibanaassociation.k8s.elastic.co/namespace":     "kbns",
+				"elasticsearch.k8s.acceldata.io/cluster-name":      "esname",
+				"elasticsearch.k8s.acceldata.io/cluster-namespace": "esns",
+				"kibanaassociation.k8s.acceldata.io/name":          "kbname",
+				"kibanaassociation.k8s.acceldata.io/namespace":     "kbns",
 			},
 			OwnerReferences: []metav1.OwnerReference{
 				{
-					APIVersion:         "kibana.k8s.elastic.co/v1",
+					APIVersion:         "kibana.k8s.acceldata.io/v1",
 					Kind:               "Kibana",
 					Name:               "kbname",
 					Controller:         &varTrue,
@@ -210,15 +210,15 @@ var (
 			Namespace: kibanaNamespace,
 			Name:      "kbname-kibana-user",
 			Labels: map[string]string{
-				"eck.k8s.elastic.co/credentials":                 "true",
-				"elasticsearch.k8s.elastic.co/cluster-name":      "esname",
-				"elasticsearch.k8s.elastic.co/cluster-namespace": "esns",
-				"kibanaassociation.k8s.elastic.co/name":          "kbname",
-				"kibanaassociation.k8s.elastic.co/namespace":     "kbns",
+				"eck.k8s.acceldata.io/credentials":                 "true",
+				"elasticsearch.k8s.acceldata.io/cluster-name":      "esname",
+				"elasticsearch.k8s.acceldata.io/cluster-namespace": "esns",
+				"kibanaassociation.k8s.acceldata.io/name":          "kbname",
+				"kibanaassociation.k8s.acceldata.io/namespace":     "kbns",
 			},
 			OwnerReferences: []metav1.OwnerReference{
 				{
-					APIVersion:         "kibana.k8s.elastic.co/v1",
+					APIVersion:         "kibana.k8s.acceldata.io/v1",
 					Kind:               "Kibana",
 					Name:               "kbname",
 					Controller:         &varTrue,
@@ -500,15 +500,15 @@ func TestReconciler_Reconcile_noESAuth(t *testing.T) {
 			Namespace: kibanaNamespace,
 			Name:      "kbname-kb-ent-ca",
 			Labels: map[string]string{
-				"enterprisesearch.k8s.elastic.co/name":       "entname",
-				"enterprisesearch.k8s.elastic.co/namespace":  "entns",
-				"kibanaassociation.k8s.elastic.co/name":      "kbname",
-				"kibanaassociation.k8s.elastic.co/namespace": "kbns",
-				"kibanaassociation.k8s.elastic.co/type":      "ent",
+				"enterprisesearch.k8s.acceldata.io/name":       "entname",
+				"enterprisesearch.k8s.acceldata.io/namespace":  "entns",
+				"kibanaassociation.k8s.acceldata.io/name":      "kbname",
+				"kibanaassociation.k8s.acceldata.io/namespace": "kbns",
+				"kibanaassociation.k8s.acceldata.io/type":      "ent",
 			},
 			OwnerReferences: []metav1.OwnerReference{
 				{
-					APIVersion:         "kibana.k8s.elastic.co/v1",
+					APIVersion:         "kibana.k8s.acceldata.io/v1",
 					Kind:               "Kibana",
 					Name:               "kbname",
 					Controller:         &varTrue,
@@ -555,14 +555,14 @@ func TestReconciler_Reconcile_noESAuth(t *testing.T) {
 		AssociationType:         commonv1.EntAssociationType,
 		Labels: func(associated types.NamespacedName) map[string]string {
 			return map[string]string{
-				"kibanaassociation.k8s.elastic.co/name":      associated.Name,
-				"kibanaassociation.k8s.elastic.co/namespace": associated.Namespace,
-				"kibanaassociation.k8s.elastic.co/type":      commonv1.EntAssociationType,
+				"kibanaassociation.k8s.acceldata.io/name":      associated.Name,
+				"kibanaassociation.k8s.acceldata.io/namespace": associated.Namespace,
+				"kibanaassociation.k8s.acceldata.io/type":      commonv1.EntAssociationType,
 			}
 		},
 		AssociationConfAnnotationNameBase:     commonv1.EntConfigAnnotationNameBase,
-		AssociationResourceNameLabelName:      "enterprisesearch.k8s.elastic.co/name",
-		AssociationResourceNamespaceLabelName: "enterprisesearch.k8s.elastic.co/namespace",
+		AssociationResourceNameLabelName:      "enterprisesearch.k8s.acceldata.io/name",
+		AssociationResourceNamespaceLabelName: "enterprisesearch.k8s.acceldata.io/namespace",
 		ElasticsearchUserCreation:             nil, // no dedicated ES user required for Kibana->Ent connection
 	}
 
@@ -739,7 +739,7 @@ func TestReconciler_getElasticsearch(t *testing.T) {
 			Namespace: "ns",
 			Name:      "kb",
 			Annotations: map[string]string{
-				"association.k8s.elastic.co/es-conf": "association-conf-data", // we don't care about the data here
+				"association.k8s.acceldata.io/es-conf": "association-conf-data", // we don't care about the data here
 			},
 		},
 		Spec: kbv1.KibanaSpec{ElasticsearchRef: commonv1.ObjectSelector{Name: "es", Namespace: "ns"}},
@@ -835,9 +835,9 @@ func TestReconciler_Reconcile_MultiRef(t *testing.T) {
 		AssociatedShortName:     "agent",
 		Labels: func(associated types.NamespacedName) map[string]string {
 			return map[string]string{
-				"agentassociation.k8s.elastic.co/name":      associated.Name,
-				"agentassociation.k8s.elastic.co/namespace": associated.Namespace,
-				"agentassociation.k8s.elastic.co/type":      commonv1.ElasticsearchAssociationType,
+				"agentassociation.k8s.acceldata.io/name":      associated.Name,
+				"agentassociation.k8s.acceldata.io/namespace": associated.Namespace,
+				"agentassociation.k8s.acceldata.io/type":      commonv1.ElasticsearchAssociationType,
 			}
 		},
 		AssociationConfAnnotationNameBase:     commonv1.ElasticsearchConfigAnnotationNameBase,
@@ -1102,14 +1102,14 @@ func TestReconciler_Reconcile_Transitive_Associations(t *testing.T) {
 		AssociatedShortName:     "agent",
 		Labels: func(associated types.NamespacedName) map[string]string {
 			return map[string]string{
-				"agentassociation.k8s.elastic.co/name":      associated.Name,
-				"agentassociation.k8s.elastic.co/namespace": associated.Namespace,
-				"agentassociation.k8s.elastic.co/type":      commonv1.FleetServerAssociationType,
+				"agentassociation.k8s.acceldata.io/name":      associated.Name,
+				"agentassociation.k8s.acceldata.io/namespace": associated.Namespace,
+				"agentassociation.k8s.acceldata.io/type":      commonv1.FleetServerAssociationType,
 			}
 		},
 		AssociationConfAnnotationNameBase:     commonv1.FleetServerConfigAnnotationNameBase,
-		AssociationResourceNameLabelName:      "agent.k8s.elastic.co/name",
-		AssociationResourceNamespaceLabelName: "agent.k8s.elastic.co/namespace",
+		AssociationResourceNameLabelName:      "agent.k8s.acceldata.io/name",
+		AssociationResourceNamespaceLabelName: "agent.k8s.acceldata.io/namespace",
 		ElasticsearchUserCreation:             nil,
 		AdditionalSecrets: func(ctx context.Context, c k8s.Client, assoc commonv1.Association) ([]types.NamespacedName, error) {
 			associated := assoc.Associated()
@@ -1241,11 +1241,11 @@ func TestReconciler_Reconcile_Transitive_Associations(t *testing.T) {
 					Namespace: "fleet-ns",
 					Name:      "fleet-server1-agent-es-default-es1-ca",
 					Labels: map[string]string{
-						"agentassociation.k8s.elastic.co/type":           "elasticsearch",
-						"elasticsearch.k8s.elastic.co/cluster-name":      "es1",
-						"elasticsearch.k8s.elastic.co/cluster-namespace": "es-ns",
-						"agentassociation.k8s.elastic.co/name":           "fleet-server1",
-						"agentassociation.k8s.elastic.co/namespace":      "fleet-ns",
+						"agentassociation.k8s.acceldata.io/type":           "elasticsearch",
+						"elasticsearch.k8s.acceldata.io/cluster-name":      "es1",
+						"elasticsearch.k8s.acceldata.io/cluster-namespace": "es-ns",
+						"agentassociation.k8s.acceldata.io/name":           "fleet-server1",
+						"agentassociation.k8s.acceldata.io/namespace":      "fleet-ns",
 					},
 				},
 				Data: map[string][]byte{
@@ -1410,21 +1410,21 @@ func checkStatus(t *testing.T, agent agentv1alpha1.Agent, esAssociation bool, ke
 
 func mkFleetServerSecret(name, ns, sourceNs, sourceName, targetNs, targetName string, credentials, user, isFleetServerOwner bool, dataKeys ...string) corev1.Secret {
 	secret := mkAgentSecret(name, ns, sourceNs, sourceName, targetNs, targetName, credentials, user, isFleetServerOwner, dataKeys...)
-	secret.Labels["agentassociation.k8s.elastic.co/type"] = "fleetserver"
-	secret.Labels["agent.k8s.elastic.co/name"] = targetName
-	secret.Labels["agent.k8s.elastic.co/namespace"] = targetNs
-	delete(secret.Labels, "elasticsearch.k8s.elastic.co/cluster-name")
-	delete(secret.Labels, "elasticsearch.k8s.elastic.co/cluster-namespace")
+	secret.Labels["agentassociation.k8s.acceldata.io/type"] = "fleetserver"
+	secret.Labels["agent.k8s.acceldata.io/name"] = targetName
+	secret.Labels["agent.k8s.acceldata.io/namespace"] = targetNs
+	delete(secret.Labels, "elasticsearch.k8s.acceldata.io/cluster-name")
+	delete(secret.Labels, "elasticsearch.k8s.acceldata.io/cluster-namespace")
 	return secret
 }
 
 func mkAgentSecret(name, ns, sourceNs, sourceName, targetNs, targetName string, credentials, user, isAgentOwner bool, dataKeys ...string) corev1.Secret {
-	apiVersion := "elasticsearch.k8s.elastic.co/v1"
+	apiVersion := "elasticsearch.k8s.acceldata.io/v1"
 	kind := "Elasticsearch"
 	ownerName := targetName
 
 	if isAgentOwner {
-		apiVersion = "agent.k8s.elastic.co/v1alpha1"
+		apiVersion = "agent.k8s.acceldata.io/v1alpha1"
 		kind = "Agent"
 		ownerName = sourceName
 	}
@@ -1434,11 +1434,11 @@ func mkAgentSecret(name, ns, sourceNs, sourceName, targetNs, targetName string, 
 			Name:      name,
 			Namespace: ns,
 			Labels: map[string]string{
-				"agentassociation.k8s.elastic.co/name":           sourceName,
-				"agentassociation.k8s.elastic.co/namespace":      sourceNs,
-				"agentassociation.k8s.elastic.co/type":           "elasticsearch",
-				"elasticsearch.k8s.elastic.co/cluster-name":      targetName,
-				"elasticsearch.k8s.elastic.co/cluster-namespace": targetNs,
+				"agentassociation.k8s.acceldata.io/name":           sourceName,
+				"agentassociation.k8s.acceldata.io/namespace":      sourceNs,
+				"agentassociation.k8s.acceldata.io/type":           "elasticsearch",
+				"elasticsearch.k8s.acceldata.io/cluster-name":      targetName,
+				"elasticsearch.k8s.acceldata.io/cluster-namespace": targetNs,
 			},
 			OwnerReferences: []metav1.OwnerReference{
 				{
@@ -1454,10 +1454,10 @@ func mkAgentSecret(name, ns, sourceNs, sourceName, targetNs, targetName string, 
 	}
 
 	if credentials {
-		result.Labels["eck.k8s.elastic.co/credentials"] = "true"
+		result.Labels["eck.k8s.acceldata.io/credentials"] = "true"
 	}
 	if user {
-		result.Labels["common.k8s.elastic.co/type"] = "user"
+		result.Labels["common.k8s.acceldata.io/type"] = "user"
 	}
 
 	for _, key := range dataKeys {

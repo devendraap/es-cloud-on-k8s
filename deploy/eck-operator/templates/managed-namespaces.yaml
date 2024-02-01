@@ -8,6 +8,6 @@ metadata:
   name: {{ $namespace }}
   labels:
     {{- include "eck-operator.labels" $ | nindent 4 }}
-    eck.k8s.elastic.co/tenant: {{ $namespace }}
+    eck.k8s.acceldata.io/tenant: {{ $namespace }}
 {{- end -}}
 {{- end -}}

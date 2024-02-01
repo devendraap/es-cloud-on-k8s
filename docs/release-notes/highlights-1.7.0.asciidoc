@@ -46,7 +46,7 @@ This is due to a validation issue in `kubectl` that has been addressed in the Ku
 
 [source,bash]
 ----
-kubectl patch crd elasticsearches.elasticsearch.k8s.elastic.co --type json -p='[{"op": "remove", "path": "/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/nodeSets/items/properties/volumeClaimTemplates/x-kubernetes-preserve-unknown-fields"}]'
+kubectl patch crd elasticsearches.elasticsearch.k8s.acceldata.io --type json -p='[{"op": "remove", "path": "/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/nodeSets/items/properties/volumeClaimTemplates/x-kubernetes-preserve-unknown-fields"}]'
 ----
 More details about the issue and available workarounds are documented in link:https://github.com/elastic/cloud-on-k8s/issues/4737[this bug report].
 

@@ -14,7 +14,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 const (
@@ -22,7 +22,7 @@ const (
 	webhookPath = "/validate-elasticsearch-k8s-elastic-co-v1beta1-elasticsearch"
 )
 
-// +kubebuilder:webhook:path=/validate-elasticsearch-k8s-elastic-co-v1beta1-elasticsearch,mutating=false,failurePolicy=ignore,groups=elasticsearch.k8s.elastic.co,resources=elasticsearches,verbs=create;update,versions=v1beta1,name=elastic-es-validation-v1beta1.k8s.elastic.co,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
+// +kubebuilder:webhook:path=/validate-elasticsearch-k8s-elastic-co-v1beta1-elasticsearch,mutating=false,failurePolicy=ignore,groups=elasticsearch.k8s.acceldata.io,resources=elasticsearches,verbs=create;update,versions=v1beta1,name=elastic-es-validation-v1beta1.k8s.acceldata.io,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
 
 var eslog = ulog.Log.WithName("es-validation")
 
@@ -57,7 +57,7 @@ func (es *Elasticsearch) ValidateUpdate(old runtime.Object) (admission.Warnings,
 	}
 	if len(errs) > 0 {
 		return nil, apierrors.NewInvalid(
-			schema.GroupKind{Group: "elasticsearch.k8s.elastic.co", Kind: "Elasticsearch"},
+			schema.GroupKind{Group: "elasticsearch.k8s.acceldata.io", Kind: "Elasticsearch"},
 			es.Name, errs)
 	}
 	return es.validateElasticsearch()
@@ -71,7 +71,7 @@ func (es *Elasticsearch) WebhookPath() string {
 func (es *Elasticsearch) validateElasticsearch() (admission.Warnings, error) {
 	if errs := es.check(validations); len(errs) > 0 {
 		return nil, apierrors.NewInvalid(
-			schema.GroupKind{Group: "elasticsearch.k8s.elastic.co", Kind: "Elasticsearch"},
+			schema.GroupKind{Group: "elasticsearch.k8s.acceldata.io", Kind: "Elasticsearch"},
 			es.Name,
 			errs,
 		)

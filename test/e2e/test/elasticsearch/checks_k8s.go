@@ -18,15 +18,15 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/bootstrap"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/certificates/transport"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/sset"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/bootstrap"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/certificates/transport"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/sset"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 const (
@@ -103,9 +103,9 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: esName + "-es-elastic-user",
 				Keys: []string{"elastic"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                "elasticsearch",
-					"eck.k8s.elastic.co/credentials":            "true",
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"common.k8s.acceldata.io/type":                "elasticsearch",
+					"eck.k8s.acceldata.io/credentials":            "true",
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			},
 
@@ -113,48 +113,48 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: esName + "-es-http-certs-internal",
 				Keys: []string{"tls.crt", "tls.key", "ca.crt"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                "elasticsearch",
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"common.k8s.acceldata.io/type":                "elasticsearch",
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			},
 			{
 				Name: esName + "-es-http-certs-public",
 				Keys: []string{"tls.crt", "ca.crt"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                "elasticsearch",
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"common.k8s.acceldata.io/type":                "elasticsearch",
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			},
 			{
 				Name: esName + "-es-internal-users",
 				Keys: []string{"elastic-internal", "elastic-internal-monitoring", "elastic-internal-pre-stop", "elastic-internal-probe"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                "elasticsearch",
-					"eck.k8s.elastic.co/credentials":            "true",
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"common.k8s.acceldata.io/type":                "elasticsearch",
+					"eck.k8s.acceldata.io/credentials":            "true",
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			},
 			{
 				Name: esName + "-es-remote-ca",
 				Keys: []string{"ca.crt"},
 				Labels: map[string]string{
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			},
 			{
 				Name: esName + "-es-transport-certs-public",
 				Keys: []string{"ca.crt"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                "elasticsearch",
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"common.k8s.acceldata.io/type":                "elasticsearch",
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			},
 			{
 				Name: esName + "-es-xpack-file-realm",
 				Keys: []string{"users", "users_roles", "roles.yml", "service_tokens"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                "elasticsearch",
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"common.k8s.acceldata.io/type":                "elasticsearch",
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			},
 			// esName + "-es-transport-certificates" is handled in CheckPodCertificates
@@ -165,8 +165,8 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: esName + "-es-transport-ca-internal",
 				Keys: []string{"tls.crt", "tls.key"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                "elasticsearch",
-					"elasticsearch.k8s.elastic.co/cluster-name": esName,
+					"common.k8s.acceldata.io/type":                "elasticsearch",
+					"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 				},
 			})
 		}
@@ -178,8 +178,8 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: esName + "-es-http-ca-internal",
 					Keys: []string{"tls.crt", "tls.key"},
 					Labels: map[string]string{
-						"common.k8s.elastic.co/type":                "elasticsearch",
-						"elasticsearch.k8s.elastic.co/cluster-name": esName,
+						"common.k8s.acceldata.io/type":                "elasticsearch",
+						"elasticsearch.k8s.acceldata.io/cluster-name": esName,
 					},
 				},
 			)
@@ -190,9 +190,9 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: esName + "-es-" + nodeSet.Name + "-es-config",
 				Keys: []string{"elasticsearch.yml"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":                    "elasticsearch",
-					"elasticsearch.k8s.elastic.co/cluster-name":     esName,
-					"elasticsearch.k8s.elastic.co/statefulset-name": esName + "-es-" + nodeSet.Name,
+					"common.k8s.acceldata.io/type":                    "elasticsearch",
+					"elasticsearch.k8s.acceldata.io/cluster-name":     esName,
+					"elasticsearch.k8s.acceldata.io/statefulset-name": esName + "-es-" + nodeSet.Name,
 				},
 			})
 		}

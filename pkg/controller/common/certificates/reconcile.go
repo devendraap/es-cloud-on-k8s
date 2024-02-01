@@ -13,12 +13,12 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	commonname "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/name"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	commonname "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/name"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 type Reconciler struct {
@@ -42,7 +42,7 @@ type Reconciler struct {
 	GarbageCollectSecrets bool // if true, delete secrets if TLS is disabled
 
 	// if true the internally used secret will not default the CA certificate if it is not provided.
-	// This should only be necessary for Elasticsearch but has been used across all apps. See https://github.com/elastic/cloud-on-k8s/issues/2243
+	// This should only be necessary for Elasticsearch but has been used across all apps. See https://github.com/devendra/es-cloud-on-k8s/issues/2243
 	DisableInternalCADefaulting bool
 }
 

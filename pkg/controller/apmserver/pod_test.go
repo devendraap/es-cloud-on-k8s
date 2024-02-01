@@ -12,13 +12,13 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	apmv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	apmv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var (
@@ -79,12 +79,12 @@ func TestNewPodSpec(t *testing.T) {
 			want: corev1.PodTemplateSpec{
 				ObjectMeta: metav1.ObjectMeta{
 					Labels: map[string]string{
-						"apm.k8s.elastic.co/name":    "fake-apm",
-						"apm.k8s.elastic.co/version": "7.0.1",
-						"common.k8s.elastic.co/type": "apm-server",
+						"apm.k8s.acceldata.io/name":    "fake-apm",
+						"apm.k8s.acceldata.io/version": "7.0.1",
+						"common.k8s.acceldata.io/type": "apm-server",
 					},
 					Annotations: map[string]string{
-						"apm.k8s.elastic.co/config-hash": "2166136261",
+						"apm.k8s.acceldata.io/config-hash": "2166136261",
 					},
 				},
 				Spec: corev1.PodSpec{

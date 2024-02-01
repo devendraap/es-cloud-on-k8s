@@ -7,18 +7,18 @@ package label
 import (
 	"k8s.io/apimachinery/pkg/types"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
 )
 
 const (
 	// KibanaNameLabelName used to represent a Kibana in k8s resources
-	KibanaNameLabelName = "kibana.k8s.elastic.co/name"
+	KibanaNameLabelName = "kibana.k8s.acceldata.io/name"
 
 	// KibanaNamespaceLabelName used to represent a Kibana in k8s resources
-	KibanaNamespaceLabelName = "kibana.k8s.elastic.co/namespace"
+	KibanaNamespaceLabelName = "kibana.k8s.acceldata.io/namespace"
 
 	// KibanaVersionLabelName used to propagate Kibana version from the spec to the pods
-	KibanaVersionLabelName = "kibana.k8s.elastic.co/version"
+	KibanaVersionLabelName = "kibana.k8s.acceldata.io/version"
 
 	// Type represents the Kibana type
 	Type = "kibana"

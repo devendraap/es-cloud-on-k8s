@@ -4,7 +4,7 @@
 
 package enterprisesearch
 
-import entv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+import entv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
 
 const (
 	httpServiceSuffix = "http"

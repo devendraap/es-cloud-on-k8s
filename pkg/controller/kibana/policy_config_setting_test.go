@@ -12,9 +12,9 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	kibanav1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	common "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	kibanav1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	common "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_getPolicyConfig(t *testing.T) {
@@ -39,7 +39,7 @@ func Test_getPolicyConfig(t *testing.T) {
 			want: PolicyConfig{
 				KibanaConfig: canonicalConfig,
 				PodAnnotations: map[string]string{
-					"policy.k8s.elastic.co/kibana-config-hash": "123456",
+					"policy.k8s.acceldata.io/kibana-config-hash": "123456",
 				},
 			},
 			client: k8s.NewFakeClient(mkKibanaConfigSecret("test-ns", "test-policy", "test-policy-ns", "123456")),
@@ -54,7 +54,7 @@ func Test_getPolicyConfig(t *testing.T) {
 			},
 			want: PolicyConfig{
 				PodAnnotations: map[string]string{
-					"policy.k8s.elastic.co/kibana-config-hash": "123456",
+					"policy.k8s.acceldata.io/kibana-config-hash": "123456",
 				},
 			},
 			wantErr: true,
@@ -91,15 +91,15 @@ func mkKibanaConfigSecret(namespace string, owningPolicyName string, owningPolic
 			Namespace: namespace,
 			Name:      "test-kb-kb-policy-config",
 			Labels: map[string]string{
-				"asset.policy.k8s.elastic.co/on-delete": "delete",
-				"kibana.k8s.elastic.co/name":            "test-kb",
-				"common.k8s.elastic.co/type":            "kibana",
-				"eck.k8s.elastic.co/owner-kind":         "StackConfigPolicy",
-				"eck.k8s.elastic.co/owner-name":         owningPolicyName,
-				"eck.k8s.elastic.co/owner-namespace":    owningPolicyNamespace,
+				"asset.policy.k8s.acceldata.io/on-delete": "delete",
+				"kibana.k8s.acceldata.io/name":            "test-kb",
+				"common.k8s.acceldata.io/type":            "kibana",
+				"eck.k8s.acceldata.io/owner-kind":         "StackConfigPolicy",
+				"eck.k8s.acceldata.io/owner-name":         owningPolicyName,
+				"eck.k8s.acceldata.io/owner-namespace":    owningPolicyNamespace,
 			},
 			Annotations: map[string]string{
-				"policy.k8s.elastic.co/kibana-config-hash": hashValue,
+				"policy.k8s.acceldata.io/kibana-config-hash": hashValue,
 			},
 		},
 		Data: map[string][]byte{

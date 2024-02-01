@@ -34,7 +34,7 @@ function wait_for_pods_exist() {
 
 function wait_for_pods_deleted() {
   timeout=180s
-  kubectl wait pods -l "elasticsearch.k8s.elastic.co/cluster-name=$CLUSTER_NAME" --for delete --timeout "$timeout"
+  kubectl wait pods -l "elasticsearch.k8s.acceldata.io/cluster-name=$CLUSTER_NAME" --for delete --timeout "$timeout"
 }
 
 function wait_for_pods_ready() {
@@ -45,7 +45,7 @@ function wait_for_pods_ready() {
 }
 
 function cluster_uuid() {
-  kubectl get elasticsearch $CLUSTER_NAME -o json | jq -r '.metadata.annotations["elasticsearch.k8s.elastic.co/cluster-uuid"]'
+  kubectl get elasticsearch $CLUSTER_NAME -o json | jq -r '.metadata.annotations["elasticsearch.k8s.acceldata.io/cluster-uuid"]'
 }
 
 ## main

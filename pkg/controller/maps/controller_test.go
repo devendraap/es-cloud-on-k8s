@@ -16,15 +16,15 @@ import (
 	"k8s.io/client-go/tools/record"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/about"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/about"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var nsnFixture = types.NamespacedName{
@@ -213,7 +213,7 @@ func TestReconcileMapsServer_Reconcile(t *testing.T) {
 						Name:      nsnFixture.Name,
 						Namespace: nsnFixture.Namespace,
 						Annotations: map[string]string{
-							"association.k8s.elastic.co/es-conf": `{"authSecretName":"test-resource-maps-user","authSecretKey":"ns-test-resource-maps-user","caCertProvided":true,"caSecretName": "test-resource-es-ca","url":"https://es-es-http.ns.svc:9200","version":"7.10.0"}`,
+							"association.k8s.acceldata.io/es-conf": `{"authSecretName":"test-resource-maps-user","authSecretKey":"ns-test-resource-maps-user","caCertProvided":true,"caSecretName": "test-resource-es-ca","url":"https://es-es-http.ns.svc:9200","version":"7.10.0"}`,
 						},
 						Generation: 2,
 					},

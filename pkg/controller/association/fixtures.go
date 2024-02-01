@@ -7,8 +7,8 @@ package association
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	apmv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
+	apmv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
 )
 
 type testAPMServer struct {
@@ -41,11 +41,11 @@ func (t testAPMServer) build() *apmv1.ApmServer {
 	}
 
 	if t.esConfAnnotations {
-		apmServer.ObjectMeta.Annotations["association.k8s.elastic.co/es-conf"] = `{"authSecretName":"auth-secret", "authSecretKey":"apm-user", "caSecretName": "ca-secret", "url":"https://es.svc:9300"}`
+		apmServer.ObjectMeta.Annotations["association.k8s.acceldata.io/es-conf"] = `{"authSecretName":"auth-secret", "authSecretKey":"apm-user", "caSecretName": "ca-secret", "url":"https://es.svc:9300"}`
 	}
 
 	if t.kbConfAnnotations {
-		apmServer.ObjectMeta.Annotations["association.k8s.elastic.co/kb-conf"] = `{"authSecretName":"auth-secret", "authSecretKey":"apm-kb-user", "caSecretName": "ca-secret", "url":"https://kb.svc:5601"}`
+		apmServer.ObjectMeta.Annotations["association.k8s.acceldata.io/kb-conf"] = `{"authSecretName":"auth-secret", "authSecretKey":"apm-kb-user", "caSecretName": "ca-secret", "url":"https://kb.svc:5601"}`
 	}
 	return apmServer
 }

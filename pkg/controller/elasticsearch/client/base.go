@@ -15,10 +15,10 @@ import (
 	"github.com/hashicorp/go-multierror"
 	"k8s.io/apimachinery/pkg/types"
 
-	commonhttp "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/http"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/stringsutil"
+	commonhttp "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/http"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/stringsutil"
 )
 
 type baseClient struct {

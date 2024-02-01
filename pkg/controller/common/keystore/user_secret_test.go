@@ -15,14 +15,14 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/tools/record"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/comparison"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/driver"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/name"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/comparison"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/driver"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/name"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var kbNamer = name.NewNamer("kb")
@@ -143,7 +143,7 @@ func Test_reconcileSecureSettings(t *testing.T) {
 		Namespace: "ns",
 		OwnerReferences: []metav1.OwnerReference{
 			{
-				APIVersion:         "kibana.k8s.elastic.co/v1",
+				APIVersion:         "kibana.k8s.acceldata.io/v1",
 				Kind:               "Kibana",
 				Name:               "kb",
 				UID:                "",

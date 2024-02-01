@@ -18,14 +18,14 @@ import (
 	"k8s.io/utils/ptr"
 	k8sclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	agentv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/agent"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/cmd/run"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	agentv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/agent"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/cmd/run"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 const (
@@ -63,7 +63,7 @@ func (b Builder) SkipTest() bool {
 		if ver.GTE(version.MinFor(8, 0, 0)) && ver.LT(version.MinFor(8, 1, 0)) {
 			return true
 		}
-		// Elastic agent bug "deadlock on startup", https://github.com/elastic/cloud-on-k8s/issues/6331#issuecomment-1478320487
+		// Elastic agent bug "deadlock on startup", https://github.com/devendra/es-cloud-on-k8s/issues/6331#issuecomment-1478320487
 		if ver.GE(version.MinFor(8, 6, 0)) && ver.LT(version.MinFor(8, 7, 0)) {
 			return true
 		}
@@ -191,7 +191,7 @@ func (b Builder) WithFleetAgentDataStreamsValidation() Builder {
 		WithDefaultESValidation(HasWorkingDataStream(MetricsType, "elastic_agent.elastic_agent", "default")).
 		WithDefaultESValidation(HasWorkingDataStream(MetricsType, "elastic_agent.fleet_server", "default")).
 		WithDefaultESValidation(HasWorkingDataStream(MetricsType, "elastic_agent.metricbeat", "default"))
-	// https://github.com/elastic/cloud-on-k8s/issues/7389
+	// https://github.com/devendra/es-cloud-on-k8s/issues/7389
 	if v.LT(version.MinFor(8, 12, 0)) || v.GE(version.MinFor(8, 14, 0)) {
 		b = b.WithDefaultESValidation(HasWorkingDataStream(MetricsType, "elastic_agent.filebeat", "default"))
 	}

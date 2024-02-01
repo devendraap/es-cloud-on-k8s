@@ -4,5 +4,5 @@
 
 // Package v1 contains API schema definitions for managing Elasticsearch resources.
 // +kubebuilder:object:generate=true
-// +groupName=elasticsearch.k8s.elastic.co
+// +groupName=elasticsearch.k8s.acceldata.io
 package v1

@@ -25,7 +25,7 @@ TIP: You can use link:https://yaml.org/spec/1.2/spec.html#id2765878[YAML anchors
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -179,7 +179,7 @@ Specifically, if the Elasticsearch index settings demand a higher number of shar
 
 The rules (otherwise known as predicates) that the ECK operator follows during an Elasticsearch upgrade can be selectively disabled for certain scenarios where the ECK operator will not proceed with an Elasticsearch cluster upgrade because it deems it to be "unsafe".
 
-WARNING: Selectively disabling the predicates listed in this section are extremely risky, and carry a high chance of either data loss, or causing a cluster to become completely unavailable. Use them only if you are sure that you are not causing permanent damage to an Elasticsearch cluster. These predicates might change in the future. We will be adding, removing, and renaming these over time, so be careful in adding these to any automation.  Also, make sure you remove them after use. `kublectl annotate elasticsearch.elasticsearch.k8s.elastic.co/elasticsearch-sample eck.k8s.elastic.co/disable-upgrade-predicates-`
+WARNING: Selectively disabling the predicates listed in this section are extremely risky, and carry a high chance of either data loss, or causing a cluster to become completely unavailable. Use them only if you are sure that you are not causing permanent damage to an Elasticsearch cluster. These predicates might change in the future. We will be adding, removing, and renaming these over time, so be careful in adding these to any automation.  Also, make sure you remove them after use. `kublectl annotate elasticsearch.elasticsearch.k8s.acceldata.io/elasticsearch-sample eck.k8s.acceldata.io/disable-upgrade-predicates-`
 
 * The following named predicates control the upgrade process
 
@@ -214,7 +214,7 @@ Do not allow two pods containing the same shard to be deleted at the same time.
 +
 Do not delete all nodes that share the same node roles at once. This ensures that there is always availability for each configured tier of nodes during a rolling upgrade.
 
-Any of these predicates can be disabled by adding an annotation with the key of `eck.k8s.elastic.co/disable-upgrade-predicates` to the Elasticsearch metadata, specifically naming the predicate that is needing to be disabled.  Also, all predicates can be disabled by replacing the name of any predicatae with "*".
+Any of these predicates can be disabled by adding an annotation with the key of `eck.k8s.acceldata.io/disable-upgrade-predicates` to the Elasticsearch metadata, specifically naming the predicate that is needing to be disabled.  Also, all predicates can be disabled by replacing the name of any predicatae with "*".
 
 * Example use case
 
@@ -233,13 +233,13 @@ This cluster would never be allowed to be upgraded with the standard set of upgr
 If the following annotation was added to the cluster specification, and the version was increased from 7.15.2 -> 7.15.3
 
 ```yaml
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: testing
   annotations:
-    eck.k8s.elastic.co/disable-upgrade-predicates: "only_restart_healthy_node_if_green_or_yellow"
-    # Also note that eck.k8s.elastic.co/disable-upgrade-predicates: "*" would work as well, but is much less selective.
+    eck.k8s.acceldata.io/disable-upgrade-predicates: "only_restart_healthy_node_if_green_or_yellow"
+    # Also note that eck.k8s.acceldata.io/disable-upgrade-predicates: "*" would work as well, but is much less selective.
 spec:
   version: 7.15.3 # previously set to 7.15.2, for example
 ```

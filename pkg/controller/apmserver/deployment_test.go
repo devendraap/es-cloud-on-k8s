@@ -15,14 +15,14 @@ import (
 	"k8s.io/client-go/tools/record"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	apmv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/deployment"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/keystore"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	apmv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/deployment"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/keystore"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var certSecretName = "test-apm-server-apm-http-certs-internal"
@@ -32,7 +32,7 @@ type testParams struct {
 }
 
 func (tp testParams) withConfigHash(hash string) testParams {
-	tp.PodTemplateSpec.Annotations = map[string]string{"apm.k8s.elastic.co/config-hash": hash}
+	tp.PodTemplateSpec.Annotations = map[string]string{"apm.k8s.acceldata.io/config-hash": hash}
 	return tp
 }
 
@@ -93,18 +93,18 @@ func expectedDeploymentParams() testParams {
 		deployment.Params{
 			Name:      "test-apm-server-apm-server",
 			Namespace: "",
-			Selector:  map[string]string{"apm.k8s.elastic.co/name": "test-apm-server", "common.k8s.elastic.co/type": "apm-server"},
-			Labels:    map[string]string{"apm.k8s.elastic.co/name": "test-apm-server", "common.k8s.elastic.co/type": "apm-server"},
+			Selector:  map[string]string{"apm.k8s.acceldata.io/name": "test-apm-server", "common.k8s.acceldata.io/type": "apm-server"},
+			Labels:    map[string]string{"apm.k8s.acceldata.io/name": "test-apm-server", "common.k8s.acceldata.io/type": "apm-server"},
 			Strategy:  appsv1.DeploymentStrategy{Type: appsv1.RollingUpdateDeploymentStrategyType},
 			PodTemplateSpec: corev1.PodTemplateSpec{
 				ObjectMeta: metav1.ObjectMeta{
 					Labels: map[string]string{
-						"common.k8s.elastic.co/type": "apm-server",
-						"apm.k8s.elastic.co/name":    "test-apm-server",
-						"apm.k8s.elastic.co/version": "1.0.0",
+						"common.k8s.acceldata.io/type": "apm-server",
+						"apm.k8s.acceldata.io/name":    "test-apm-server",
+						"apm.k8s.acceldata.io/version": "1.0.0",
 					},
 					Annotations: map[string]string{
-						"apm.k8s.elastic.co/config-hash": "2166136261",
+						"apm.k8s.acceldata.io/config-hash": "2166136261",
 					},
 				},
 				Spec: corev1.PodSpec{

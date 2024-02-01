@@ -11,10 +11,10 @@ import (
 	"k8s.io/apimachinery/pkg/api/meta"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
-var finalizersRegExp = regexp.MustCompile(`^finalizer\.(.*)\.k8s.elastic.co\/(.*)$`)
+var finalizersRegExp = regexp.MustCompile(`^finalizer\.(.*)\.k8s.acceldata.io\/(.*)$`)
 
 // RemoveAll removes all existing Elastic Finalizers on an Object
 func RemoveAll(ctx context.Context, c k8s.Client, obj client.Object) error {

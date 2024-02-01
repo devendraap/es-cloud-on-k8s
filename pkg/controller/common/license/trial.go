@@ -19,8 +19,8 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/util/uuid"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/chrono"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/chrono"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 const (
@@ -30,8 +30,8 @@ const (
 	TrialPubkeyKey       = "pubkey"
 	TrialActivationKey   = "in-trial-activation"
 
-	TrialLicenseSecretName      = "trial.k8s.elastic.co/secret-name"      //nolint:gosec
-	TrialLicenseSecretNamespace = "trial.k8s.elastic.co/secret-namespace" //nolint:gosec
+	TrialLicenseSecretName      = "trial.k8s.acceldata.io/secret-name"      //nolint:gosec
+	TrialLicenseSecretNamespace = "trial.k8s.acceldata.io/secret-namespace" //nolint:gosec
 )
 
 // TrialState captures the in-memory representation of the trial status.

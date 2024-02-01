@@ -11,22 +11,22 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/network"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/securitycontext"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	esvolume "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/network"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/securitycontext"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	esvolume "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (
 	// cfgHashAnnotation is an annotation to store a hash of the Metricbeat and Filebeat configurations to rotate the Pods when changed.
-	cfgHashAnnotation = "elasticsearch.k8s.elastic.co/monitoring-config-hash"
+	cfgHashAnnotation = "elasticsearch.k8s.acceldata.io/monitoring-config-hash"
 )
 
 func Metricbeat(ctx context.Context, client k8s.Client, es esv1.Elasticsearch) (stackmon.BeatSidecar, error) {

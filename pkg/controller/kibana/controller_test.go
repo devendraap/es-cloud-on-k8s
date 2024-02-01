@@ -20,13 +20,13 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kibanav1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kibanav1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 //nolint:thelper
@@ -104,7 +104,7 @@ func TestReconcileKibana_Reconcile(t *testing.T) {
 			fields: fields{
 				Client: k8s.NewFakeClient(
 					&sampleElasticsearch,
-					withFinalizers(&sampleKibana, []string{"finalizer.elasticsearch.k8s.elastic.co/secure-settings-secret"}),
+					withFinalizers(&sampleKibana, []string{"finalizer.elasticsearch.k8s.acceldata.io/secure-settings-secret"}),
 				),
 			},
 			request: defaultRequest,
@@ -117,7 +117,7 @@ func TestReconcileKibana_Reconcile(t *testing.T) {
 				require.Len(t, kibana.ObjectMeta.Finalizers, 0)
 				require.Equal(t, kibanav1.KibanaStatus{
 					DeploymentStatus: commonv1.DeploymentStatus{
-						Selector:       "common.k8s.elastic.co/type=kibana,kibana.k8s.elastic.co/name=test-kibana",
+						Selector:       "common.k8s.acceldata.io/type=kibana,kibana.k8s.acceldata.io/name=test-kibana",
 						Count:          0,
 						AvailableNodes: 0,
 						Version:        "",
@@ -143,7 +143,7 @@ func TestReconcileKibana_Reconcile(t *testing.T) {
 			},
 			want:     reconcile.Result{},
 			wantErr:  true,
-			errorMsg: `Kibana.kibana.k8s.elastic.co "superlongkibananamecausesvalidationissues" is invalid: metadata.name: Too long: must have at most 36 bytes`,
+			errorMsg: `Kibana.kibana.k8s.acceldata.io "superlongkibananamecausesvalidationissues" is invalid: metadata.name: Too long: must have at most 36 bytes`,
 			validate: func(t *testing.T, f fields) {
 				var kibana kibanav1.Kibana
 				err := f.Client.Get(context.Background(), types.NamespacedName{Namespace: "test", Name: "superlongkibananamecausesvalidationissues"}, &kibana)
@@ -176,7 +176,7 @@ func TestReconcileKibana_Reconcile(t *testing.T) {
 			},
 			want:     reconcile.Result{},
 			wantErr:  true,
-			errorMsg: `while updating status: internal error: Kibana.kibana.k8s.elastic.co "superlongkibananamecausesvalidationissues" is invalid: metadata.name: Too long: must have at most 36 bytes`,
+			errorMsg: `while updating status: internal error: Kibana.kibana.k8s.acceldata.io "superlongkibananamecausesvalidationissues" is invalid: metadata.name: Too long: must have at most 36 bytes`,
 			validate: func(t *testing.T, f fields) {
 				var kibana kibanav1.Kibana
 				err := f.Client.Get(context.Background(), types.NamespacedName{Namespace: "test", Name: "superlongkibananamecausesvalidationissues"}, &kibana)
@@ -215,7 +215,7 @@ func TestReconcileKibana_Reconcile(t *testing.T) {
 				require.NoError(t, err)
 				require.Equal(t, kibanav1.KibanaStatus{
 					DeploymentStatus: commonv1.DeploymentStatus{
-						Selector:       "common.k8s.elastic.co/type=kibana,kibana.k8s.elastic.co/name=test-kibana",
+						Selector:       "common.k8s.acceldata.io/type=kibana,kibana.k8s.acceldata.io/name=test-kibana",
 						Count:          0,
 						AvailableNodes: 0,
 						Version:        "",
@@ -321,7 +321,7 @@ func TestReconcileKibana_Reconcile(t *testing.T) {
 				require.NoError(t, err)
 				require.Equal(t, kibanav1.KibanaStatus{
 					DeploymentStatus: commonv1.DeploymentStatus{
-						Selector:       "common.k8s.elastic.co/type=kibana,kibana.k8s.elastic.co/name=test-kibana",
+						Selector:       "common.k8s.acceldata.io/type=kibana,kibana.k8s.acceldata.io/name=test-kibana",
 						Count:          0,
 						AvailableNodes: 0,
 						Version:        "",

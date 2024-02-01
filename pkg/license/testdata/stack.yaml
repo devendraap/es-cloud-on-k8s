@@ -1,5 +1,5 @@
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: test-elasticsearch
@@ -76,7 +76,7 @@ spec:
             limits:
               memory: 58Gi
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: test-kibana-1
@@ -93,7 +93,7 @@ spec:
             limits:
               memory: 4Gi
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: test-kibana-2
@@ -108,7 +108,7 @@ spec:
             - name: NODE_OPTIONS
               value: "--max-old-space-size=2048"
 ---
-apiVersion: apm.k8s.elastic.co/v1
+apiVersion: apm.k8s.acceldata.io/v1
 kind: ApmServer
 metadata:
   name: test-apm
@@ -125,7 +125,7 @@ spec:
             limits:
               memory: 2Gi
 ---
-apiVersion: enterprisesearch.k8s.elastic.co/v1
+apiVersion: enterprisesearch.k8s.acceldata.io/v1
 kind: EnterpriseSearch
 metadata:
   name: enterprise-search-quickstart

@@ -16,10 +16,10 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	kibana2 "github.com/elastic/cloud-on-k8s/v2/pkg/controller/kibana"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/kibana"
+	kibana2 "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/kibana"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/kibana"
 )
 
 func TestTelemetry(t *testing.T) {
@@ -63,7 +63,7 @@ func TestTelemetry(t *testing.T) {
 				Test: test.Eventually(func() error {
 					pods, err := k.GetPods(
 						client.InNamespace(kbBuilder.Kibana.Namespace),
-						client.MatchingLabels{"kibana.k8s.elastic.co/name=": kbBuilder.Kibana.Name},
+						client.MatchingLabels{"kibana.k8s.acceldata.io/name=": kbBuilder.Kibana.Name},
 					)
 					if err != nil {
 						return err

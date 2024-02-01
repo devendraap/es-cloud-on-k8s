@@ -12,9 +12,9 @@ import (
 	"k8s.io/apimachinery/pkg/api/equality"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
 )
 
 func Test_GetResources(t *testing.T) {
@@ -35,7 +35,7 @@ func Test_GetResources(t *testing.T) {
 		wantErr         bool
 	}{
 		{
-			name: "Warn user if observed storage capacity is unexpected", // see https://github.com/elastic/cloud-on-k8s/issues/4469
+			name: "Warn user if observed storage capacity is unexpected", // see https://github.com/devendra/es-cloud-on-k8s/issues/4469
 			args: args{
 				currentNodeSets: defaultNodeSets,
 				nodeSetsStatus: v1alpha1.ElasticsearchAutoscalerStatus{AutoscalingPolicyStatuses: []v1alpha1.AutoscalingPolicyStatus{{

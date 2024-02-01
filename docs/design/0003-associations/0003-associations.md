@@ -92,7 +92,7 @@ Cons:
 
 #### Option 1: Reference through simple label value
 
-Add a simple label key/value pair to the source resources (e.g add `elasticsearch.k8s.elastic.co/cluster: foo` to the `User` resource in the example).
+Add a simple label key/value pair to the source resources (e.g add `elasticsearch.k8s.acceldata.io/cluster: foo` to the `User` resource in the example).
 
 Pros:
   - Easy to list and watch for from the target controller.
@@ -150,7 +150,7 @@ The Kibana resource and controller mandate that it should be possible to use the
 Thus, we create a new association CRD:
 
 ```yaml
-apiVersion: k8s.elastic.co/v1alpha1
+apiVersion: k8s.acceldata.io/v1alpha1
 kind: KibanaElasticsearchAssociation
 metadata:
   name: foo-bar
@@ -167,14 +167,14 @@ spec:
 The association controller will then ensure that Elasticsearch gets a properly configured Kibana user added:
                            
 ```yaml
-apiVersion: elasticsearch.k8s.elastic.co/v1alpha1
+apiVersion: elasticsearch.k8s.acceldata.io/v1alpha1
 kind: User
 metadata:
   name: foo-bar-kibana
   namespace: foo
   labels:
     # option 1: uses a simple k/v label
-    elasticsearch.k8s.elastic.co/cluster: <cluster id>
+    elasticsearch.k8s.acceldata.io/cluster: <cluster id>
 spec:
   user: foo-bar-kibana
   password_hash: ...
@@ -202,13 +202,13 @@ If the user overwrites this section, it's expected that the association controll
 - Adding certificates and/or trusted transport node names to clusters for CCR/CCS purposes. The following example is simplified, as it does not deal with differences in required configuration between source and target clusters, nor deal with connectivity/discovery information.
 
 ```yaml
-apiVersion: elasticsearch.k8s.elastic.co/v1alpha1
+apiVersion: elasticsearch.k8s.acceldata.io/v1alpha1
 kind: CCRConfig
 metadata:
   name: foo
   namespace: <cluster-namespace>
   labels:
-      elasticsearch.k8s.elastic.co/cluster: <cluster id>
+      elasticsearch.k8s.acceldata.io/cluster: <cluster id>
 spec:
   trustedNamesPattern: "*.node.{remote-cluster-id}.cluster.local"
   trustedCA: CA PEM file contents
@@ -219,7 +219,7 @@ spec:
 - Snapshot repositories is something that we'd potentially want to centrally manage: 
 
 ```yaml
-apiVersion: elasticsearch.k8s.elastic.co/v1alpha1
+apiVersion: elasticsearch.k8s.acceldata.io/v1alpha1
 kind: SnapshotRepositoryProvider
 metadata:
   name: my-provider
@@ -236,13 +236,13 @@ spec:
   Using the `SnapshotRepositoryProvider` we can stamp out instances of the following resource for each matched cluster, and we can potentially keep it up to date with changes to the provider config as well.
 
 ```yaml
-apiVersion: elasticsearch.k8s.elastic.co/v1alpha1
+apiVersion: elasticsearch.k8s.acceldata.io/v1alpha1
 kind: SnapshotRepository
 metadata:
   name: foo
   namespace: <same as cluster>
   labels:
-      elasticsearch.k8s.elastic.co/cluster: <cluster id>
+      elasticsearch.k8s.acceldata.io/cluster: <cluster id>
 spec:
   credentials:
     secret: <???>

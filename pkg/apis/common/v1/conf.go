@@ -23,7 +23,7 @@ func GetAndSetAssociationConf(assoc Association, assocConf *AssociationConf) (*A
 // GetAndSetAssociationConfByRef returns the association configuration corresponding to the namespaced name of the
 // referenced resource if it is found in the given map of association configurations.
 // The association configurations map is not persisted and can be cleared by an update of the parent resource
-// (see https://github.com/elastic/cloud-on-k8s/issues/4709#issuecomment-1042898108), hence we check if this map is empty,
+// (see https://github.com/devendra/es-cloud-on-k8s/issues/4709#issuecomment-1042898108), hence we check if this map is empty,
 // in which case we try to populate it again from the annotation.
 func GetAndSetAssociationConfByRef(assoc Association, ref ObjectSelector, assocConfs map[ObjectSelector]AssociationConf) (*AssociationConf, error) {
 	assocConf, found := assocConfs[ref]

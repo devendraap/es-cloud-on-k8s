@@ -19,13 +19,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/kubernetes/fake"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/annotation"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/annotation"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
 )
 
 func TestParams_ReconcileResources(t *testing.T) {
 	w := Params{
-		Name:       "elastic-webhook.k8s.elastic.co",
+		Name:       "elastic-webhook.k8s.acceldata.io",
 		Namespace:  "elastic-system",
 		SecretName: "elastic-webhook-server-cert",
 		Rotation: certificates.RotationParams{
@@ -44,11 +44,11 @@ func TestParams_ReconcileResources(t *testing.T) {
 			},
 			&v1.ValidatingWebhookConfiguration{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "elastic-webhook.k8s.elastic.co",
+					Name: "elastic-webhook.k8s.acceldata.io",
 				},
 				Webhooks: []v1.ValidatingWebhook{
 					{
-						Name: "elastic-es-validation-v1.k8s.elastic.co",
+						Name: "elastic-es-validation-v1.k8s.acceldata.io",
 						ClientConfig: v1.WebhookClientConfig{
 							Service: &v1.ServiceReference{Name: "elastic-webhook-server", Namespace: "elastic-system"},
 						},
@@ -223,9 +223,9 @@ func TestUpdateOperatorPods(t *testing.T) {
 				assert.NoError(t, err)
 				// Get previous annotation
 				previousPodAnnotations := previousAnnotations[podName]
-				previousValue, existed := previousPodAnnotations["update.k8s.elastic.co/timestamp"] // it's ok to read a nil map
+				previousValue, existed := previousPodAnnotations["update.k8s.acceldata.io/timestamp"] // it's ok to read a nil map
 				// Get the new annotation
-				newValue, exists := pod.Annotations["update.k8s.elastic.co/timestamp"]
+				newValue, exists := pod.Annotations["update.k8s.acceldata.io/timestamp"]
 				// Annotation should exist now
 				assert.True(t, exists)
 				if existed {

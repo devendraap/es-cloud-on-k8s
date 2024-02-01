@@ -11,5 +11,5 @@ import (
 
 func TestApmEsAssociation_AssociationConfAnnotationName(t *testing.T) {
 	es := EnterpriseSearch{}
-	require.Equal(t, "association.k8s.elastic.co/es-conf", es.AssociationConfAnnotationName())
+	require.Equal(t, "association.k8s.acceldata.io/es-conf", es.AssociationConfAnnotationName())
 }

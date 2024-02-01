@@ -12,11 +12,11 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/record"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	esclient "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	esclient "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_getCurrentRemoteClusters(t *testing.T) {
@@ -57,7 +57,7 @@ func Test_getCurrentRemoteClusters(t *testing.T) {
 				ObjectMeta: metav1.ObjectMeta{
 					Name:        "ns1",
 					Namespace:   "es1",
-					Annotations: map[string]string{"elasticsearch.k8s.elastic.co/managed-remote-clusters": `ns2-cluster-2,ns5-cluster-8`},
+					Annotations: map[string]string{"elasticsearch.k8s.acceldata.io/managed-remote-clusters": `ns2-cluster-2,ns5-cluster-8`},
 				},
 			}},
 			want: map[string]struct{}{
@@ -248,7 +248,7 @@ func TestUpdateSettings(t *testing.T) {
 					"ns1",
 					"es1",
 					map[string]string{
-						"elasticsearch.k8s.elastic.co/managed-remote-clusters": `ns2-es2`,
+						"elasticsearch.k8s.acceldata.io/managed-remote-clusters": `ns2-es2`,
 					},
 					esv1.RemoteCluster{
 						Name:             "ns2-es2",
@@ -288,7 +288,7 @@ func TestUpdateSettings(t *testing.T) {
 					"ns1",
 					"es1",
 					map[string]string{
-						"elasticsearch.k8s.elastic.co/managed-remote-clusters": `ns1-es2,ns2-es2"`, // ns1-es2 should be removed from the annotation
+						"elasticsearch.k8s.acceldata.io/managed-remote-clusters": `ns1-es2,ns2-es2"`, // ns1-es2 should be removed from the annotation
 					},
 					esv1.RemoteCluster{
 						Name:             "ns2-es2",
@@ -330,7 +330,7 @@ func TestUpdateSettings(t *testing.T) {
 					"ns1",
 					"es1",
 					map[string]string{
-						"elasticsearch.k8s.elastic.co/managed-remote-clusters": `ns1-es2`,
+						"elasticsearch.k8s.acceldata.io/managed-remote-clusters": `ns1-es2`,
 					},
 					esv1.RemoteCluster{
 						Name:             "ns1-es2",
@@ -374,7 +374,7 @@ func TestUpdateSettings(t *testing.T) {
 					"ns1",
 					"es1",
 					map[string]string{
-						"elasticsearch.k8s.elastic.co/managed-remote-clusters": `ns1-es2,to-be-deleted`,
+						"elasticsearch.k8s.acceldata.io/managed-remote-clusters": `ns1-es2,to-be-deleted`,
 					},
 					esv1.RemoteCluster{
 						Name:             "ns1-es2",
@@ -450,7 +450,7 @@ func TestUpdateSettings(t *testing.T) {
 					"ns1",
 					"es1",
 					map[string]string{
-						"elasticsearch.k8s.elastic.co/managed-remote-clusters": `ns1-es2,ns1-es5`,
+						"elasticsearch.k8s.acceldata.io/managed-remote-clusters": `ns1-es2,ns1-es5`,
 					},
 					esv1.RemoteCluster{
 						Name:             "ns1-es2",
@@ -497,7 +497,7 @@ func TestUpdateSettings(t *testing.T) {
 			es := &esv1.Elasticsearch{}
 			assert.NoError(t, client.Get(context.Background(), k8s.ExtractNamespacedName(tt.args.es), es))
 
-			gotAnnotation, annotationExists := es.Annotations["elasticsearch.k8s.elastic.co/managed-remote-clusters"]
+			gotAnnotation, annotationExists := es.Annotations["elasticsearch.k8s.acceldata.io/managed-remote-clusters"]
 			if tt.wantAnnotation != "" {
 				assert.Equal(t, tt.wantAnnotation, gotAnnotation)
 			} else {

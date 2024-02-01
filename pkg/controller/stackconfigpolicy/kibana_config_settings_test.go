@@ -12,11 +12,11 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	kibanav1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	policyv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	kibanav1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	policyv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_newKibanaConfigSecret(t *testing.T) {
@@ -65,16 +65,16 @@ func Test_newKibanaConfigSecret(t *testing.T) {
 					Namespace: "test-ns",
 					Name:      "test-kb-kb-policy-config",
 					Labels: map[string]string{
-						"asset.policy.k8s.elastic.co/on-delete": "delete",
-						"kibana.k8s.elastic.co/name":            "test-kb",
-						"common.k8s.elastic.co/type":            "kibana",
-						"eck.k8s.elastic.co/owner-kind":         "StackConfigPolicy",
-						"eck.k8s.elastic.co/owner-name":         "test-policy",
-						"eck.k8s.elastic.co/owner-namespace":    "test-policy-ns",
+						"asset.policy.k8s.acceldata.io/on-delete": "delete",
+						"kibana.k8s.acceldata.io/name":            "test-kb",
+						"common.k8s.acceldata.io/type":            "kibana",
+						"eck.k8s.acceldata.io/owner-kind":         "StackConfigPolicy",
+						"eck.k8s.acceldata.io/owner-name":         "test-policy",
+						"eck.k8s.acceldata.io/owner-namespace":    "test-policy-ns",
 					},
 					Annotations: map[string]string{
-						"policy.k8s.elastic.co/kibana-config-hash":      "3077592849",
-						"policy.k8s.elastic.co/secure-settings-secrets": `[{"namespace":"test-policy-ns","secretName":"shared-secret"}]`,
+						"policy.k8s.acceldata.io/kibana-config-hash":      "3077592849",
+						"policy.k8s.acceldata.io/secure-settings-secrets": `[{"namespace":"test-policy-ns","secretName":"shared-secret"}]`,
 					},
 				},
 				Data: map[string][]byte{
@@ -334,14 +334,14 @@ func mkKibanaPod(namespace string, hashapplied bool, hashValue string) *corev1.P
 			Name:      "test-kibana-pod",
 			Namespace: namespace,
 			Labels: map[string]string{
-				"kibana.k8s.elastic.co/name": "test-kb",
+				"kibana.k8s.acceldata.io/name": "test-kb",
 			},
 			Annotations: make(map[string]string),
 		},
 	}
 
 	if hashapplied {
-		pod.Annotations["policy.k8s.elastic.co/kibana-config-hash"] = hashValue
+		pod.Annotations["policy.k8s.acceldata.io/kibana-config-hash"] = hashValue
 	}
 	return &pod
 }
@@ -352,15 +352,15 @@ func MkKibanaConfigSecret(namespace string, owningPolicyName string, owningPolic
 			Namespace: namespace,
 			Name:      "test-kb-kb-policy-config",
 			Labels: map[string]string{
-				"asset.policy.k8s.elastic.co/on-delete": "delete",
-				"kibana.k8s.elastic.co/name":            "test-kb",
-				"common.k8s.elastic.co/type":            "kibana",
-				"eck.k8s.elastic.co/owner-kind":         "StackConfigPolicy",
-				"eck.k8s.elastic.co/owner-name":         owningPolicyName,
-				"eck.k8s.elastic.co/owner-namespace":    owningPolicyNamespace,
+				"asset.policy.k8s.acceldata.io/on-delete": "delete",
+				"kibana.k8s.acceldata.io/name":            "test-kb",
+				"common.k8s.acceldata.io/type":            "kibana",
+				"eck.k8s.acceldata.io/owner-kind":         "StackConfigPolicy",
+				"eck.k8s.acceldata.io/owner-name":         owningPolicyName,
+				"eck.k8s.acceldata.io/owner-namespace":    owningPolicyNamespace,
 			},
 			Annotations: map[string]string{
-				"policy.k8s.elastic.co/kibana-config-hash": hashValue,
+				"policy.k8s.acceldata.io/kibana-config-hash": hashValue,
 			},
 		},
 		Data: map[string][]byte{

@@ -21,7 +21,7 @@ func Test_requestName(t *testing.T) {
 		{
 			name: "WATCH request",
 			args: args{
-				req: mustRequest("GET", "https://34.76.65.60/apis/elasticsearch.k8s.elastic.co/v1/elasticsearches?allowWatchBookmarks=true&resourceVersion=11980723&timeout=1m0s&timeoutSeconds=526&watch=true"),
+				req: mustRequest("GET", "https://34.76.65.60/apis/elasticsearch.k8s.acceldata.io/v1/elasticsearches?allowWatchBookmarks=true&resourceVersion=11980723&timeout=1m0s&timeoutSeconds=526&watch=true"),
 			},
 			want: "WATCH v1/elasticsearches",
 		},

@@ -21,13 +21,13 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/comparison"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/comparison"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func newReconcileLogstash(objs ...client.Object) *ReconcileLogstash {
@@ -208,7 +208,7 @@ func TestReconcileLogstash_Reconcile(t *testing.T) {
 					ExpectedNodes:      1,
 					AvailableNodes:     1,
 					ObservedGeneration: 2,
-					Selector:           "common.k8s.elastic.co/type=logstash,logstash.k8s.elastic.co/name=testLogstash",
+					Selector:           "common.k8s.acceldata.io/type=logstash,logstash.k8s.acceldata.io/name=testLogstash",
 				},
 			},
 			wantErr: false,
@@ -315,7 +315,7 @@ func TestReconcileLogstash_Reconcile(t *testing.T) {
 					ExpectedNodes:      1,
 					AvailableNodes:     1,
 					ObservedGeneration: 2,
-					Selector:           "common.k8s.elastic.co/type=logstash,logstash.k8s.elastic.co/name=testLogstash",
+					Selector:           "common.k8s.acceldata.io/type=logstash,logstash.k8s.acceldata.io/name=testLogstash",
 				},
 			},
 			wantErr: false,
@@ -414,7 +414,7 @@ func TestReconcileLogstash_Reconcile(t *testing.T) {
 					ExpectedNodes:      1,
 					AvailableNodes:     1,
 					ObservedGeneration: 2,
-					Selector:           "common.k8s.elastic.co/type=logstash,logstash.k8s.elastic.co/name=testLogstash",
+					Selector:           "common.k8s.acceldata.io/type=logstash,logstash.k8s.acceldata.io/name=testLogstash",
 				},
 			},
 			wantErr: false,
@@ -504,7 +504,7 @@ func TestReconcileLogstash_Reconcile(t *testing.T) {
 					ExpectedNodes:      1,
 					AvailableNodes:     1,
 					ObservedGeneration: 2,
-					Selector:           "common.k8s.elastic.co/type=logstash,logstash.k8s.elastic.co/name=testLogstash",
+					Selector:           "common.k8s.acceldata.io/type=logstash,logstash.k8s.acceldata.io/name=testLogstash",
 				},
 			},
 			wantErr: false,

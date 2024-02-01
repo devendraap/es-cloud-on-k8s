@@ -16,16 +16,16 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/util/rand"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/cmd/run"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/apmserver"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/enterprisesearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/helper"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/kibana"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/logstash"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/cmd/run"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/apmserver"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/enterprisesearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/helper"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/kibana"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/logstash"
 )
 
 func TestSamples(t *testing.T) {
@@ -62,7 +62,7 @@ func createBuilders(t *testing.T, decoder *helper.YAMLDecoder, sampleFile, testN
 				WithPodLabel(run.TestNameLabel, fullTestName)
 			// for EKS, we set our e2e storage class to use local volumes instead of depending on the default storage class that uses
 			// network storage because from k8s 1.23 network storage requires the installation of the Amazon EBS CSI driver and the
-			// deployer does not yet support this. See https://github.com/elastic/cloud-on-k8s/issues/6515.
+			// deployer does not yet support this. See https://github.com/devendra/es-cloud-on-k8s/issues/6515.
 			if strings.HasPrefix(test.Ctx().Provider, "eks") {
 				b = b.WithDefaultPersistentVolumes()
 			}

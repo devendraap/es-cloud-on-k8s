@@ -10,19 +10,19 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	entv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
+	entv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
 )
 
 const (
 	EnvJavaOpts              = "JAVA_OPTS"
 	HTTPPort                 = 3002
 	DefaultJavaOpts          = "-Xms3500m -Xmx3500m"
-	ConfigHashAnnotationName = "enterprisesearch.k8s.elastic.co/config-hash"
+	ConfigHashAnnotationName = "enterprisesearch.k8s.acceldata.io/config-hash"
 	LogVolumeMountPath       = "/var/log/enterprise-search"
 )
 

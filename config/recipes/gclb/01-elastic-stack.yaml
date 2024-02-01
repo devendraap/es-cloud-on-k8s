@@ -1,5 +1,5 @@
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: hulk
@@ -38,7 +38,7 @@ spec:
                 scheme: HTTPS
                 port: 9200
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: hulk

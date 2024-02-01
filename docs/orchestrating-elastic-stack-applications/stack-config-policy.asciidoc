@@ -68,7 +68,7 @@ Example of applying a policy that configures snapshot repository, SLM Policies, 
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: stackconfigpolicy.k8s.elastic.co/v1alpha1
+apiVersion: stackconfigpolicy.k8s.acceldata.io/v1alpha1
 kind: StackConfigPolicy
 metadata:
   name: test-stack-config-policy
@@ -106,7 +106,7 @@ Another example of configuring role mappings, ingest pipelines, ILM and index te
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: stackconfigpolicy.k8s.elastic.co/v1alpha1
+apiVersion: stackconfigpolicy.k8s.acceldata.io/v1alpha1
 kind: StackConfigPolicy
 metadata:
   name: test-stack-config-policy
@@ -191,7 +191,7 @@ spec:
 Example of configuring Elasticsearch and Kibana using an Elastic Stack configuration policy:
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: stackconfigpolicy.k8s.elastic.co/v1alpha1
+apiVersion: stackconfigpolicy.k8s.acceldata.io/v1alpha1
 kind: StackConfigPolicy
 metadata:
   name: test-stack-config-policy
@@ -216,7 +216,7 @@ spec:
          order: -98
          token_type: id_token
          client_authentication.type: shared_secret
-         allowed_issuer: "https://es.credentials.controller.k8s.elastic.co"
+         allowed_issuer: "https://es.credentials.controller.k8s.acceldata.io"
          allowed_audiences: [ "elasticsearch" ]
          allowed_subjects: ["elastic-agent"]
          allowed_signature_algorithms: [RS512]

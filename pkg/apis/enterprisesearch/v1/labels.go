@@ -5,13 +5,13 @@
 package v1
 
 import (
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
 )
 
 // GetIdentityLabels will return the common Elastic assigned labels for EnterpriseSearch.
 func (es *EnterpriseSearch) GetIdentityLabels() map[string]string {
 	return map[string]string{
-		commonv1.TypeLabelName:                 "enterprise-search",
-		"enterprisesearch.k8s.elastic.co/name": es.Name,
+		commonv1.TypeLabelName:                   "enterprise-search",
+		"enterprisesearch.k8s.acceldata.io/name": es.Name,
 	}
 }

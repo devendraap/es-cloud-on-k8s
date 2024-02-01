@@ -16,19 +16,19 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	esuser "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	esuser "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (
 	userName                  = "default-kibana-foo-kibana-user"
 	userSecretName            = "kibana-foo-kibana-user"
-	associationLabelName      = "association.k8s.elastic.co/name"
-	associationLabelNamespace = "association.k8s.elastic.co/namespace"
+	associationLabelName      = "association.k8s.acceldata.io/name"
+	associationLabelNamespace = "association.k8s.acceldata.io/namespace"
 )
 
 func Test_reconcileEsUser(t *testing.T) {

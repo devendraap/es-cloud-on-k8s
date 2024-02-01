@@ -35,7 +35,7 @@ To add an init container that changes the host kernel setting before your Elasti
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -102,7 +102,7 @@ To run an Elasticsearch instance that waits for the kernel setting to be in plac
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$'EOF' | kubectl apply -f -
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: elasticsearch-sample

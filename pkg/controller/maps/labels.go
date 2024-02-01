@@ -5,15 +5,15 @@
 package maps
 
 import (
-	emsv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	emsv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
 )
 
 const (
 	// NameLabelName used to represent a MapsServer in k8s resources
-	NameLabelName = "maps.k8s.elastic.co/name"
+	NameLabelName = "maps.k8s.acceldata.io/name"
 
 	// versionLabelName used to propagate MapsServer version from the spec to the pods
-	versionLabelName = "maps.k8s.elastic.co/version"
+	versionLabelName = "maps.k8s.acceldata.io/version"
 
 	// Type represents the MapsServer type
 	Type = "maps"

@@ -13,10 +13,10 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/comparison"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/comparison"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func TestReconcileServices(t *testing.T) {
@@ -39,12 +39,12 @@ func TestReconcileServices(t *testing.T) {
 					Name:      "logstash-ls-api",
 					Namespace: "test",
 					Labels: map[string]string{
-						"common.k8s.elastic.co/type":   "logstash",
-						"logstash.k8s.elastic.co/name": "logstash",
+						"common.k8s.acceldata.io/type":   "logstash",
+						"logstash.k8s.acceldata.io/name": "logstash",
 					},
 					OwnerReferences: []metav1.OwnerReference{
 						{
-							APIVersion:         "logstash.k8s.elastic.co/v1alpha1",
+							APIVersion:         "logstash.k8s.acceldata.io/v1alpha1",
 							Kind:               "Logstash",
 							Name:               "logstash",
 							Controller:         &trueVal,
@@ -54,8 +54,8 @@ func TestReconcileServices(t *testing.T) {
 				},
 				Spec: corev1.ServiceSpec{
 					Selector: map[string]string{
-						"common.k8s.elastic.co/type":   "logstash",
-						"logstash.k8s.elastic.co/name": "logstash",
+						"common.k8s.acceldata.io/type":   "logstash",
+						"logstash.k8s.acceldata.io/name": "logstash",
 					},
 					ClusterIP: "None",
 					Ports: []corev1.ServicePort{
@@ -89,12 +89,12 @@ func TestReconcileServices(t *testing.T) {
 					Name:      "logstash-ls-api",
 					Namespace: "test",
 					Labels: map[string]string{
-						"common.k8s.elastic.co/type":   "logstash",
-						"logstash.k8s.elastic.co/name": "logstash",
+						"common.k8s.acceldata.io/type":   "logstash",
+						"logstash.k8s.acceldata.io/name": "logstash",
 					},
 					OwnerReferences: []metav1.OwnerReference{
 						{
-							APIVersion:         "logstash.k8s.elastic.co/v1alpha1",
+							APIVersion:         "logstash.k8s.acceldata.io/v1alpha1",
 							Kind:               "Logstash",
 							Name:               "logstash",
 							Controller:         &trueVal,
@@ -104,8 +104,8 @@ func TestReconcileServices(t *testing.T) {
 				},
 				Spec: corev1.ServiceSpec{
 					Selector: map[string]string{
-						"common.k8s.elastic.co/type":   "logstash",
-						"logstash.k8s.elastic.co/name": "logstash",
+						"common.k8s.acceldata.io/type":   "logstash",
+						"logstash.k8s.acceldata.io/name": "logstash",
 					},
 					ClusterIP: "",
 					Ports: []corev1.ServicePort{
@@ -140,12 +140,12 @@ func TestReconcileServices(t *testing.T) {
 						Name:      "logstash-ls-test",
 						Namespace: "test",
 						Labels: map[string]string{
-							"common.k8s.elastic.co/type":   "logstash",
-							"logstash.k8s.elastic.co/name": "logstash",
+							"common.k8s.acceldata.io/type":   "logstash",
+							"logstash.k8s.acceldata.io/name": "logstash",
 						},
 						OwnerReferences: []metav1.OwnerReference{
 							{
-								APIVersion:         "logstash.k8s.elastic.co/v1alpha1",
+								APIVersion:         "logstash.k8s.acceldata.io/v1alpha1",
 								Kind:               "Logstash",
 								Name:               "logstash",
 								Controller:         &trueVal,
@@ -155,8 +155,8 @@ func TestReconcileServices(t *testing.T) {
 					},
 					Spec: corev1.ServiceSpec{
 						Selector: map[string]string{
-							"common.k8s.elastic.co/type":   "logstash",
-							"logstash.k8s.elastic.co/name": "logstash",
+							"common.k8s.acceldata.io/type":   "logstash",
+							"logstash.k8s.acceldata.io/name": "logstash",
 						},
 						Ports: []corev1.ServicePort{
 							{Protocol: "TCP", Port: 9500},
@@ -168,12 +168,12 @@ func TestReconcileServices(t *testing.T) {
 						Name:      "logstash-ls-api",
 						Namespace: "test",
 						Labels: map[string]string{
-							"common.k8s.elastic.co/type":   "logstash",
-							"logstash.k8s.elastic.co/name": "logstash",
+							"common.k8s.acceldata.io/type":   "logstash",
+							"logstash.k8s.acceldata.io/name": "logstash",
 						},
 						OwnerReferences: []metav1.OwnerReference{
 							{
-								APIVersion:         "logstash.k8s.elastic.co/v1alpha1",
+								APIVersion:         "logstash.k8s.acceldata.io/v1alpha1",
 								Kind:               "Logstash",
 								Name:               "logstash",
 								Controller:         &trueVal,
@@ -183,8 +183,8 @@ func TestReconcileServices(t *testing.T) {
 					},
 					Spec: corev1.ServiceSpec{
 						Selector: map[string]string{
-							"common.k8s.elastic.co/type":   "logstash",
-							"logstash.k8s.elastic.co/name": "logstash",
+							"common.k8s.acceldata.io/type":   "logstash",
+							"logstash.k8s.acceldata.io/name": "logstash",
 						},
 						ClusterIP: "None",
 						Ports: []corev1.ServicePort{

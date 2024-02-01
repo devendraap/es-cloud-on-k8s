@@ -16,7 +16,7 @@ In the Elasticsearch specification, you can change the default behaviour as foll
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -30,7 +30,7 @@ spec:
       minAvailable: 2
       selector:
         matchLabels:
-          elasticsearch.k8s.elastic.co/cluster-name: quickstart
+          elasticsearch.k8s.acceldata.io/cluster-name: quickstart
 ----
 
 NOTE: link:https://kubernetes.io/docs/tasks/run-application/configure-pdb/#arbitrary-controllers-and-selectors[`maxUnavailable`] cannot be used with an arbitrary label selector, therefore `minAvailable` is used in this example.
@@ -39,7 +39,7 @@ You can also explicitly disable the default PDB:
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart

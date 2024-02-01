@@ -25,7 +25,7 @@ import (
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
-	controllerscheme "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/scheme"
+	controllerscheme "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/scheme"
 )
 
 // ValidationWebhookTestCase represents a test case for testing a validation webhook

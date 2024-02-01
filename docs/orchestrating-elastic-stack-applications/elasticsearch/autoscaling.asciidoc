@@ -33,7 +33,7 @@ Autoscaling policies can be defined in an `ElasticsearchAutoscaler` resource. Ea
 
 [source,yaml]
 ----
-apiVersion: autoscaling.k8s.elastic.co/v1alpha1
+apiVersion: autoscaling.k8s.acceldata.io/v1alpha1
 kind: ElasticsearchAutoscaler
 metadata:
   name: autoscaling-sample
@@ -96,7 +96,7 @@ WARNING: Scaling up (vertically) is only supported if the actual storage capacit
 
 [source,yaml]
 ----
-apiVersion: autoscaling.k8s.elastic.co/v1alpha1
+apiVersion: autoscaling.k8s.acceldata.io/v1alpha1
 kind: ElasticsearchAutoscaler
 metadata:
   name: autoscaling-sample
@@ -132,7 +132,7 @@ For example, you can set a CPU limit to twice the value of the request, as follo
 
 [source,yaml]
 ----
-apiVersion: autoscaling.k8s.elastic.co/v1alpha1
+apiVersion: autoscaling.k8s.acceldata.io/v1alpha1
 kind: ElasticsearchAutoscaler
 metadata:
   name: autoscaling-sample
@@ -168,7 +168,7 @@ The Elasticsearch autoscaling capacity endpoint is polled every minute by the op
 
 [source,yaml]
 ----
-apiVersion: autoscaling.k8s.elastic.co/v1alpha1
+apiVersion: autoscaling.k8s.acceldata.io/v1alpha1
 kind: ElasticsearchAutoscaler
 metadata:
   name: autoscaling-sample
@@ -246,7 +246,7 @@ The autoscaler status also contains a `policies` section which describes the exp
 
 [source,sh,subs="attributes,+macros"]
 ----
-kubectl get elasticsearchautoscaler.autoscaling.k8s.elastic.co/autoscaling-sample \
+kubectl get elasticsearchautoscaler.autoscaling.k8s.acceldata.io/autoscaling-sample \
     -o jsonpath='{ .status.policies }' | jq
 ----
 

@@ -74,7 +74,7 @@ Then, check the Pod status. If a Pod fails to reach the `Running` status after a
 
 [source,sh]
 ----
-kubectl get pods -l elasticsearch.k8s.elastic.co/statefulset-name=elasticsearch-sample-es-default
+kubectl get pods -l elasticsearch.k8s.acceldata.io/statefulset-name=elasticsearch-sample-es-default
 
 NAME                                 READY     STATUS    RESTARTS   AGE
 elasticsearch-sample-es-66sv6dvt7g   0/1       Pending   0          3s
@@ -178,21 +178,21 @@ you can get errors reporting a conflict while updating a resource. You can ignor
 
 The operator needs to communicate with each Elasticsearch cluster in order to perform orchestration tasks. The default timeout for such requests can be configured by setting the `elasticsearch-client-timeout` value as described in <<{p}-operator-config>>. If you have a particularly overloaded Elasticsearch cluster that is taking longer to process API requests, you can temporarily change the timeout and frequency of API calls made by the operator to that single cluster by annotating the relevant `Elasticsearch` resource. The supported list of annotations are:
 
-- `eck.k8s.elastic.co/es-client-timeout`: Request timeout for the API requests made by the Elasticsearch client. Defaults to 3 minutes.
-- `eck.k8s.elastic.co/es-observer-interval`: How often Elasticsearch should be checked by the operator to obtain health information. Defaults to 10 seconds.
+- `eck.k8s.acceldata.io/es-client-timeout`: Request timeout for the API requests made by the Elasticsearch client. Defaults to 3 minutes.
+- `eck.k8s.acceldata.io/es-observer-interval`: How often Elasticsearch should be checked by the operator to obtain health information. Defaults to 10 seconds.
 
 To set the Elasticsearch client timeout to 60 seconds for a cluster named `quickstart`, you can run the following command:
 
 [source,sh]
 ----
-kubectl annotate elasticsearch quickstart eck.k8s.elastic.co/es-client-timeout=60s
+kubectl annotate elasticsearch quickstart eck.k8s.acceldata.io/es-client-timeout=60s
 ----
 
 
 [id="{p}-exclude-resource"]
 == Exclude resources from reconciliation
 
-For debugging purposes, you might want to temporarily prevent ECK from modifying Kubernetes resources belonging to a particular Elastic Stack resource. To do this, annotate the Elastic object with `eck.k8s.elastic.co/managed=false`. This annotation can be added to any of the following types of objects:
+For debugging purposes, you might want to temporarily prevent ECK from modifying Kubernetes resources belonging to a particular Elastic Stack resource. To do this, annotate the Elastic object with `eck.k8s.acceldata.io/managed=false`. This annotation can be added to any of the following types of objects:
 
 - Elasticsearch
 - Kibana
@@ -202,14 +202,14 @@ For debugging purposes, you might want to temporarily prevent ECK from modifying
 ----
 metadata:
   annotations:
-    eck.k8s.elastic.co/managed: "false"
+    eck.k8s.acceldata.io/managed: "false"
 ----
 
 Or in one line:
 
 [source,sh]
 ----
-kubectl annotate elasticsearch quickstart --overwrite eck.k8s.elastic.co/managed=false
+kubectl annotate elasticsearch quickstart --overwrite eck.k8s.acceldata.io/managed=false
 ----
 
 [id="{p}-get-k8s-events"]
@@ -256,7 +256,7 @@ For a concrete example, imagine you started with this:
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -282,7 +282,7 @@ spec:
 and want to increase it to 10Gi of storage. You can change the nodeSet name and the volume size like so:
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -325,13 +325,13 @@ This can also be done for Kibana and APM Server.
 In exceptional cases, you might need to suspend the Elasticsearch process while using `kubectl exec` (as in the <<{p}-exec-into-containers,previous section>>) to troubleshoot.
 One such example where Elasticsearch has to be stopped are the unsafe operations on Elasticsearch nodes that can be executed with the link:https://www.elastic.co/guide/en/elasticsearch/reference/current/node-tool.html[elasticsearch-node] tool.
 
-To suspend an Elasticearch node, while keeping the corresponding Pod running, you can annotate the Elasticsearch resource with the `eck.k8s.elastic.co/suspend` annotation. The value should be a comma-separated list of the names of the Pods whose Elasticsearch process you want to suspend.
+To suspend an Elasticearch node, while keeping the corresponding Pod running, you can annotate the Elasticsearch resource with the `eck.k8s.acceldata.io/suspend` annotation. The value should be a comma-separated list of the names of the Pods whose Elasticsearch process you want to suspend.
 
 To suspend the second Pod in the `default` node set of a cluster called `quickstart` for example, you would use the following command:
 
 [source,sh]
 ----
-kubectl annotate es quickstart eck.k8s.elastic.co/suspend=quickstart-es-default-1
+kubectl annotate es quickstart eck.k8s.acceldata.io/suspend=quickstart-es-default-1
 ----
 
 You can then open a shell on the `elastic-internal-suspend` init container to troubleshoot:
@@ -345,7 +345,7 @@ Once you are done with troubleshooting the node, you can resume normal operation
 
 [source,sh]
 ----
-kubectl annotate es quickstart eck.k8s.elastic.co/suspend-
+kubectl annotate es quickstart eck.k8s.acceldata.io/suspend-
 ----
 
 

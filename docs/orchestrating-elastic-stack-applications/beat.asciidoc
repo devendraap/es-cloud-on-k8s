@@ -23,7 +23,7 @@ This section describes how to configure and deploy Beats with ECK.
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: quickstart
@@ -87,7 +87,7 @@ quickstart            green    3           3          filebeat   {version}     2
 +
 [source,sh]
 ----
-kubectl get pods --selector='beat.k8s.elastic.co/name=quickstart-beat-filebeat'
+kubectl get pods --selector='beat.k8s.acceldata.io/name=quickstart-beat-filebeat'
 ----
 +
 [source,sh]
@@ -133,7 +133,7 @@ The Beat configuration is defined in the `config` element:
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: quickstart
@@ -158,7 +158,7 @@ spec:
 Alternatively, it can be provided through a Secret specified in the `configRef` element:
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: heartbeat-quickstart
@@ -233,7 +233,7 @@ ECK can instruct Beats to set up example dashboards packaged with the Beat. To e
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: quickstart
@@ -255,7 +255,7 @@ ECK exposes that mechanism with the `secureSettings` element in the specificatio
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: quickstart
@@ -286,7 +286,7 @@ Output can be set to any value that is supported by a given Beat. To use it, rem
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: quickstart
@@ -308,7 +308,7 @@ Depending on the use case, Beats may need to be deployed as a link:https://kuber
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: quickstart
@@ -331,7 +331,7 @@ Some Beats features (such as link:https://www.elastic.co/guide/en/beats/filebeat
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: quickstart

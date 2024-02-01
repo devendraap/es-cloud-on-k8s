@@ -189,7 +189,7 @@ rules:
     - "list"
     - "watch"
   - apiGroups:
-      - elasticsearch.k8s.elastic.co
+      - elasticsearch.k8s.acceldata.io
     resources:
       - elasticsearches
       - elasticsearches/status
@@ -203,7 +203,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - autoscaling.k8s.elastic.co
+      - autoscaling.k8s.acceldata.io
     resources:
       - elasticsearchautoscalers
       - elasticsearchautoscalers/status
@@ -217,7 +217,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - apm.k8s.elastic.co
+      - apm.k8s.acceldata.io
     resources:
       - apmservers
       - apmservers/status
@@ -231,7 +231,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - kibana.k8s.elastic.co
+      - kibana.k8s.acceldata.io
     resources:
       - kibanas
       - kibanas/status
@@ -245,7 +245,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - apm.k8s.elastic.co
+      - apm.k8s.acceldata.io
     resources:
       - apmservers
       - apmservers/status
@@ -259,7 +259,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - enterprisesearch.k8s.elastic.co
+      - enterprisesearch.k8s.acceldata.io
     resources:
       - enterprisesearches
       - enterprisesearches/status
@@ -273,7 +273,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - beat.k8s.elastic.co
+      - beat.k8s.acceldata.io
     resources:
       - beats
       - beats/status
@@ -287,7 +287,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - agent.k8s.elastic.co
+      - agent.k8s.acceldata.io
     resources:
       - agents
       - agents/status
@@ -301,7 +301,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - maps.k8s.elastic.co
+      - maps.k8s.acceldata.io
     resources:
       - elasticmapsservers
       - elasticmapsservers/status
@@ -315,7 +315,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups:
-      - stackconfigpolicy.k8s.elastic.co
+      - stackconfigpolicy.k8s.acceldata.io
     resources:
       - stackconfigpolicies
       - stackconfigpolicies/status
@@ -329,7 +329,7 @@ rules:
       - delete
       - deletecollection
   - apiGroups :
-      - logstash.k8s.elastic.co
+      - logstash.k8s.acceldata.io
     resources:
       - logstashes
       - logstashes/status

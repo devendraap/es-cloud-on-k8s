@@ -18,12 +18,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/utils/ptr"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/bootstrap"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/bootstrap"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func TestMetricBeat(t *testing.T) {
@@ -120,8 +120,8 @@ output:
 					Name:      "beat-beat-monitoring-metricbeat-config",
 					Namespace: "test",
 					Labels: map[string]string{
-						"common.k8s.elastic.co/type": "beat",
-						"beat.k8s.elastic.co/name":   "beat",
+						"common.k8s.acceldata.io/type": "beat",
+						"beat.k8s.acceldata.io/name":   "beat",
 					},
 				},
 				Data: map[string][]byte{

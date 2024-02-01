@@ -28,7 +28,7 @@ This allows you to describe an Elasticsearch cluster with 3 dedicated master nod
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -59,7 +59,7 @@ To avoid scheduling several Elasticsearch nodes from the same cluster on the sam
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -77,7 +77,7 @@ spec:
               podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    elasticsearch.k8s.elastic.co/cluster-name: quickstart
+                    elasticsearch.k8s.acceldata.io/cluster-name: quickstart
                 topologyKey: kubernetes.io/hostname
 ----
 
@@ -85,7 +85,7 @@ This is ECK default behaviour if you don't specify any `affinity` option. To exp
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -103,7 +103,7 @@ The default affinity is using `preferredDuringSchedulingIgnoredDuringExecution`,
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -119,7 +119,7 @@ spec:
             requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-                  elasticsearch.k8s.elastic.co/cluster-name: quickstart
+                  elasticsearch.k8s.acceldata.io/cluster-name: quickstart
               topologyKey: kubernetes.io/hostname
 ----
 
@@ -146,7 +146,7 @@ The following example schedules Elasticsearch Pods on Kubernetes nodes tagged wi
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -166,7 +166,7 @@ You can achieve the same (and more) with link:https://kubernetes.io/docs/concept
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -208,7 +208,7 @@ Starting with ECK 2.0 the operator can make Kubernetes Node labels available as 
 === Exposing Kubernetes node topology labels in Pods
 
 . First, ensure that the operator's flag `exposed-node-labels` contains the list of the Kubernetes node labels that should be exposed in the Elasticsearch Pods. If you are using the provided installation manifest, or the Helm chart, then this flag is already preset with two wildcard patterns for well-known node labels that describe Kubernetes cluster topology, like `topology.kubernetes.io/.*` and `failure-domain.beta.kubernetes.io/.*`.
-. On the Elasticsearch resources set the `eck.k8s.elastic.co/downward-node-labels` annotations with the list of the Kubernetes node labels that should be copied as Pod annotations.
+. On the Elasticsearch resources set the `eck.k8s.acceldata.io/downward-node-labels` annotations with the list of the Kubernetes node labels that should be copied as Pod annotations.
 . Use the link:https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/[Kubernetes downward API] in the `podTemplate` to make those annotations available as environment variables in Elasticsearch Pods.
 
 Refer to the next section or to the link:{eck_github}/tree/{eck_release_branch}/config/samples/elasticsearch/elasticsearch.yaml[Elasticsearch sample resource in the ECK source repository] for a complete example.
@@ -222,11 +222,11 @@ Note that by default ECK creates a `k8s_node_name` attribute with the name of th
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   annotations:
-    eck.k8s.elastic.co/downward-node-labels: "topology.kubernetes.io/zone"
+    eck.k8s.acceldata.io/downward-node-labels: "topology.kubernetes.io/zone"
   name: quickstart
 spec:
   version: {version}
@@ -251,8 +251,8 @@ spec:
             whenUnsatisfiable: DoNotSchedule
             labelSelector:
               matchLabels:
-                elasticsearch.k8s.elastic.co/cluster-name: quickstart
-                elasticsearch.k8s.elastic.co/statefulset-name: quickstart-es-default
+                elasticsearch.k8s.acceldata.io/cluster-name: quickstart
+                elasticsearch.k8s.acceldata.io/statefulset-name: quickstart-es-default
 ----
 
 This example relies on:
@@ -268,7 +268,7 @@ By combining link:https://www.elastic.co/guide/en/elasticsearch/reference/curren
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart

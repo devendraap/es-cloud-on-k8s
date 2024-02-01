@@ -6,7 +6,7 @@ metadata:
   labels:
     name: qa
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: qa
@@ -20,7 +20,7 @@ spec:
         # This setting has performance implications. See the README for more details.
         node.store.allow_mmap: false
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: production
@@ -33,7 +33,7 @@ spec:
         # This setting has performance implications. See the README for more details.
         node.store.allow_mmap: false
 ---
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: filebeat
@@ -72,7 +72,7 @@ spec:
           - name: beat-data
             emptydir: {}
 ---
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash

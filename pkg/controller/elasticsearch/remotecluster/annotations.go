@@ -9,13 +9,13 @@ import (
 	"sort"
 	"strings"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (
 	// ManagedRemoteClustersAnnotationName holds the list of the remote clusters which have been created
-	ManagedRemoteClustersAnnotationName = "elasticsearch.k8s.elastic.co/managed-remote-clusters"
+	ManagedRemoteClustersAnnotationName = "elasticsearch.k8s.acceldata.io/managed-remote-clusters"
 )
 
 // getRemoteClustersInAnnotation returns a set that contains a list of remote clusters that may have been declared in Elasticsearch.

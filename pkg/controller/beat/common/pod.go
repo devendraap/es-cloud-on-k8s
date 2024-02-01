@@ -12,17 +12,17 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/utils/ptr"
 
-	beatv1beta1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	beat_stackmon "github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/common/stackmon"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/keystore"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/maps"
+	beatv1beta1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	beat_stackmon "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/common/stackmon"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/keystore"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/stackmon/monitoring"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/maps"
 )
 
 const (
@@ -37,10 +37,10 @@ const (
 	DataPathTemplate      = "/usr/share/%s/data"
 
 	// ConfigHashAnnotationName is an annotation used to store a Beat config hash.
-	ConfigHashAnnotationName = "beat.k8s.elastic.co/config-hash"
+	ConfigHashAnnotationName = "beat.k8s.acceldata.io/config-hash"
 
 	// VersionLabelName is a label used to track the version of a Beat Pod.
-	VersionLabelName = "beat.k8s.elastic.co/version"
+	VersionLabelName = "beat.k8s.acceldata.io/version"
 )
 
 var (

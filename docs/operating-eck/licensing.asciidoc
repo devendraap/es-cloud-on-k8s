@@ -33,7 +33,7 @@ metadata:
   name: eck-trial-license
   namespace: elastic-system
   labels:
-    license.k8s.elastic.co/type: enterprise_trial
+    license.k8s.acceldata.io/type: enterprise_trial
   annotations:
     elastic.co/eula: accepted <1>
 EOF
@@ -62,7 +62,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   labels:
-    license.k8s.elastic.co/scope: operator <1>
+    license.k8s.acceldata.io/scope: operator <1>
   name: eck-license
 type: Opaque
 data:
@@ -77,7 +77,7 @@ You can easily create this secret using `kubectl` built-in support for secrets. 
 [source,shell script]
 ----
 kubectl create secret generic eck-license --from-file=my-license-file.json -n elastic-system
-kubectl label secret eck-license "license.k8s.elastic.co/scope"=operator -n elastic-system
+kubectl label secret eck-license "license.k8s.acceldata.io/scope"=operator -n elastic-system
 ----
 
 After you install a license into ECK, the Enterprise features of the operator are available, like Elasticsearch autoscaling and support for Elastic Maps Server. All the Elastic Stack applications you manage with ECK will have Platinum and Enterprise features enabled.  The link:https://www.elastic.co/guide/en/elasticsearch/reference/current/get-license.html[`_license`] API reports that individual Elasticsearch clusters are running under an Enterprise license, and the <<{p}-get-usage-data, elastic-licensing>> ConfigMap contains the current license level of the ECK operator. The applications created before you installed the license are upgraded to Platinum or Enterprise features without interruption of service after a short delay.

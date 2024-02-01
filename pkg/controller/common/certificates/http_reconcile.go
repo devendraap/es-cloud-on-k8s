@@ -21,12 +21,12 @@ import (
 	"k8s.io/client-go/kubernetes/scheme"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/name"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	netutil "github.com/elastic/cloud-on-k8s/v2/pkg/utils/net"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/name"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	netutil "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/net"
 )
 
 // ReconcilePublicHTTPCerts reconciles the Secret containing the HTTP Certificate currently in use, and the CA of
@@ -48,7 +48,7 @@ func (r Reconciler) ReconcilePublicHTTPCerts(ctx context.Context, internalCerts 
 	}
 
 	// Don't set an ownerRef for public http certs secrets, likely to be copied into different namespaces.
-	// See https://github.com/elastic/cloud-on-k8s/issues/3986.
+	// See https://github.com/devendra/es-cloud-on-k8s/issues/3986.
 	_, err := reconciler.ReconcileSecretNoOwnerRef(ctx, r.K8sClient, expected, r.Owner)
 	return err
 }
@@ -156,7 +156,7 @@ func (r Reconciler) populateFromCustomCertificateContents(secret *corev1.Secret,
 	default:
 		// Ensure that the CA certificate is never empty, otherwise Elasticsearch is not able to reload the certificates.
 		// Default to our self-signed (useless) CA if none is provided by the user.
-		// See https://github.com/elastic/cloud-on-k8s/issues/2243
+		// See https://github.com/devendra/es-cloud-on-k8s/issues/2243
 		expectedSecretData[CAFileName] = EncodePEMCert(ca.Cert.Raw)
 		// The CA has been set in the internal HTTP secret but it's only for convenience, in order to circumvent the
 		// aforementioned issue. We need to remove it later from the result.

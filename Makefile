@@ -33,7 +33,7 @@ endif
 
 ## -- Docker image
 
-REGISTRY            ?= docker.elastic.co
+REGISTRY            ?= ghcr.io
 
 export SNAPSHOT     ?= true
 export VERSION      ?= $(shell cat VERSION)
@@ -42,19 +42,19 @@ export ARCH         ?= $(shell uname -m | sed -e "s|x86_|amd|" -e "s|aarch|arm|"
 
 # for dev, suffix image name with current user name
 IMAGE_SUFFIX        ?= -$(subst _,,$(shell whoami))
-REGISTRY_NAMESPACE  ?= eck-dev
+REGISTRY_NAMESPACE  ?= devendraap
 
-export IMAGE_NAME   ?= $(REGISTRY)/$(REGISTRY_NAMESPACE)/eck-operator$(IMAGE_SUFFIX)
+export IMAGE_NAME   ?= $(REGISTRY)/$(REGISTRY_NAMESPACE)/es-cloud-on-k8s
 export IMAGE_TAG    ?= $(VERSION)-$(SHA1)
 OPERATOR_IMAGE      ?= $(IMAGE_NAME):$(IMAGE_TAG)
 
 print-%:
 	@ echo $($*)
 
-GO_LDFLAGS := -X github.com/elastic/cloud-on-k8s/v2/pkg/about.version=$(VERSION) \
-	-X github.com/elastic/cloud-on-k8s/v2/pkg/about.buildHash=$(SHA1) \
-	-X github.com/elastic/cloud-on-k8s/v2/pkg/about.buildDate=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
-	-X github.com/elastic/cloud-on-k8s/v2/pkg/about.buildSnapshot=$(SNAPSHOT)
+GO_LDFLAGS := -X github.com/devendra/es-cloud-on-k8s/v2/pkg/about.version=$(VERSION) \
+	-X github.com/devendra/es-cloud-on-k8s/v2/pkg/about.buildHash=$(SHA1) \
+	-X github.com/devendra/es-cloud-on-k8s/v2/pkg/about.buildDate=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
+	-X github.com/devendra/es-cloud-on-k8s/v2/pkg/about.buildSnapshot=$(SNAPSHOT)
 
 # options for 'go test'. for instance, set to "-race" to enable the race checker
 TEST_OPTS ?=
@@ -86,7 +86,7 @@ go-build: go-generate
 	go build \
 		-mod readonly \
 		-ldflags "$(GO_LDFLAGS)" -tags="$(GO_TAGS)" -a \
-		 -o elastic-operator github.com/elastic/cloud-on-k8s/v2/cmd
+		 -o elastic-operator github.com/devendra/es-cloud-on-k8s/v2/cmd
 
 reattach-pv:
 	# just check that reattach-pv still compiles
@@ -358,17 +358,18 @@ switch-tanzu:
 #################################
 
 # build amd64 image for dev purposes
-BUILD_PLATFORM ?= "linux/amd64"
+BUILD_PLATFORM ?= "linux/arm64"
 docker-push-operator:
 	docker buildx build . \
 	 	-f build/Dockerfile \
+		-m 10g \
 		--progress=plain \
 		--build-arg GO_LDFLAGS='$(GO_LDFLAGS)' \
 		--build-arg GO_TAGS='$(GO_TAGS)' \
 		--build-arg VERSION='$(VERSION)' \
 		--platform $(BUILD_PLATFORM) \
 		--push \
-		-t $(OPERATOR_IMAGE)
+		-t $(OPERATOR_IMAGE) 
 
 drivah-generate-operator:
 	@ build/gen-drivah.toml.sh

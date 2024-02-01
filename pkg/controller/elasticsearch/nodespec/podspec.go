@@ -15,30 +15,30 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/utils/ptr"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/annotation"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/container"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/keystore"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/initcontainer"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/network"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/securitycontext"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/stackmon"
-	esvolume "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/maps"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/annotation"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/container"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/keystore"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/initcontainer"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/network"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/securitycontext"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/stackmon"
+	esvolume "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/maps"
 )
 
 const (
 	defaultFsGroup                    = 1000
 	log4j2FormatMsgNoLookupsParamName = "-Dlog4j2.formatMsgNoLookups"
 	// ConfigHashAnnotationName is an annotation used to store a hash of the Elasticsearch configuration.
-	configHashAnnotationName = "elasticsearch.k8s.elastic.co/config-hash"
+	configHashAnnotationName = "elasticsearch.k8s.acceldata.io/config-hash"
 )
 
 // Starting 8.0.0, the Elasticsearch container does not run with the root user anymore. As a result,

@@ -11,8 +11,8 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	controllerscheme "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/scheme"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	controllerscheme "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/scheme"
 )
 
 func Test_setVolumeClaimsControllerReference(t *testing.T) {
@@ -22,7 +22,7 @@ func Test_setVolumeClaimsControllerReference(t *testing.T) {
 	es := esv1.Elasticsearch{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "Elasticsearch",
-			APIVersion: "elasticsearch.k8s.elastic.co/v1",
+			APIVersion: "elasticsearch.k8s.acceldata.io/v1",
 		},
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      "es1",
@@ -64,7 +64,7 @@ func Test_setVolumeClaimsControllerReference(t *testing.T) {
 						OwnerReferences: []metav1.OwnerReference{
 							{
 								// claim already exists, with a different apiVersion
-								APIVersion:         "elasticsearch.k8s.elastic.co/v1alpha1",
+								APIVersion:         "elasticsearch.k8s.acceldata.io/v1alpha1",
 								Kind:               es.Kind,
 								Name:               es.Name,
 								UID:                es.UID,
@@ -80,7 +80,7 @@ func Test_setVolumeClaimsControllerReference(t *testing.T) {
 						OwnerReferences: []metav1.OwnerReference{
 							{
 								// claim already exists, with a different apiVersion
-								APIVersion:         "elasticsearch.k8s.elastic.co/v1alpha1",
+								APIVersion:         "elasticsearch.k8s.acceldata.io/v1alpha1",
 								Kind:               es.Kind,
 								Name:               es.Name,
 								UID:                es.UID,
@@ -98,7 +98,7 @@ func Test_setVolumeClaimsControllerReference(t *testing.T) {
 						Name: "elasticsearch-data",
 						OwnerReferences: []metav1.OwnerReference{
 							{
-								APIVersion:         "elasticsearch.k8s.elastic.co/v1alpha1",
+								APIVersion:         "elasticsearch.k8s.acceldata.io/v1alpha1",
 								Kind:               es.Kind,
 								Name:               es.Name,
 								UID:                es.UID,
@@ -113,7 +113,7 @@ func Test_setVolumeClaimsControllerReference(t *testing.T) {
 						Name: "user-provided",
 						OwnerReferences: []metav1.OwnerReference{
 							{
-								APIVersion:         "elasticsearch.k8s.elastic.co/v1alpha1",
+								APIVersion:         "elasticsearch.k8s.acceldata.io/v1alpha1",
 								Kind:               es.Kind,
 								Name:               es.Name,
 								UID:                es.UID,

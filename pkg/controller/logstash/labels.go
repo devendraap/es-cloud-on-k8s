@@ -7,8 +7,8 @@ package logstash
 import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
 )
 
 const (
@@ -16,10 +16,10 @@ const (
 	TypeLabelValue = "logstash"
 
 	// NameLabelName used to represent a Logstash in k8s resources
-	NameLabelName = "logstash.k8s.elastic.co/name"
+	NameLabelName = "logstash.k8s.acceldata.io/name"
 
 	// NamespaceLabelName used to represent a Logstash in k8s resources
-	NamespaceLabelName = "logstash.k8s.elastic.co/namespace"
+	NamespaceLabelName = "logstash.k8s.acceldata.io/namespace"
 )
 
 // NewLabels returns the set of common labels for an Elastic Logstash.

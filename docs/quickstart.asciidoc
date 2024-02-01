@@ -52,14 +52,14 @@ The following Elastic resources have been created:
 +
 [source,sh]
 ----
-customresourcedefinition.apiextensions.k8s.io/agents.agent.k8s.elastic.co created
-customresourcedefinition.apiextensions.k8s.io/apmservers.apm.k8s.elastic.co created
-customresourcedefinition.apiextensions.k8s.io/beats.beat.k8s.elastic.co created
-customresourcedefinition.apiextensions.k8s.io/elasticmapsservers.maps.k8s.elastic.co created
-customresourcedefinition.apiextensions.k8s.io/elasticsearches.elasticsearch.k8s.elastic.co created
-customresourcedefinition.apiextensions.k8s.io/enterprisesearches.enterprisesearch.k8s.elastic.co created
-customresourcedefinition.apiextensions.k8s.io/kibanas.kibana.k8s.elastic.co created
-customresourcedefinition.apiextensions.k8s.io/logstashes.logstash.k8s.elastic.co created
+customresourcedefinition.apiextensions.k8s.io/agents.agent.k8s.acceldata.io created
+customresourcedefinition.apiextensions.k8s.io/apmservers.apm.k8s.acceldata.io created
+customresourcedefinition.apiextensions.k8s.io/beats.beat.k8s.acceldata.io created
+customresourcedefinition.apiextensions.k8s.io/elasticmapsservers.maps.k8s.acceldata.io created
+customresourcedefinition.apiextensions.k8s.io/elasticsearches.elasticsearch.k8s.acceldata.io created
+customresourcedefinition.apiextensions.k8s.io/enterprisesearches.enterprisesearch.k8s.acceldata.io created
+customresourcedefinition.apiextensions.k8s.io/kibanas.kibana.k8s.acceldata.io created
+customresourcedefinition.apiextensions.k8s.io/logstashes.logstash.k8s.acceldata.io created
 ----
 
 . Install the operator with its RBAC rules:
@@ -87,7 +87,7 @@ NOTE: If your Kubernetes cluster does not have any Kubernetes nodes with at leas
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart
@@ -128,7 +128,7 @@ One Pod is in the process of being started:
 
 [source,sh]
 ----
-kubectl get pods --selector='elasticsearch.k8s.elastic.co/cluster-name=quickstart'
+kubectl get pods --selector='elasticsearch.k8s.acceldata.io/cluster-name=quickstart'
 ----
 
 [source,sh]
@@ -215,7 +215,7 @@ To deploy your link:{kibana-ref}/introduction.html#introduction[Kibana] instance
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: quickstart
@@ -240,7 +240,7 @@ And the associated Pods:
 +
 [source,sh]
 ----
-kubectl get pod --selector='kibana.k8s.elastic.co/name=quickstart'
+kubectl get pod --selector='kibana.k8s.acceldata.io/name=quickstart'
 ----
 
 . Access Kibana.
@@ -278,7 +278,7 @@ For example, you can grow the cluster to three Elasticsearch nodes:
 [source,yaml,subs="attributes,+macros"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: quickstart

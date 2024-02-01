@@ -14,7 +14,7 @@ RELEASE_NAME=${RELEASE_NAME:-"elastic-operator"}
 RELEASE_NAMESPACE=${RELEASE_NAMESPACE:-"elastic-system"}
 
 echo "Adding labels and annotations to CRDs"
-for CRD in $(kubectl get crds --no-headers -o custom-columns=NAME:.metadata.name | grep k8s.elastic.co); do
+for CRD in $(kubectl get crds --no-headers -o custom-columns=NAME:.metadata.name | grep k8s.acceldata.io); do
     kubectl annotate crd "$CRD" meta.helm.sh/release-name="$RELEASE_NAME"
     kubectl annotate crd "$CRD" meta.helm.sh/release-namespace="$RELEASE_NAMESPACE"
     kubectl label crd "$CRD" app.kubernetes.io/managed-by=Helm
@@ -31,7 +31,7 @@ kubectl delete -n "${RELEASE_NAMESPACE}" \
     service/elastic-webhook-server \
     configmap/elastic-operator \
     statefulset.apps/elastic-operator \
-    validatingwebhookconfiguration.admissionregistration.k8s.io/elastic-webhook.k8s.elastic.co
+    validatingwebhookconfiguration.admissionregistration.k8s.io/elastic-webhook.k8s.acceldata.io
 
 echo "Installing ECK with Helm"
 helm repo add "${CHART_REPO}" "${CHART_REPO_URL}"

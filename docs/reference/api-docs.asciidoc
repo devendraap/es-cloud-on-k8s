@@ -12,27 +12,27 @@ endif::[]
 = API Reference
 
 .Packages
-- xref:{anchor_prefix}-agent-k8s-elastic-co-v1alpha1[$$agent.k8s.elastic.co/v1alpha1$$]
-- xref:{anchor_prefix}-apm-k8s-elastic-co-v1[$$apm.k8s.elastic.co/v1$$]
-- xref:{anchor_prefix}-apm-k8s-elastic-co-v1beta1[$$apm.k8s.elastic.co/v1beta1$$]
-- xref:{anchor_prefix}-autoscaling-k8s-elastic-co-v1alpha1[$$autoscaling.k8s.elastic.co/v1alpha1$$]
-- xref:{anchor_prefix}-beat-k8s-elastic-co-v1beta1[$$beat.k8s.elastic.co/v1beta1$$]
-- xref:{anchor_prefix}-common-k8s-elastic-co-v1[$$common.k8s.elastic.co/v1$$]
-- xref:{anchor_prefix}-common-k8s-elastic-co-v1alpha1[$$common.k8s.elastic.co/v1alpha1$$]
-- xref:{anchor_prefix}-common-k8s-elastic-co-v1beta1[$$common.k8s.elastic.co/v1beta1$$]
-- xref:{anchor_prefix}-elasticsearch-k8s-elastic-co-v1[$$elasticsearch.k8s.elastic.co/v1$$]
-- xref:{anchor_prefix}-elasticsearch-k8s-elastic-co-v1beta1[$$elasticsearch.k8s.elastic.co/v1beta1$$]
-- xref:{anchor_prefix}-enterprisesearch-k8s-elastic-co-v1[$$enterprisesearch.k8s.elastic.co/v1$$]
-- xref:{anchor_prefix}-enterprisesearch-k8s-elastic-co-v1beta1[$$enterprisesearch.k8s.elastic.co/v1beta1$$]
-- xref:{anchor_prefix}-kibana-k8s-elastic-co-v1[$$kibana.k8s.elastic.co/v1$$]
-- xref:{anchor_prefix}-kibana-k8s-elastic-co-v1beta1[$$kibana.k8s.elastic.co/v1beta1$$]
-- xref:{anchor_prefix}-logstash-k8s-elastic-co-v1alpha1[$$logstash.k8s.elastic.co/v1alpha1$$]
-- xref:{anchor_prefix}-maps-k8s-elastic-co-v1alpha1[$$maps.k8s.elastic.co/v1alpha1$$]
-- xref:{anchor_prefix}-stackconfigpolicy-k8s-elastic-co-v1alpha1[$$stackconfigpolicy.k8s.elastic.co/v1alpha1$$]
+- xref:{anchor_prefix}-agent-k8s-acceldata-io-v1alpha1[$$agent.k8s.acceldata.io/v1alpha1$$]
+- xref:{anchor_prefix}-apm-k8s-acceldata-io-v1[$$apm.k8s.acceldata.io/v1$$]
+- xref:{anchor_prefix}-apm-k8s-acceldata-io-v1beta1[$$apm.k8s.acceldata.io/v1beta1$$]
+- xref:{anchor_prefix}-autoscaling-k8s-acceldata-io-v1alpha1[$$autoscaling.k8s.acceldata.io/v1alpha1$$]
+- xref:{anchor_prefix}-beat-k8s-acceldata-io-v1beta1[$$beat.k8s.acceldata.io/v1beta1$$]
+- xref:{anchor_prefix}-common-k8s-acceldata-io-v1[$$common.k8s.acceldata.io/v1$$]
+- xref:{anchor_prefix}-common-k8s-acceldata-io-v1alpha1[$$common.k8s.acceldata.io/v1alpha1$$]
+- xref:{anchor_prefix}-common-k8s-acceldata-io-v1beta1[$$common.k8s.acceldata.io/v1beta1$$]
+- xref:{anchor_prefix}-elasticsearch-k8s-acceldata-io-v1[$$elasticsearch.k8s.acceldata.io/v1$$]
+- xref:{anchor_prefix}-elasticsearch-k8s-acceldata-io-v1beta1[$$elasticsearch.k8s.acceldata.io/v1beta1$$]
+- xref:{anchor_prefix}-enterprisesearch-k8s-acceldata-io-v1[$$enterprisesearch.k8s.acceldata.io/v1$$]
+- xref:{anchor_prefix}-enterprisesearch-k8s-acceldata-io-v1beta1[$$enterprisesearch.k8s.acceldata.io/v1beta1$$]
+- xref:{anchor_prefix}-kibana-k8s-acceldata-io-v1[$$kibana.k8s.acceldata.io/v1$$]
+- xref:{anchor_prefix}-kibana-k8s-acceldata-io-v1beta1[$$kibana.k8s.acceldata.io/v1beta1$$]
+- xref:{anchor_prefix}-logstash-k8s-acceldata-io-v1alpha1[$$logstash.k8s.acceldata.io/v1alpha1$$]
+- xref:{anchor_prefix}-maps-k8s-acceldata-io-v1alpha1[$$maps.k8s.acceldata.io/v1alpha1$$]
+- xref:{anchor_prefix}-stackconfigpolicy-k8s-acceldata-io-v1alpha1[$$stackconfigpolicy.k8s.acceldata.io/v1alpha1$$]
 
 
-[id="{anchor_prefix}-agent-k8s-elastic-co-v1alpha1"]
-== agent.k8s.elastic.co/v1alpha1
+[id="{anchor_prefix}-agent-k8s-acceldata-io-v1alpha1"]
+== agent.k8s.acceldata.io/v1alpha1
 
 Package v1alpha1 contains API Schema definitions for the agent v1alpha1 API group
 
@@ -51,7 +51,7 @@ Agent is the Schema for the Agents API.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `agent.k8s.elastic.co/v1alpha1`
+| *`apiVersion`* __string__ | `agent.k8s.acceldata.io/v1alpha1`
 | *`kind`* __string__ | `Agent`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -181,8 +181,8 @@ AgentSpec defines the desired state of the Agent
 
 
 
-[id="{anchor_prefix}-apm-k8s-elastic-co-v1"]
-== apm.k8s.elastic.co/v1
+[id="{anchor_prefix}-apm-k8s-acceldata-io-v1"]
+== apm.k8s.acceldata.io/v1
 
 Package v1 contains API schema definitions for managing APM Server resources.
 
@@ -201,7 +201,7 @@ ApmServer represents an APM Server resource in a Kubernetes cluster.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `apm.k8s.elastic.co/v1`
+| *`apiVersion`* __string__ | `apm.k8s.acceldata.io/v1`
 | *`kind`* __string__ | `ApmServer`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -237,8 +237,8 @@ ApmServerSpec holds the specification of an APM Server.
 
 
 
-[id="{anchor_prefix}-apm-k8s-elastic-co-v1beta1"]
-== apm.k8s.elastic.co/v1beta1
+[id="{anchor_prefix}-apm-k8s-acceldata-io-v1beta1"]
+== apm.k8s.acceldata.io/v1beta1
 
 Package v1beta1 contains API schema definitions for managing APM Server resources.
 
@@ -257,7 +257,7 @@ ApmServer represents an APM Server resource in a Kubernetes cluster.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `apm.k8s.elastic.co/v1beta1`
+| *`apiVersion`* __string__ | `apm.k8s.acceldata.io/v1beta1`
 | *`kind`* __string__ | `ApmServer`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -290,8 +290,8 @@ ApmServerSpec holds the specification of an APM Server.
 
 
 
-[id="{anchor_prefix}-autoscaling-k8s-elastic-co-v1alpha1"]
-== autoscaling.k8s.elastic.co/v1alpha1
+[id="{anchor_prefix}-autoscaling-k8s-acceldata-io-v1alpha1"]
+== autoscaling.k8s.acceldata.io/v1alpha1
 
 Package v1alpha1 contains API schema definitions for managing ElasticsearchAutoscaler resources.
 
@@ -310,7 +310,7 @@ ElasticsearchAutoscaler represents an ElasticsearchAutoscaler resource in a Kube
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `autoscaling.k8s.elastic.co/v1alpha1`
+| *`apiVersion`* __string__ | `autoscaling.k8s.acceldata.io/v1alpha1`
 | *`kind`* __string__ | `ElasticsearchAutoscaler`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -354,8 +354,8 @@ ElasticsearchRef is a reference to an Elasticsearch cluster that exists in the s
 
 
 
-[id="{anchor_prefix}-beat-k8s-elastic-co-v1beta1"]
-== beat.k8s.elastic.co/v1beta1
+[id="{anchor_prefix}-beat-k8s-acceldata-io-v1beta1"]
+== beat.k8s.acceldata.io/v1beta1
 
 Package v1beta1 contains API Schema definitions for the beat v1beta1 API group
 
@@ -374,7 +374,7 @@ Beat is the Schema for the Beats API.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `beat.k8s.elastic.co/v1beta1`
+| *`apiVersion`* __string__ | `beat.k8s.acceldata.io/v1beta1`
 | *`kind`* __string__ | `Beat`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -449,8 +449,8 @@ BeatSpec defines the desired state of a Beat.
 
 
 
-[id="{anchor_prefix}-common-k8s-elastic-co-v1"]
-== common.k8s.elastic.co/v1
+[id="{anchor_prefix}-common-k8s-acceldata-io-v1"]
+== common.k8s.acceldata.io/v1
 
 Package v1 contains API schema definitions for common types used by all resources.
 
@@ -816,8 +816,8 @@ TLSOptions holds TLS configuration options.
 
 
 
-[id="{anchor_prefix}-common-k8s-elastic-co-v1alpha1"]
-== common.k8s.elastic.co/v1alpha1
+[id="{anchor_prefix}-common-k8s-acceldata-io-v1alpha1"]
+== common.k8s.acceldata.io/v1alpha1
 
 Package v1alpha1 contains API schema definitions for common types used by all resources.
 
@@ -876,8 +876,8 @@ ConditionType defines the condition of an Elasticsearch resource.
 
 
 
-[id="{anchor_prefix}-common-k8s-elastic-co-v1beta1"]
-== common.k8s.elastic.co/v1beta1
+[id="{anchor_prefix}-common-k8s-acceldata-io-v1beta1"]
+== common.k8s.acceldata.io/v1beta1
 
 Package v1beta1 contains API schema definitions for common types used by all resources.
 
@@ -1087,8 +1087,8 @@ TLSOptions holds TLS configuration options.
 
 
 
-[id="{anchor_prefix}-elasticsearch-k8s-elastic-co-v1"]
-== elasticsearch.k8s.elastic.co/v1
+[id="{anchor_prefix}-elasticsearch-k8s-acceldata-io-v1"]
+== elasticsearch.k8s.acceldata.io/v1
 
 Package v1 contains API schema definitions for managing Elasticsearch resources.
 
@@ -1185,7 +1185,7 @@ Elasticsearch represents an Elasticsearch resource in a Kubernetes cluster.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `elasticsearch.k8s.elastic.co/v1`
+| *`apiVersion`* __string__ | `elasticsearch.k8s.acceldata.io/v1`
 | *`kind`* __string__ | `Elasticsearch`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -1523,8 +1523,8 @@ VolumeClaimDeletePolicy describes the delete policy for handling PersistentVolum
 
 
 
-[id="{anchor_prefix}-elasticsearch-k8s-elastic-co-v1beta1"]
-== elasticsearch.k8s.elastic.co/v1beta1
+[id="{anchor_prefix}-elasticsearch-k8s-acceldata-io-v1beta1"]
+== elasticsearch.k8s.acceldata.io/v1beta1
 
 Package v1beta1 contains API schema definitions for managing Elasticsearch resources.
 
@@ -1563,7 +1563,7 @@ Elasticsearch represents an Elasticsearch resource in a Kubernetes cluster.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `elasticsearch.k8s.elastic.co/v1beta1`
+| *`apiVersion`* __string__ | `elasticsearch.k8s.acceldata.io/v1beta1`
 | *`kind`* __string__ | `Elasticsearch`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -1656,8 +1656,8 @@ UpdateStrategy specifies how updates to the cluster should be performed.
 
 
 
-[id="{anchor_prefix}-enterprisesearch-k8s-elastic-co-v1"]
-== enterprisesearch.k8s.elastic.co/v1
+[id="{anchor_prefix}-enterprisesearch-k8s-acceldata-io-v1"]
+== enterprisesearch.k8s.acceldata.io/v1
 
 Package v1beta1 contains API schema definitions for managing Enterprise Search resources.
 
@@ -1676,7 +1676,7 @@ EnterpriseSearch is a Kubernetes CRD to represent Enterprise Search.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `enterprisesearch.k8s.elastic.co/v1`
+| *`apiVersion`* __string__ | `enterprisesearch.k8s.acceldata.io/v1`
 | *`kind`* __string__ | `EnterpriseSearch`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -1711,8 +1711,8 @@ EnterpriseSearchSpec holds the specification of an Enterprise Search resource.
 
 
 
-[id="{anchor_prefix}-enterprisesearch-k8s-elastic-co-v1beta1"]
-== enterprisesearch.k8s.elastic.co/v1beta1
+[id="{anchor_prefix}-enterprisesearch-k8s-acceldata-io-v1beta1"]
+== enterprisesearch.k8s.acceldata.io/v1beta1
 
 Package v1beta1 contains API schema definitions for managing Enterprise Search resources.
 
@@ -1731,7 +1731,7 @@ EnterpriseSearch is a Kubernetes CRD to represent Enterprise Search.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `enterprisesearch.k8s.elastic.co/v1beta1`
+| *`apiVersion`* __string__ | `enterprisesearch.k8s.acceldata.io/v1beta1`
 | *`kind`* __string__ | `EnterpriseSearch`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -1765,8 +1765,8 @@ EnterpriseSearchSpec holds the specification of an Enterprise Search resource.
 
 
 
-[id="{anchor_prefix}-kibana-k8s-elastic-co-v1"]
-== kibana.k8s.elastic.co/v1
+[id="{anchor_prefix}-kibana-k8s-acceldata-io-v1"]
+== kibana.k8s.acceldata.io/v1
 
 Package v1 contains API schema definitions for managing Kibana resources.
 
@@ -1785,7 +1785,7 @@ Kibana represents a Kibana resource in a Kubernetes cluster.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `kibana.k8s.elastic.co/v1`
+| *`apiVersion`* __string__ | `kibana.k8s.acceldata.io/v1`
 | *`kind`* __string__ | `Kibana`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -1822,8 +1822,8 @@ KibanaSpec holds the specification of a Kibana instance.
 
 
 
-[id="{anchor_prefix}-kibana-k8s-elastic-co-v1beta1"]
-== kibana.k8s.elastic.co/v1beta1
+[id="{anchor_prefix}-kibana-k8s-acceldata-io-v1beta1"]
+== kibana.k8s.acceldata.io/v1beta1
 
 Package v1beta1 contains API schema definitions for managing Kibana resources.
 
@@ -1842,7 +1842,7 @@ Kibana represents a Kibana resource in a Kubernetes cluster.
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `kibana.k8s.elastic.co/v1beta1`
+| *`apiVersion`* __string__ | `kibana.k8s.acceldata.io/v1beta1`
 | *`kind`* __string__ | `Kibana`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -1875,8 +1875,8 @@ KibanaSpec holds the specification of a Kibana instance.
 
 
 
-[id="{anchor_prefix}-logstash-k8s-elastic-co-v1alpha1"]
-== logstash.k8s.elastic.co/v1alpha1
+[id="{anchor_prefix}-logstash-k8s-acceldata-io-v1alpha1"]
+== logstash.k8s.acceldata.io/v1alpha1
 
 Package v1alpha1 contains API Schema definitions for the logstash v1alpha1 API group
 
@@ -1913,7 +1913,7 @@ Logstash is the Schema for the logstashes API
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `logstash.k8s.elastic.co/v1alpha1`
+| *`apiVersion`* __string__ | `logstash.k8s.acceldata.io/v1alpha1`
 | *`kind`* __string__ | `Logstash`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -1995,8 +1995,8 @@ LogstashStatus defines the observed state of Logstash
 
 
 
-[id="{anchor_prefix}-maps-k8s-elastic-co-v1alpha1"]
-== maps.k8s.elastic.co/v1alpha1
+[id="{anchor_prefix}-maps-k8s-acceldata-io-v1alpha1"]
+== maps.k8s.acceldata.io/v1alpha1
 
 Package v1alpha1 contains API schema definitions for managing Elastic Maps Server resources.
 
@@ -2019,7 +2019,7 @@ ElasticMapsServer represents an Elastic Map Server resource in a Kubernetes clus
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `maps.k8s.elastic.co/v1alpha1`
+| *`apiVersion`* __string__ | `maps.k8s.acceldata.io/v1alpha1`
 | *`kind`* __string__ | `ElasticMapsServer`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -2037,7 +2037,7 @@ ElasticMapsServerList contains a list of ElasticMapsServer
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `maps.k8s.elastic.co/v1alpha1`
+| *`apiVersion`* __string__ | `maps.k8s.acceldata.io/v1alpha1`
 | *`kind`* __string__ | `ElasticMapsServerList`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 
@@ -2072,8 +2072,8 @@ MapsSpec holds the specification of an Elastic Maps Server instance.
 
 
 
-[id="{anchor_prefix}-stackconfigpolicy-k8s-elastic-co-v1alpha1"]
-== stackconfigpolicy.k8s.elastic.co/v1alpha1
+[id="{anchor_prefix}-stackconfigpolicy-k8s-acceldata-io-v1alpha1"]
+== stackconfigpolicy.k8s.acceldata.io/v1alpha1
 
 Package v1alpha1 contains API schema definitions for managing StackConfigPolicy resources.
 
@@ -2174,7 +2174,7 @@ StackConfigPolicy represents a StackConfigPolicy resource in a Kubernetes cluste
 [cols="25a,75a", options="header"]
 |===
 | Field | Description
-| *`apiVersion`* __string__ | `stackconfigpolicy.k8s.elastic.co/v1alpha1`
+| *`apiVersion`* __string__ | `stackconfigpolicy.k8s.acceldata.io/v1alpha1`
 | *`kind`* __string__ | `StackConfigPolicy`
 | *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
 

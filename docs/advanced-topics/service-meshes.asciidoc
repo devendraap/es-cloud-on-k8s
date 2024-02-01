@@ -88,7 +88,7 @@ If you have configured Istio in link:https://istio.io/docs/concepts/security/#pe
 
 [source,yaml,subs="attributes,callouts"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: elastic-istio
@@ -151,7 +151,7 @@ To install plugins using an init container, use a manifest similar to the follow
 
 [source,yaml,subs="attributes,callouts"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: elastic-istio
@@ -190,7 +190,7 @@ spec:
 
 [source,yaml,subs="attributes,callouts"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: elastic-istio
@@ -217,7 +217,7 @@ spec:
 
 [source,yaml,subs="attributes,callouts"]
 ----
-apiVersion: apm.k8s.elastic.co/{eck_crd_version}
+apiVersion: apm.k8s.acceldata.io/{eck_crd_version}
 kind: ApmServer
 metadata:
   name: elastic-istio
@@ -299,7 +299,7 @@ If automatic sidecar injection is enabled and link:https://kubernetes.io/docs/ta
 
 [source,yaml,subs="attributes,callouts"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: elastic-linkerd

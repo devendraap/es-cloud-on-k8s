@@ -10,7 +10,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
 )
 
 func printShardsAndAllocation(clientFactory func() (client.Client, error)) func() {

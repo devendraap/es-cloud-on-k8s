@@ -28,9 +28,9 @@ The following sections assume that the operator is installed in the `elastic-sys
 
 [source,sh]
 ----
-kubectl label namespace elastic-system eck.k8s.elastic.co/operator-name=elastic-operator
-kubectl label namespace team-a eck.k8s.elastic.co/tenant=team-a
-kubectl label namespace team-b eck.k8s.elastic.co/tenant=team-b
+kubectl label namespace elastic-system eck.k8s.acceldata.io/operator-name=elastic-operator
+kubectl label namespace team-a eck.k8s.acceldata.io/tenant=team-a
+kubectl label namespace team-b eck.k8s.acceldata.io/tenant=team-b
 ----
 
 == Prerequisites
@@ -107,14 +107,14 @@ spec:
     to:
     - namespaceSelector:
         matchExpressions:
-        - key: eck.k8s.elastic.co/tenant
+        - key: eck.k8s.acceldata.io/tenant
           operator: In
           values:
           - team-a
           - team-b
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
   ingress:
   - from:
     - ipBlock:
@@ -162,10 +162,10 @@ spec:
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
   - ports:
     - port: {dns_port}
       protocol: UDP
@@ -173,13 +173,13 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/operator-name: elastic-operator
+          eck.k8s.acceldata.io/operator-name: elastic-operator
       podSelector:
         matchLabels:
           app.kubernetes.io/name: elastic-operator
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
     # [Optional] Allow ingress controller pods from the ingress-nginx namespace.
     #- namespaceSelector:
     #    matchLabels:
@@ -190,16 +190,16 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
     ports:
     - port: {es_transport_port}
       protocol: TCP
   podSelector:
     matchLabels:
-      common.k8s.elastic.co/type: elasticsearch
+      common.k8s.acceldata.io/type: elasticsearch
 ----
 
 
@@ -238,12 +238,12 @@ spec:
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
           # [Optional] Restrict to a single {es} cluster named hulk.
-          # elasticsearch.k8s.elastic.co/cluster-name=hulk
+          # elasticsearch.k8s.acceldata.io/cluster-name=hulk
   - ports:
     - port: {dns_port}
       protocol: UDP
@@ -254,7 +254,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
     # [Optional] Allow ingress controller pods from the ingress-nginx namespace.
     #- namespaceSelector:
     #    matchLabels:
@@ -264,7 +264,7 @@ spec:
       protocol: TCP
   podSelector:
     matchLabels:
-      common.k8s.elastic.co/type: kibana
+      common.k8s.acceldata.io/type: kibana
 ----
 
 
@@ -303,20 +303,20 @@ spec:
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
   - ports:
     - port: {kb_port}
       protocol: TCP
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: kibana
+          common.k8s.acceldata.io/type: kibana
   - ports:
     - port: {dns_port}
       protocol: UDP
@@ -324,7 +324,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
     # [Optional] Allow ingress controller pods from the ingress-nginx namespace.
     #- namespaceSelector:
     #    matchLabels:
@@ -334,7 +334,7 @@ spec:
       protocol: TCP
   podSelector:
     matchLabels:
-      common.k8s.elastic.co/type: apm-server
+      common.k8s.acceldata.io/type: apm-server
 ----
 
 
@@ -372,10 +372,10 @@ spec:
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
   - ports:
     - port: {dns_port}
       protocol: UDP
@@ -383,7 +383,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
     # [Optional] Allow ingress controller pods from the ingress-nginx namespace.
     #- namespaceSelector:
     #    matchLabels:
@@ -393,7 +393,7 @@ spec:
       protocol: TCP
   podSelector:
     matchLabels:
-      common.k8s.elastic.co/type: enterprise-search
+      common.k8s.acceldata.io/type: enterprise-search
 ----
 
 
@@ -431,26 +431,26 @@ spec:
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
   - ports:
     - port: {kb_port}
       protocol: TCP
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: kibana
+          common.k8s.acceldata.io/type: kibana
   - ports:
     - port: {dns_port}
       protocol: UDP
   podSelector:
     matchLabels:
-      common.k8s.elastic.co/type: beat
+      common.k8s.acceldata.io/type: beat
 ----
 
 [float]
@@ -488,30 +488,30 @@ spec:
       to:
         - namespaceSelector:
             matchLabels:
-              eck.k8s.elastic.co/tenant: team-a
+              eck.k8s.acceldata.io/tenant: team-a
           podSelector:
             matchLabels:
-              common.k8s.elastic.co/type: agent
+              common.k8s.acceldata.io/type: agent
     - ports:
         - port: {kb_port}
           protocol: TCP
       to:
         - namespaceSelector:
             matchLabels:
-              eck.k8s.elastic.co/tenant: team-a
+              eck.k8s.acceldata.io/tenant: team-a
           podSelector:
             matchLabels:
-              common.k8s.elastic.co/type: kibana
+              common.k8s.acceldata.io/type: kibana
     - ports:
         - port: {es_http_port}
           protocol: TCP
       to:
         - namespaceSelector:
             matchLabels:
-              eck.k8s.elastic.co/tenant: team-a
+              eck.k8s.acceldata.io/tenant: team-a
           podSelector:
             matchLabels:
-              common.k8s.elastic.co/type: elasticsearch
+              common.k8s.acceldata.io/type: elasticsearch
     - ports:
         - port: {dns_port}
           protocol: UDP
@@ -525,13 +525,13 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              eck.k8s.elastic.co/tenant: team-a
+              eck.k8s.acceldata.io/tenant: team-a
       ports:
         - port: {fleet_server_port}
           protocol: TCP
   podSelector:
     matchLabels:
-      common.k8s.elastic.co/type: agent
+      common.k8s.acceldata.io/type: agent
 ----
 
 [float]
@@ -567,14 +567,14 @@ spec:
     to:
     - namespaceSelector:
         matchLabels:
-          eck.k8s.elastic.co/tenant: team-a
+          eck.k8s.acceldata.io/tenant: team-a
       podSelector:
         matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
+          common.k8s.acceldata.io/type: elasticsearch
   - ports:
     - port: {dns_port}
       protocol: UDP
   podSelector:
     matchLabels:
-      common.k8s.elastic.co/type: logstash
+      common.k8s.acceldata.io/type: logstash
 ----

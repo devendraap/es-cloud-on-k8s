@@ -11,5 +11,5 @@ import (
 
 func TestMapsEsAssociation_AssociationConfAnnotationName(t *testing.T) {
 	k := ElasticMapsServer{}
-	require.Equal(t, "association.k8s.elastic.co/es-conf", k.AssociationConfAnnotationName())
+	require.Equal(t, "association.k8s.acceldata.io/es-conf", k.AssociationConfAnnotationName())
 }

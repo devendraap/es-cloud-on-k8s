@@ -51,7 +51,7 @@ You can customise almost all aspects of the webhook setup by changing the <<{p}-
 |enable-webhook       | false   | This must be set to `true` to enable the webhook server.
 |manage-webhook-certs | true    | Set to `false` to disable auto-generating the certificate for the webhook. If disabled, you must provide your own certificates using one of the methods described later in this document.
 |webhook-cert-dir     | /tmp/k8s-webhook-server/serving-certs | Path to mount the certificate.
-|webhook-name         | elastic-webhook.k8s.elastic.co | Name of the `ValidatingWebhookConfiguration` resource.
+|webhook-name         | elastic-webhook.k8s.acceldata.io | Name of the `ValidatingWebhookConfiguration` resource.
 |webhook-secret       | elastic-webhook-server-cert | Name of the secret containing the certificate for the webhook server.
 |webhook-port         | 9443    | Port to listen for incoming validation requests.
 |===
@@ -145,7 +145,7 @@ kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
     cert-manager.io/inject-ca-from: elastic-system/elastic-webhook-server-cert
-  name: elastic-webhook.k8s.elastic.co
+  name: elastic-webhook.k8s.acceldata.io
 webhooks:
 [...]
 ----
@@ -174,11 +174,11 @@ helm install elastic-operator elastic/eck-operator -n elastic-system --create-na
 [id="{p}-disable-webhook"]
 == Disable the webhook
 
-To disable the webhook, set the <<{p}-operator-config, `enable-webhook`>> operator configuration flag to `false` and remove the `ValidatingWebhookConfiguration` named `elastic-webhook.k8s.elastic.co`:
+To disable the webhook, set the <<{p}-operator-config, `enable-webhook`>> operator configuration flag to `false` and remove the `ValidatingWebhookConfiguration` named `elastic-webhook.k8s.acceldata.io`:
 
 [source,sh]
 ----
-kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io elastic-webhook.k8s.elastic.co
+kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io elastic-webhook.k8s.acceldata.io
 ----
 
 [float]
@@ -263,5 +263,5 @@ spec:
 If your attempts to update a resource fail with an error message similar to the following, you can force the webhook to ignore it by removing the `kubectl.kubernetes.io/last-applied-configuration` annotation from your resource.
 
 ....
-admission webhook "elastic-es-validation-v1.k8s.elastic.co" denied the request: Elasticsearch.elasticsearch.k8s.elastic.co "quickstart" is invalid: some-misspelled-field: Invalid value: "some-misspelled-field": some-misspelled-field field found in the kubectl.kubernetes.io/last-applied-configuration annotation is unknown
+admission webhook "elastic-es-validation-v1.k8s.acceldata.io" denied the request: Elasticsearch.elasticsearch.k8s.acceldata.io "quickstart" is invalid: some-misspelled-field: Invalid value: "some-misspelled-field": some-misspelled-field field found in the kubectl.kubernetes.io/last-applied-configuration annotation is unknown
 ....

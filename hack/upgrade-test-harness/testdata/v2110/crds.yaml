@@ -8,9 +8,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: agents.agent.k8s.elastic.co
+  name: agents.agent.k8s.acceldata.io
 spec:
-  group: agent.k8s.elastic.co
+  group: agent.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -640,9 +640,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: apmservers.apm.k8s.elastic.co
+  name: apmservers.apm.k8s.acceldata.io
 spec:
-  group: apm.k8s.elastic.co
+  group: apm.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -1305,9 +1305,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: beats.beat.k8s.elastic.co
+  name: beats.beat.k8s.acceldata.io
 spec:
-  group: beat.k8s.elastic.co
+  group: beat.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -1612,9 +1612,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: elasticmapsservers.maps.k8s.elastic.co
+  name: elasticmapsservers.maps.k8s.acceldata.io
 spec:
-  group: maps.k8s.elastic.co
+  group: maps.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -1934,9 +1934,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: elasticsearchautoscalers.autoscaling.k8s.elastic.co
+  name: elasticsearchautoscalers.autoscaling.k8s.acceldata.io
 spec:
-  group: autoscaling.k8s.elastic.co
+  group: autoscaling.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -2232,9 +2232,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: elasticsearches.elasticsearch.k8s.elastic.co
+  name: elasticsearches.elasticsearch.k8s.acceldata.io
 spec:
-  group: elasticsearch.k8s.elastic.co
+  group: elasticsearch.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -3759,9 +3759,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: enterprisesearches.enterprisesearch.k8s.elastic.co
+  name: enterprisesearches.enterprisesearch.k8s.acceldata.io
 spec:
-  group: enterprisesearch.k8s.elastic.co
+  group: enterprisesearch.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -4368,9 +4368,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: kibanas.kibana.k8s.elastic.co
+  name: kibanas.kibana.k8s.acceldata.io
 spec:
-  group: kibana.k8s.elastic.co
+  group: kibana.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -5080,9 +5080,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: logstashes.logstash.k8s.elastic.co
+  name: logstashes.logstash.k8s.acceldata.io
 spec:
-  group: logstash.k8s.elastic.co
+  group: logstash.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -5729,9 +5729,9 @@ metadata:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
     app.kubernetes.io/version: '2.11.0'
-  name: stackconfigpolicies.stackconfigpolicy.k8s.elastic.co
+  name: stackconfigpolicies.stackconfigpolicy.k8s.acceldata.io
 spec:
-  group: stackconfigpolicy.k8s.elastic.co
+  group: stackconfigpolicy.k8s.acceldata.io
   names:
     categories:
     - elastic

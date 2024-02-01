@@ -14,12 +14,12 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	esuser "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/maps"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	esuser "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/maps"
 )
 
 func Test_deleteOrphanedResources(t *testing.T) {
@@ -47,10 +47,10 @@ func Test_deleteOrphanedResources(t *testing.T) {
 		},
 	}
 	associationLabels := map[string]string{
-		"kibanaassociation.k8s.elastic.co/name":      kibanaFixtureObjectMeta.Name,
-		"kibanaassociation.k8s.elastic.co/namespace": kibanaFixtureObjectMeta.Namespace,
-		"kibana.k8s.elastic.co/name":                 esFixture.Name,
-		"kibana.k8s.elastic.co/namespace":            esFixture.Namespace,
+		"kibanaassociation.k8s.acceldata.io/name":      kibanaFixtureObjectMeta.Name,
+		"kibanaassociation.k8s.acceldata.io/namespace": kibanaFixtureObjectMeta.Namespace,
+		"kibana.k8s.acceldata.io/name":                 esFixture.Name,
+		"kibana.k8s.acceldata.io/namespace":            esFixture.Namespace,
 	}
 
 	userSecretLabels := maps.Merge(map[string]string{commonv1.TypeLabelName: esuser.AssociatedUserType}, associationLabels)
@@ -76,8 +76,8 @@ func Test_deleteOrphanedResources(t *testing.T) {
 
 	info := AssociationInfo{
 		Labels:                                func(associated types.NamespacedName) map[string]string { return associationLabels },
-		AssociationResourceNameLabelName:      "kibana.k8s.elastic.co/name",
-		AssociationResourceNamespaceLabelName: "kibana.k8s.elastic.co/namespace",
+		AssociationResourceNameLabelName:      "kibana.k8s.acceldata.io/name",
+		AssociationResourceNamespaceLabelName: "kibana.k8s.acceldata.io/namespace",
 	}
 
 	tests := []struct {

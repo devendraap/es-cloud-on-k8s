@@ -172,7 +172,7 @@ In the reconciliation loop algorithm, it is important to note that:
 
 #### Naming
 
-* Restart annotation name: `elasticsearch.k8s.elastic.co/restart-phase`
+* Restart annotation name: `elasticsearch.k8s.acceldata.io/restart-phase`
 * Restart phases:
     * `schedule`, `schedule-rolling`, `schedule-coordinated` represents work and preparation to be done by the operator
     * `stop`, `stop-coordinated` when the ES processes are in the process of being stopped

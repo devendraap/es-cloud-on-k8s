@@ -1,4 +1,4 @@
-apiVersion: maps.k8s.elastic.co/v1alpha1
+apiVersion: maps.k8s.acceldata.io/v1alpha1
 kind: ElasticMapsServer
 metadata:
   name: ems-sample

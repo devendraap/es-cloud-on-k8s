@@ -10,7 +10,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
 )
 
 var (

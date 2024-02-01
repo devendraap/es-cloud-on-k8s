@@ -9,11 +9,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 // CheckSecrets checks that expected secrets have been created.
@@ -26,8 +26,8 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: emsName + "-ems-config",
 				Keys: []string{"elastic-maps-server.yml"},
 				Labels: map[string]string{
-					"eck.k8s.elastic.co/credentials": "true",
-					"maps.k8s.elastic.co/name":       emsName,
+					"eck.k8s.acceldata.io/credentials": "true",
+					"maps.k8s.acceldata.io/name":       emsName,
 				},
 			},
 		}
@@ -37,19 +37,19 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: emsName + "-ems-es-ca",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"elasticsearch.k8s.elastic.co/cluster-name": b.EMS.Spec.ElasticsearchRef.Name,
-						"mapsassociation.k8s.elastic.co/name":       emsName,
-						"mapsassociation.k8s.elastic.co/namespace":  b.EMS.Namespace,
+						"elasticsearch.k8s.acceldata.io/cluster-name": b.EMS.Spec.ElasticsearchRef.Name,
+						"mapsassociation.k8s.acceldata.io/name":       emsName,
+						"mapsassociation.k8s.acceldata.io/namespace":  b.EMS.Namespace,
 					},
 				},
 				test.ExpectedSecret{
 					Name: emsName + "-maps-user",
 					Keys: []string{b.EMS.Namespace + "-" + emsName + "-maps-user"},
 					Labels: map[string]string{
-						"eck.k8s.elastic.co/credentials":            "true",
-						"elasticsearch.k8s.elastic.co/cluster-name": b.EMS.Spec.ElasticsearchRef.Name,
-						"mapsassociation.k8s.elastic.co/name":       emsName,
-						"mapsassociation.k8s.elastic.co/namespace":  b.EMS.Namespace,
+						"eck.k8s.acceldata.io/credentials":            "true",
+						"elasticsearch.k8s.acceldata.io/cluster-name": b.EMS.Spec.ElasticsearchRef.Name,
+						"mapsassociation.k8s.acceldata.io/name":       emsName,
+						"mapsassociation.k8s.acceldata.io/namespace":  b.EMS.Namespace,
 					},
 				},
 			)
@@ -60,24 +60,24 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: emsName + "-ems-http-ca-internal",
 					Keys: []string{"tls.crt", "tls.key"},
 					Labels: map[string]string{
-						"maps.k8s.elastic.co/name":   emsName,
-						"common.k8s.elastic.co/type": "maps",
+						"maps.k8s.acceldata.io/name":   emsName,
+						"common.k8s.acceldata.io/type": "maps",
 					},
 				},
 				test.ExpectedSecret{
 					Name: emsName + "-ems-http-certs-internal",
 					Keys: []string{"tls.crt", "tls.key", "ca.crt"},
 					Labels: map[string]string{
-						"maps.k8s.elastic.co/name":   emsName,
-						"common.k8s.elastic.co/type": "maps",
+						"maps.k8s.acceldata.io/name":   emsName,
+						"common.k8s.acceldata.io/type": "maps",
 					},
 				},
 				test.ExpectedSecret{
 					Name: emsName + "-ems-http-certs-public",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"maps.k8s.elastic.co/name":   emsName,
-						"common.k8s.elastic.co/type": "maps",
+						"maps.k8s.acceldata.io/name":   emsName,
+						"common.k8s.acceldata.io/type": "maps",
 					},
 				},
 			)
@@ -101,8 +101,8 @@ func CheckStatus(b Builder, k *test.K8sClient) test.Step {
 			if err := test.CheckSelector(
 				ems.Status.Selector,
 				map[string]string{
-					"maps.k8s.elastic.co/name":   ems.Name,
-					"common.k8s.elastic.co/type": "maps",
+					"maps.k8s.acceldata.io/name":   ems.Name,
+					"common.k8s.acceldata.io/type": "maps",
 				}); err != nil {
 				return err
 			}

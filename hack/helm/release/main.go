@@ -4,7 +4,7 @@
 
 package main
 
-import "github.com/elastic/cloud-on-k8s/hack/helm/release/cmd"
+import "github.com/devendra/es-cloud-on-k8s/hack/helm/release/cmd"
 
 func main() {
 	cmd.Execute()

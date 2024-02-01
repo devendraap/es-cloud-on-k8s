@@ -8,12 +8,12 @@ import (
 	"context"
 	"fmt"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/checks"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/checks"
 )
 
 func (b Builder) CheckK8sTestSteps(k *test.K8sClient) test.StepList {
@@ -38,8 +38,8 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Keys:         []string{"kibana.yml"},
 				OptionalKeys: []string{"telemetry.yml"},
 				Labels: map[string]string{
-					"eck.k8s.elastic.co/credentials": "true",
-					"kibana.k8s.elastic.co/name":     kbName,
+					"eck.k8s.acceldata.io/credentials": "true",
+					"kibana.k8s.acceldata.io/name":     kbName,
 				},
 			},
 		}
@@ -49,9 +49,9 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: kbName + "-kb-es-ca",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"elasticsearch.k8s.elastic.co/cluster-name":  b.Kibana.Spec.ElasticsearchRef.Name,
-						"kibanaassociation.k8s.elastic.co/name":      kbName,
-						"kibanaassociation.k8s.elastic.co/namespace": b.Kibana.Namespace,
+						"elasticsearch.k8s.acceldata.io/cluster-name":  b.Kibana.Spec.ElasticsearchRef.Name,
+						"kibanaassociation.k8s.acceldata.io/name":      kbName,
+						"kibanaassociation.k8s.acceldata.io/namespace": b.Kibana.Namespace,
 					},
 				},
 			)
@@ -65,10 +65,10 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 						Name: kbName + "-kibana-user",
 						Keys: []string{"hash", "name", "serviceAccount", "token"},
 						Labels: map[string]string{
-							"eck.k8s.elastic.co/credentials":             "true",
-							"elasticsearch.k8s.elastic.co/cluster-name":  b.Kibana.Spec.ElasticsearchRef.Name,
-							"kibanaassociation.k8s.elastic.co/name":      kbName,
-							"kibanaassociation.k8s.elastic.co/namespace": b.Kibana.Namespace,
+							"eck.k8s.acceldata.io/credentials":             "true",
+							"elasticsearch.k8s.acceldata.io/cluster-name":  b.Kibana.Spec.ElasticsearchRef.Name,
+							"kibanaassociation.k8s.acceldata.io/name":      kbName,
+							"kibanaassociation.k8s.acceldata.io/namespace": b.Kibana.Namespace,
 						},
 					},
 				)
@@ -78,10 +78,10 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 						Name: kbName + "-kibana-user",
 						Keys: []string{b.Kibana.Namespace + "-" + kbName + "-kibana-user"},
 						Labels: map[string]string{
-							"eck.k8s.elastic.co/credentials":             "true",
-							"elasticsearch.k8s.elastic.co/cluster-name":  b.Kibana.Spec.ElasticsearchRef.Name,
-							"kibanaassociation.k8s.elastic.co/name":      kbName,
-							"kibanaassociation.k8s.elastic.co/namespace": b.Kibana.Namespace,
+							"eck.k8s.acceldata.io/credentials":             "true",
+							"elasticsearch.k8s.acceldata.io/cluster-name":  b.Kibana.Spec.ElasticsearchRef.Name,
+							"kibanaassociation.k8s.acceldata.io/name":      kbName,
+							"kibanaassociation.k8s.acceldata.io/namespace": b.Kibana.Namespace,
 						},
 					},
 				)
@@ -93,16 +93,16 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: kbName + "-kb-http-certs-internal",
 					Keys: []string{"tls.crt", "tls.key", "ca.crt"},
 					Labels: map[string]string{
-						"kibana.k8s.elastic.co/name": kbName,
-						"common.k8s.elastic.co/type": "kibana",
+						"kibana.k8s.acceldata.io/name": kbName,
+						"common.k8s.acceldata.io/type": "kibana",
 					},
 				},
 				test.ExpectedSecret{
 					Name: kbName + "-kb-http-certs-public",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"kibana.k8s.elastic.co/name": kbName,
-						"common.k8s.elastic.co/type": "kibana",
+						"kibana.k8s.acceldata.io/name": kbName,
+						"common.k8s.acceldata.io/type": "kibana",
 					},
 				},
 			)
@@ -113,8 +113,8 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: kbName + "-kb-http-ca-internal",
 					Keys: []string{"tls.crt", "tls.key"},
 					Labels: map[string]string{
-						"kibana.k8s.elastic.co/name": kbName,
-						"common.k8s.elastic.co/type": "kibana",
+						"kibana.k8s.acceldata.io/name": kbName,
+						"common.k8s.acceldata.io/type": "kibana",
 					},
 				},
 			)
@@ -139,8 +139,8 @@ func CheckStatus(b Builder, k *test.K8sClient) test.Step {
 			if err := test.CheckSelector(
 				kb.Status.Selector,
 				map[string]string{
-					"kibana.k8s.elastic.co/name": kb.Name,
-					"common.k8s.elastic.co/type": "kibana",
+					"kibana.k8s.acceldata.io/name": kb.Name,
+					"common.k8s.acceldata.io/type": "kibana",
 				}); err != nil {
 				return err
 			}

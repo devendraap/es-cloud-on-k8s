@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/exec"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/exec"
 )
 
 // Retrieving the default storage class is retried up to getDefaultScRetries times,

@@ -5,18 +5,18 @@
 package enterprisesearch
 
 import (
-	entv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+	entv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
 )
 
 const (
 	// Type represents the Enterprise Search type.
 	Type = "enterprise-search"
 	// EnterpriseSearchNameLabelName used to represent an EnterpriseSearch in k8s resources.
-	EnterpriseSearchNameLabelName = "enterprisesearch.k8s.elastic.co/name"
+	EnterpriseSearchNameLabelName = "enterprisesearch.k8s.acceldata.io/name"
 	// EnterpriseSearchNamespaceLabelName used to represent an EnterpriseSearch in k8s resources.
-	EnterpriseSearchNamespaceLabelName = "enterprisesearch.k8s.elastic.co/namespace"
+	EnterpriseSearchNamespaceLabelName = "enterprisesearch.k8s.acceldata.io/namespace"
 	// VersionLabelName is a label used to track the version of an Enterprise Search Pod.
-	VersionLabelName = "enterprisesearch.k8s.elastic.co/version"
+	VersionLabelName = "enterprisesearch.k8s.acceldata.io/version"
 )
 
 func VersionLabels(ent entv1.EnterpriseSearch) map[string]string {

@@ -21,16 +21,16 @@ import (
 	"k8s.io/client-go/tools/record"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/deployment"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
-	kblabel "github.com/elastic/cloud-on-k8s/v2/pkg/controller/kibana/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/kibana/network"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/compare"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/deployment"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
+	kblabel "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/kibana/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/kibana/network"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/compare"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var customResourceLimits = corev1.ResourceRequirements{
@@ -231,9 +231,9 @@ func TestDriverDeploymentParams(t *testing.T) {
 			args: args{
 				kb:                kibanaFixture,
 				initialObjects:    defaultInitialObjects,
-				policyAnnotations: map[string]string{"policy.k8s.elastic.co/kibana-config-hash": "2123345"},
+				policyAnnotations: map[string]string{"policy.k8s.acceldata.io/kibana-config-hash": "2123345"},
 			},
-			want:    expectedDeploymentWithPolicyAnnotations(map[string]string{"policy.k8s.elastic.co/kibana-config-hash": "2123345"}),
+			want:    expectedDeploymentWithPolicyAnnotations(map[string]string{"policy.k8s.acceldata.io/kibana-config-hash": "2123345"}),
 			wantErr: false,
 		},
 		{
@@ -324,7 +324,7 @@ func TestDriverDeploymentParams(t *testing.T) {
 			},
 			want: func() deployment.Params {
 				p := expectedDeploymentParams()
-				p.PodTemplateSpec.Annotations["kibana.k8s.elastic.co/config-hash"] = "2368465874"
+				p.PodTemplateSpec.Annotations["kibana.k8s.acceldata.io/config-hash"] = "2368465874"
 				return p
 			}(),
 			wantErr: false,
@@ -341,7 +341,7 @@ func TestDriverDeploymentParams(t *testing.T) {
 			},
 			want: func() deployment.Params {
 				p := expectedDeploymentParams()
-				p.PodTemplateSpec.Labels["kibana.k8s.elastic.co/version"] = "6.8.0"
+				p.PodTemplateSpec.Labels["kibana.k8s.acceldata.io/version"] = "6.8.0"
 				return p
 			}(),
 			wantErr: false,
@@ -358,7 +358,7 @@ func TestDriverDeploymentParams(t *testing.T) {
 			},
 			want: func() deployment.Params {
 				p := expectedDeploymentParams()
-				p.PodTemplateSpec.Labels["kibana.k8s.elastic.co/version"] = "6.8.0"
+				p.PodTemplateSpec.Labels["kibana.k8s.acceldata.io/version"] = "6.8.0"
 				return p
 			}(),
 			wantErr: false,
@@ -433,20 +433,20 @@ func expectedDeploymentParams() deployment.Params {
 	return deployment.Params{
 		Name:      "test-kb",
 		Namespace: "default",
-		Selector:  map[string]string{"common.k8s.elastic.co/type": "kibana", "kibana.k8s.elastic.co/name": "test"},
-		Labels:    map[string]string{"common.k8s.elastic.co/type": "kibana", "kibana.k8s.elastic.co/name": "test"},
+		Selector:  map[string]string{"common.k8s.acceldata.io/type": "kibana", "kibana.k8s.acceldata.io/name": "test"},
+		Labels:    map[string]string{"common.k8s.acceldata.io/type": "kibana", "kibana.k8s.acceldata.io/name": "test"},
 		Replicas:  1,
 		Strategy:  appsv1.DeploymentStrategy{Type: appsv1.RollingUpdateDeploymentStrategyType},
 		PodTemplateSpec: corev1.PodTemplateSpec{
 			ObjectMeta: metav1.ObjectMeta{
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":    "kibana",
-					"kibana.k8s.elastic.co/name":    "test",
-					"kibana.k8s.elastic.co/version": "7.0.0",
+					"common.k8s.acceldata.io/type":    "kibana",
+					"kibana.k8s.acceldata.io/name":    "test",
+					"kibana.k8s.acceldata.io/version": "7.0.0",
 				},
 				Annotations: map[string]string{
-					"co.elastic.logs/module":            "kibana",
-					"kibana.k8s.elastic.co/config-hash": "272660573",
+					"co.elastic.logs/module":              "kibana",
+					"kibana.k8s.acceldata.io/config-hash": "272660573",
 				},
 			},
 			Spec: corev1.PodSpec{

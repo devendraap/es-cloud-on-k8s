@@ -13,13 +13,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/reconcile"
-	kblabel "github.com/elastic/cloud-on-k8s/v2/pkg/controller/kibana/label"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/kibana"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/reconcile"
+	kblabel "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/kibana/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/kibana"
 )
 
 func TestVersionUpgradeToLatest7x(t *testing.T) {
@@ -182,7 +182,7 @@ func TestVersionUpgradeAndRespecToLatest8x(t *testing.T) {
 
 	name := "test-upgrade-and-respec-to-8x"
 	esNodes := 1
-	// https://github.com/elastic/cloud-on-k8s/issues/7013
+	// https://github.com/devendra/es-cloud-on-k8s/issues/7013
 	// Between 8.7 and 8.9 fleet indices are set with a replica which fails with a single node. In 8.10 indices were moved to datastreams.
 	if version.MustParse(test.Ctx().ElasticStackVersion).GTE(version.MinFor(8, 7, 0)) && version.MustParse(test.Ctx().ElasticStackVersion).LT(version.MinFor(8, 10, 0)) {
 		esNodes = 2

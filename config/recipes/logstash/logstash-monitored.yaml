@@ -1,5 +1,5 @@
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch
@@ -12,7 +12,7 @@ spec:
         # This setting has performance implications. See the README for more details.
         node.store.allow_mmap: false
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana
@@ -22,7 +22,7 @@ spec:
   elasticsearchRef:
     name: elasticsearch
 ---
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: filebeat
@@ -61,7 +61,7 @@ spec:
           - name: beat-data
             emptydir: {}
 ---
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash
@@ -111,7 +111,7 @@ spec:
               protocol: TCP
               targetPort: 5044
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch-monitoring
@@ -123,7 +123,7 @@ spec:
       config:
         node.store.allow_mmap: false
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana-monitoring

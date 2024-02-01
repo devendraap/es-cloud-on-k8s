@@ -11,10 +11,10 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/utils/ptr"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/securitycontext"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/securitycontext"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 func CheckContainerSecurityContext(es esv1.Elasticsearch, k *test.K8sClient) test.Step {
@@ -55,7 +55,7 @@ func assertSecurityContext(t *testing.T, ver version.Version, securityContext *c
 
 	if ver.LT(version.MinFor(8, 0, 0)) {
 		// We are not expecting Capabilities to be changed by the operator before 8.x
-		// Also refer to https://github.com/elastic/cloud-on-k8s/pull/6755
+		// Also refer to https://github.com/devendra/es-cloud-on-k8s/pull/6755
 		return
 	}
 

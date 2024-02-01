@@ -12,12 +12,12 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	commonannotation "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/annotation"
-	common "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/volume"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/stackconfigpolicy"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	commonannotation "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/annotation"
+	common "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/volume"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/stackconfigpolicy"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_getPolicyConfig(t *testing.T) {
@@ -43,7 +43,7 @@ func Test_getPolicyConfig(t *testing.T) {
 			want: PolicyConfig{
 				ElasticsearchConfig: canonicalConfig,
 				PolicyAnnotations: map[string]string{
-					"policy.k8s.elastic.co/elasticsearch-config-mounts-hash": "testhash",
+					"policy.k8s.acceldata.io/elasticsearch-config-mounts-hash": "testhash",
 				},
 				AdditionalVolumes: []volume.VolumeLike{
 					volume.NewSecretVolumeWithMountPath(esv1.StackConfigAdditionalSecretName("test-es", "test1"), esv1.StackConfigAdditionalSecretName("test-es", "test1"), "/usr/test"),
@@ -61,7 +61,7 @@ func Test_getPolicyConfig(t *testing.T) {
 			want: PolicyConfig{
 				ElasticsearchConfig: common.MustCanonicalConfig(map[string]interface{}{}),
 				PolicyAnnotations: map[string]string{
-					"policy.k8s.elastic.co/elasticsearch-config-mounts-hash": "",
+					"policy.k8s.acceldata.io/elasticsearch-config-mounts-hash": "",
 				},
 				AdditionalVolumes: nil,
 			},
@@ -78,7 +78,7 @@ func Test_getPolicyConfig(t *testing.T) {
 			want: PolicyConfig{
 				ElasticsearchConfig: nil,
 				PolicyAnnotations: map[string]string{
-					"policy.k8s.elastic.co/elasticsearch-config-mounts-hash": "testhash",
+					"policy.k8s.acceldata.io/elasticsearch-config-mounts-hash": "testhash",
 				},
 				AdditionalVolumes: nil,
 			},

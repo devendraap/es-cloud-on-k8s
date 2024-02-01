@@ -16,9 +16,9 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/exec"
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/runner/env"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/vault"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/exec"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/runner/env"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/vault"
 )
 
 const (

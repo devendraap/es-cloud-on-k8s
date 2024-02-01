@@ -4,5 +4,5 @@
 
 // Package v1 contains API schema definitions for managing Kibana resources.
 // +kubebuilder:object:generate=true
-// +groupName=kibana.k8s.elastic.co
+// +groupName=kibana.k8s.acceldata.io
 package v1

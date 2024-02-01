@@ -1,4 +1,4 @@
-module github.com/elastic/cloud-on-k8s/v2
+module github.com/devendra/es-cloud-on-k8s/v2
 
 go 1.21
 

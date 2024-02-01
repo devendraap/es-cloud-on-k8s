@@ -17,8 +17,8 @@ import (
 	"k8s.io/client-go/kubernetes/scheme"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 const (
@@ -108,9 +108,9 @@ func TestReconcileSecret(t *testing.T) {
 					"existing": "existing",
 				},
 				map[string]string{
-					"policy.k8s.elastic.co/secure-settings-secrets": "[{..}]",
-					"policy.k8s.elastic.co/settings-hash":           "hash-1",
-					"existing":                                      "existing",
+					"policy.k8s.acceldata.io/secure-settings-secrets": "[{..}]",
+					"policy.k8s.acceldata.io/settings-hash":           "hash-1",
+					"existing":                                        "existing",
 				}),
 			)),
 			expected: createSecret("s", sampleData, sampleLabels, sampleAnnotations),
@@ -128,10 +128,10 @@ func TestReconcileSecret(t *testing.T) {
 			name: "reset soft owner labels",
 			c: k8s.NewFakeClient(withOwnerRef(t, createSecret("s", sampleData,
 				map[string]string{
-					"existing":                           "existing",
-					"eck.k8s.elastic.co/owner-namespace": "test",
-					"eck.k8s.elastic.co/owner-name":      "test",
-					"eck.k8s.elastic.co/owner-kind":      "StackConfigPolicy",
+					"existing":                             "existing",
+					"eck.k8s.acceldata.io/owner-namespace": "test",
+					"eck.k8s.acceldata.io/owner-name":      "test",
+					"eck.k8s.acceldata.io/owner-kind":      "StackConfigPolicy",
 				},
 				sampleAnnotations,
 			))),
@@ -148,23 +148,23 @@ func TestReconcileSecret(t *testing.T) {
 			c: k8s.NewFakeClient(withOwnerRef(t, createSecret("s", sampleData,
 				map[string]string{"existing": "existing"},
 				map[string]string{
-					"policy.k8s.elastic.co/secure-settings-secrets": `[{"secretName":"secret-1"}]`,
-					"policy.k8s.elastic.co/settings-hash":           "hash-1",
-					"existing":                                      "existing",
+					"policy.k8s.acceldata.io/secure-settings-secrets": `[{"secretName":"secret-1"}]`,
+					"policy.k8s.acceldata.io/settings-hash":           "hash-1",
+					"existing":                                        "existing",
 				}),
 			)),
 			expected: createSecret("s", sampleData, sampleLabels, map[string]string{
-				"policy.k8s.elastic.co/secure-settings-secrets": `[{"secretName":"secret-2"}]`,
-				"policy.k8s.elastic.co/settings-hash":           "hash-2",
+				"policy.k8s.acceldata.io/secure-settings-secrets": `[{"secretName":"secret-2"}]`,
+				"policy.k8s.acceldata.io/settings-hash":           "hash-2",
 			}),
 			want: withOwnerRef(t, createSecret("s", sampleData,
 				map[string]string{
 					"existing": "existing",                   // keep existing
 					"label1":   "value1", "label2": "value2", // add expected
 				}, map[string]string{
-					"policy.k8s.elastic.co/secure-settings-secrets": `[{"secretName":"secret-2"}]`,
-					"policy.k8s.elastic.co/settings-hash":           "hash-2",
-					"existing":                                      "existing",
+					"policy.k8s.acceldata.io/secure-settings-secrets": `[{"secretName":"secret-2"}]`,
+					"policy.k8s.acceldata.io/settings-hash":           "hash-2",
+					"existing":                                        "existing",
 				}),
 			),
 		},
@@ -173,18 +173,18 @@ func TestReconcileSecret(t *testing.T) {
 			c: k8s.NewFakeClient(withOwnerRef(t, createSecret("s", sampleData,
 				map[string]string{"existing": "existing"},
 				map[string]string{
-					"policy.k8s.elastic.co/secure-settings-secrets": `[{"secretName":"secret-1"}]`,
-					"policy.k8s.elastic.co/settings-hash":           "hash-1",
+					"policy.k8s.acceldata.io/secure-settings-secrets": `[{"secretName":"secret-1"}]`,
+					"policy.k8s.acceldata.io/settings-hash":           "hash-1",
 				}),
 			)),
 			expected: createSecret("s", sampleData, map[string]string{"existing": "existing"}, map[string]string{
-				"policy.k8s.elastic.co/settings-hash": "hash-1",
+				"policy.k8s.acceldata.io/settings-hash": "hash-1",
 			}),
 			want: withOwnerRef(t, createSecret("s", sampleData,
 				map[string]string{
 					"existing": "existing", // keep existing
 				}, map[string]string{
-					"policy.k8s.elastic.co/settings-hash": "hash-1",
+					"policy.k8s.acceldata.io/settings-hash": "hash-1",
 				}),
 			),
 		},
@@ -192,24 +192,24 @@ func TestReconcileSecret(t *testing.T) {
 			name: "override soft owner labels",
 			c: k8s.NewFakeClient(withOwnerRef(t, createSecret("s", sampleData,
 				map[string]string{
-					"existing":                           "existing",
-					"eck.k8s.elastic.co/owner-namespace": "x",
-					"eck.k8s.elastic.co/owner-name":      "x",
-					"eck.k8s.elastic.co/owner-kind":      "x",
+					"existing":                             "existing",
+					"eck.k8s.acceldata.io/owner-namespace": "x",
+					"eck.k8s.acceldata.io/owner-name":      "x",
+					"eck.k8s.acceldata.io/owner-kind":      "x",
 				},
 				sampleAnnotations,
 			))),
 			expected: createSecret("s", sampleData, map[string]string{
-				"eck.k8s.elastic.co/owner-namespace": "test",
-				"eck.k8s.elastic.co/owner-name":      "test",
-				"eck.k8s.elastic.co/owner-kind":      "StackConfigPolicy",
+				"eck.k8s.acceldata.io/owner-namespace": "test",
+				"eck.k8s.acceldata.io/owner-name":      "test",
+				"eck.k8s.acceldata.io/owner-kind":      "StackConfigPolicy",
 			}, sampleAnnotations),
 			want: withOwnerRef(t, createSecret("s", sampleData,
 				map[string]string{
-					"existing":                           "existing", // keep existing
-					"eck.k8s.elastic.co/owner-namespace": "test",
-					"eck.k8s.elastic.co/owner-name":      "test",
-					"eck.k8s.elastic.co/owner-kind":      "StackConfigPolicy",
+					"existing":                             "existing", // keep existing
+					"eck.k8s.acceldata.io/owner-namespace": "test",
+					"eck.k8s.acceldata.io/owner-name":      "test",
+					"eck.k8s.acceldata.io/owner-kind":      "StackConfigPolicy",
 				}, sampleAnnotations,
 			)),
 		},

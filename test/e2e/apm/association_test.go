@@ -13,16 +13,16 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 
-	apmv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/annotation"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/events"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/apmserver"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/kibana"
+	apmv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/annotation"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/events"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/apmserver"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/kibana"
 )
 
 // TestCrossNSAssociation tests associating Elasticsearch and an APM Server running in different namespaces.
@@ -33,7 +33,7 @@ func TestCrossNSAssociation(t *testing.T) {
 
 	esBuilder := elasticsearch.NewBuilder(name).
 		WithNamespace(esNamespace).
-		WithESMasterDataNodes(2, elasticsearch.DefaultResources). // TODO: revert when https://github.com/elastic/cloud-on-k8s/issues/7418 is resolved.
+		WithESMasterDataNodes(2, elasticsearch.DefaultResources). // TODO: revert when https://github.com/devendra/es-cloud-on-k8s/issues/7418 is resolved.
 		WithRestrictedSecurityContext()
 	apmBuilder := apmserver.NewBuilder(name).
 		WithNamespace(apmNamespace).
@@ -61,7 +61,7 @@ func TestAPMKibanaAssociation(t *testing.T) {
 
 	esBuilder := elasticsearch.NewBuilder(name).
 		WithNamespace(ns).
-		WithESMasterDataNodes(2, elasticsearch.DefaultResources). // TODO: revert when https://github.com/elastic/cloud-on-k8s/issues/7418 is resolved.
+		WithESMasterDataNodes(2, elasticsearch.DefaultResources). // TODO: revert when https://github.com/devendra/es-cloud-on-k8s/issues/7418 is resolved.
 		WithRestrictedSecurityContext()
 
 	kbBuilder := kibana.NewBuilder(name).

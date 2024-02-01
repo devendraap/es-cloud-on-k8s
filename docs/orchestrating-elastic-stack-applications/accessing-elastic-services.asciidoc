@@ -70,7 +70,7 @@ CAUTION: When you change the `clusterIP` setting of the service, ECK will delete
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: <kind>.k8s.elastic.co/{eck_crd_version}
+apiVersion: <kind>.k8s.acceldata.io/{eck_crd_version}
 kind: <Kind>
 metadata:
   name: hulk

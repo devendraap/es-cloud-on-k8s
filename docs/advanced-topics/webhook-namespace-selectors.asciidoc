@@ -8,7 +8,7 @@ endif::[]
 [id="{p}-{page_id}"]
 = Webhook namespace selectors 
 
-If you install ECK through the Helm chart, you can now set `namespaceSelector` and `objectSelector` on the webhook. The webhook name is generated as `<operator-name>.<operator-namespace>.k8s.elastic.co` so that multiple operators can be installed side-by-side in the same cluster. 
+If you install ECK through the Helm chart, you can now set `namespaceSelector` and `objectSelector` on the webhook. The webhook name is generated as `<operator-name>.<operator-namespace>.k8s.acceldata.io` so that multiple operators can be installed side-by-side in the same cluster. 
 
 This can be useful in large and busy clusters, where you might want to divide the set of namespaces across several operators to speed up reconciliation times and reduce the amount of resources required per operator.
 

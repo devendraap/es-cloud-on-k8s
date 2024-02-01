@@ -36,7 +36,7 @@ spec:
           image: docker.io/bash:5.2.15
           command: ['sleep', 'infinity']
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch
@@ -69,7 +69,7 @@ spec:
               memory: 16Mi
               cpu: 10m
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana
@@ -131,7 +131,7 @@ spec:
             memory: 1Gi
             cpu: 500m
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server
@@ -173,7 +173,7 @@ spec:
         securityContext:
           runAsUser: 0
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata: 
   name: elastic-agent

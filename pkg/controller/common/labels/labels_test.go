@@ -11,14 +11,14 @@ import (
 	"github.com/stretchr/testify/assert"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	agent "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	apm "github.com/elastic/cloud-on-k8s/v2/pkg/apis/apm/v1"
-	beat "github.com/elastic/cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	es "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	enterprisesearch "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
-	kibana "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	maps "github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	agent "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	apm "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/apm/v1"
+	beat "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	es "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	enterprisesearch "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+	kibana "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	maps "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
 )
 
 const testLabel TrueFalseLabel = "foo"
@@ -199,8 +199,8 @@ func TestGetIdentityLabels(t *testing.T) {
 				},
 			},
 			wantLabels: map[string]string{
-				commonv1.TypeLabelName:      "agent",
-				"agent.k8s.elastic.co/name": "test-agent",
+				commonv1.TypeLabelName:        "agent",
+				"agent.k8s.acceldata.io/name": "test-agent",
 			},
 		},
 		{
@@ -211,8 +211,8 @@ func TestGetIdentityLabels(t *testing.T) {
 				},
 			},
 			wantLabels: map[string]string{
-				commonv1.TypeLabelName:    "apm-server",
-				"apm.k8s.elastic.co/name": "test-apmserver",
+				commonv1.TypeLabelName:      "apm-server",
+				"apm.k8s.acceldata.io/name": "test-apmserver",
 			},
 		},
 		{
@@ -223,8 +223,8 @@ func TestGetIdentityLabels(t *testing.T) {
 				},
 			},
 			wantLabels: map[string]string{
-				commonv1.TypeLabelName:     "beat",
-				"beat.k8s.elastic.co/name": "test-beat",
+				commonv1.TypeLabelName:       "beat",
+				"beat.k8s.acceldata.io/name": "test-beat",
 			},
 		},
 		{
@@ -235,8 +235,8 @@ func TestGetIdentityLabels(t *testing.T) {
 				},
 			},
 			wantLabels: map[string]string{
-				commonv1.TypeLabelName:                      "elasticsearch",
-				"elasticsearch.k8s.elastic.co/cluster-name": "test-elasticsearch",
+				commonv1.TypeLabelName:                        "elasticsearch",
+				"elasticsearch.k8s.acceldata.io/cluster-name": "test-elasticsearch",
 			},
 		},
 		{
@@ -247,8 +247,8 @@ func TestGetIdentityLabels(t *testing.T) {
 				},
 			},
 			wantLabels: map[string]string{
-				commonv1.TypeLabelName:                 "enterprise-search",
-				"enterprisesearch.k8s.elastic.co/name": "test-es",
+				commonv1.TypeLabelName:                   "enterprise-search",
+				"enterprisesearch.k8s.acceldata.io/name": "test-es",
 			},
 		},
 		{
@@ -259,8 +259,8 @@ func TestGetIdentityLabels(t *testing.T) {
 				},
 			},
 			wantLabels: map[string]string{
-				commonv1.TypeLabelName:       "kibana",
-				"kibana.k8s.elastic.co/name": "test-kb",
+				commonv1.TypeLabelName:         "kibana",
+				"kibana.k8s.acceldata.io/name": "test-kb",
 			},
 		},
 		{
@@ -271,8 +271,8 @@ func TestGetIdentityLabels(t *testing.T) {
 				},
 			},
 			wantLabels: map[string]string{
-				commonv1.TypeLabelName:     "maps",
-				"maps.k8s.elastic.co/name": "test-ems",
+				commonv1.TypeLabelName:       "maps",
+				"maps.k8s.acceldata.io/name": "test-ems",
 			},
 		},
 	}

@@ -9,7 +9,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/runner"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/runner"
 )
 
 func CleanupCommand() *cobra.Command {

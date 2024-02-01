@@ -90,13 +90,13 @@ kind: Secret
 metadata:
   creationTimestamp: "2020-06-09T19:11:41Z"
   labels:
-    common.k8s.elastic.co/type: elasticsearch
-    eck.k8s.elastic.co/credentials: "true"
-    elasticsearch.k8s.elastic.co/cluster-name: quickstart
+    common.k8s.acceldata.io/type: elasticsearch
+    eck.k8s.acceldata.io/credentials: "true"
+    elasticsearch.k8s.acceldata.io/cluster-name: quickstart
   name: quickstart-es-elastic-user
   namespace: default
   ownerReferences:
-  - apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+  - apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
     blockOwnerDeletion: true
     controller: true
     kind: Elasticsearch
@@ -118,9 +118,9 @@ data:
 kind: Secret
 metadata:
   labels:
-    common.k8s.elastic.co/type: elasticsearch
-    eck.k8s.elastic.co/credentials: "true"
-    elasticsearch.k8s.elastic.co/cluster-name: quickstart
+    common.k8s.acceldata.io/type: elasticsearch
+    eck.k8s.acceldata.io/credentials: "true"
+    elasticsearch.k8s.acceldata.io/cluster-name: quickstart
   name: quickstart-es-elastic-user
   namespace: default
 type: Opaque
@@ -148,7 +148,7 @@ To work around this issue, scale down the underlying StatefulSet manually. First
 
 [source,sh]
 ----
-> kubectl get sts -l elasticsearch.k8s.elastic.co/cluster-name=<cluster-name>
+> kubectl get sts -l elasticsearch.k8s.acceldata.io/cluster-name=<cluster-name>
 NAME                       READY   AGE
 <cluster-name>-es-<nodeset>   m/n     44h
 ----
@@ -184,7 +184,7 @@ Possible causes include:
 kubectl get elasticsearch
 
 NAME                                                              HEALTH   NODES   VERSION   PHASE   AGE
-elasticsearch.elasticsearch.k8s.elastic.co/elasticsearch-sample   yellow   1       7.9.2     Ready   3m50s
+elasticsearch.elasticsearch.k8s.acceldata.io/elasticsearch-sample   yellow   1       7.9.2     Ready   3m50s
 ----
 +
 In this case, you have to link:{ref}/cluster-allocation-explain.html[check] and fix your shard allocations. The link:{ref}/cluster-health.html[cluster health], link:{ref}/cat-shards.html[cat shards], and <<{p}-elasticsearch-monitor-cluster-health,get Elasticsearch>> APIs can assist in tracking the shard recover process.
@@ -259,4 +259,4 @@ On OpenShift the same workaround can be performed in the UI by clicking on "Unin
 If you accidentally upgrade one of your Elasticsearch clusters to a version that does not exist or a version to which a direct upgrade is not possible from your currently deployed version, a validation will prevent you from going back to the previous version.
 The reason for this validation is that ECK will not allow downgrades as this is not supported by Elasticsearch and once the data directory of Elasticsearch has been upgraded there is no way back to the old version without a link:https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html[snapshot restore].
 
-These two upgrading scenarios, however, are exceptions because Elasticsearch never started up successfully. If you annotate the Elasticsearch resource with `eck.k8s.elastic.co/disable-downgrade-validation=true` ECK allows you to go back to the old version at your own risk. If you also attempted an upgrade of other related Elastic Stack applications at the same time you can use the same annotation to go back. Remove the annotation afterwards to prevent accidental downgrades and reduced availability.
+These two upgrading scenarios, however, are exceptions because Elasticsearch never started up successfully. If you annotate the Elasticsearch resource with `eck.k8s.acceldata.io/disable-downgrade-validation=true` ECK allows you to go back to the old version at your own risk. If you also attempted an upgrade of other related Elastic Stack applications at the same time you can use the same annotation to go back. Remove the annotation afterwards to prevent accidental downgrades and reduced availability.

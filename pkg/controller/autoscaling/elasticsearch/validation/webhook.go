@@ -16,14 +16,14 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
 )
 
-// +kubebuilder:webhook:path=/validate-autoscaling-k8s-elastic-co-v1alpha1-elasticsearchautoscaler,mutating=false,failurePolicy=ignore,groups=autoscaling.k8s.elastic.co,resources=elasticsearchautoscalers,verbs=create;update,versions=v1alpha1,name=elastic-esa-validation-v1alpha1.k8s.elastic.co,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
+// +kubebuilder:webhook:path=/validate-autoscaling-k8s-elastic-co-v1alpha1-elasticsearchautoscaler,mutating=false,failurePolicy=ignore,groups=autoscaling.k8s.acceldata.io,resources=elasticsearchautoscalers,verbs=create;update,versions=v1alpha1,name=elastic-esa-validation-v1alpha1.k8s.acceldata.io,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
 
 const (
 	webhookPath = "/validate-autoscaling-k8s-elastic-co-v1alpha1-elasticsearchautoscaler"
@@ -82,7 +82,7 @@ func ValidateElasticsearchAutoscaler(
 	validationErrors, runtimeError := check(esa, validations(ctx, k8sClient, checker))
 	if len(validationErrors) > 0 {
 		return apierrors.NewInvalid(
-			schema.GroupKind{Group: "autoscaling.k8s.elastic.co", Kind: v1alpha1.Kind},
+			schema.GroupKind{Group: "autoscaling.k8s.acceldata.io", Kind: v1alpha1.Kind},
 			esa.Name,
 			validationErrors,
 		), runtimeError

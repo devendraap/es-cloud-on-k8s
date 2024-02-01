@@ -1,4 +1,4 @@
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch-sample
@@ -10,7 +10,7 @@ spec:
       config:
         node.store.allow_mmap: false
 ---
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample

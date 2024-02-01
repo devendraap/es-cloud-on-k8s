@@ -11,49 +11,49 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/labels"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/labels"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
 )
 
 const (
 	// ClusterNameLabelName used to represent a cluster in k8s resources
-	ClusterNameLabelName = "elasticsearch.k8s.elastic.co/cluster-name"
+	ClusterNameLabelName = "elasticsearch.k8s.acceldata.io/cluster-name"
 	// ClusterNamespaceLabelName used to represent a cluster in k8s resources
-	ClusterNamespaceLabelName = "elasticsearch.k8s.elastic.co/cluster-namespace"
+	ClusterNamespaceLabelName = "elasticsearch.k8s.acceldata.io/cluster-namespace"
 	// VersionLabelName used to store the Elasticsearch version of the resource
-	VersionLabelName = "elasticsearch.k8s.elastic.co/version"
+	VersionLabelName = "elasticsearch.k8s.acceldata.io/version"
 	// PodNameLabelName used to store the name of the pod on other objects
-	PodNameLabelName = "elasticsearch.k8s.elastic.co/pod-name"
+	PodNameLabelName = "elasticsearch.k8s.acceldata.io/pod-name"
 	// StatefulSetNameLabelName used to store the name of the statefulset.
-	StatefulSetNameLabelName = "elasticsearch.k8s.elastic.co/statefulset-name"
+	StatefulSetNameLabelName = "elasticsearch.k8s.acceldata.io/statefulset-name"
 	// NodeTypesMasterLabelName is a label set to true on nodes with the master role
-	NodeTypesMasterLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-master"
+	NodeTypesMasterLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-master"
 	// NodeTypesDataLabelName is a label set to true on nodes with the data role
-	NodeTypesDataLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-data"
+	NodeTypesDataLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-data"
 	// NodeTypesIngestLabelName is a label set to true on nodes with the ingest role
-	NodeTypesIngestLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-ingest"
+	NodeTypesIngestLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-ingest"
 	// NodeTypesMLLabelName is a label set to true on nodes with the ml role
-	NodeTypesMLLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-ml"
+	NodeTypesMLLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-ml"
 	// NodeTypesTransformLabelName is a label set to true on nodes with the transform role
-	NodeTypesTransformLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-transform"
+	NodeTypesTransformLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-transform"
 	// NodeTypesRemoteClusterClientLabelName is a label set to true on nodes with the remote_cluster_client role
-	NodeTypesRemoteClusterClientLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-remote_cluster_client"
+	NodeTypesRemoteClusterClientLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-remote_cluster_client"
 	// NodeTypesVotingOnlyLabelName is a label set to true on voting-only master-eligible nodes
-	NodeTypesVotingOnlyLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-voting_only"
+	NodeTypesVotingOnlyLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-voting_only"
 	// NodeTypesDataColdLabelName is a label set to true on nodes with the data_cold role.
-	NodeTypesDataColdLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-data_cold"
+	NodeTypesDataColdLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-data_cold"
 	// NodeTypesDataContentLabelName is a label set to true on nodes with the data_content role.
-	NodeTypesDataContentLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-data_content"
+	NodeTypesDataContentLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-data_content"
 	// NodeTypesDataHotLabelName is a label set to true on nodes with the data_hot role.
-	NodeTypesDataHotLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-data_hot"
+	NodeTypesDataHotLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-data_hot"
 	// NodeTypesDataWarmLabelName is a label set to true on nodes with the data_warm role.
-	NodeTypesDataWarmLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-data_warm"
+	NodeTypesDataWarmLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-data_warm"
 	// NodeTypesDataFrozenLabelName is a label set to true on nodes with the data_frozen role.
-	NodeTypesDataFrozenLabelName labels.TrueFalseLabel = "elasticsearch.k8s.elastic.co/node-data_frozen"
+	NodeTypesDataFrozenLabelName labels.TrueFalseLabel = "elasticsearch.k8s.acceldata.io/node-data_frozen"
 
-	HTTPSchemeLabelName = "elasticsearch.k8s.elastic.co/http-scheme"
+	HTTPSchemeLabelName = "elasticsearch.k8s.acceldata.io/http-scheme"
 
 	// Type represents the Elasticsearch type
 	Type = "elasticsearch"

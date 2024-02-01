@@ -37,7 +37,7 @@ It is quite straightforward to connect a Kibana instance to an Elasticsearch clu
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: quickstart
@@ -70,7 +70,7 @@ kubectl create secret generic kibana-elasticsearch-credentials --from-literal=el
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -90,7 +90,7 @@ If the external Elasticsearch cluster is using a self-signed certificate, create
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -138,7 +138,7 @@ The following example demonstrates how to create a Kibana deployment with custom
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -177,7 +177,7 @@ The following example demonstrates how to set the `elasticsearch.requestHeadersW
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -223,7 +223,7 @@ kubectl create secret generic kibana-secret-settings \
 +
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -247,7 +247,7 @@ If you want to expose Kibana externally with a link:https://kubernetes.io/docs/c
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -279,7 +279,7 @@ You can disable the generation of the self-signed certificate and hence disable 
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample

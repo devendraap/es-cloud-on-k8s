@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const Annotation = "eck.k8s.elastic.co/license"
+const Annotation = "eck.k8s.acceldata.io/license"
 
 // HasRequestedLicenseLevel returns true if the operator license level matches the level expressed in the map of annotations.
 func HasRequestedLicenseLevel(ctx context.Context, annotations map[string]string, checker Checker) (bool, error) {

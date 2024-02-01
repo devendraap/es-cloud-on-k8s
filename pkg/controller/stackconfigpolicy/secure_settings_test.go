@@ -13,10 +13,10 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kibanav1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kibanav1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_GetSecureSettingsSecretSourcesForResources(t *testing.T) {
@@ -103,5 +103,5 @@ func addSecureSettingsAnnotationToSecret(secret *corev1.Secret, namespace string
 	if secret.Annotations == nil {
 		secret.Annotations = make(map[string]string)
 	}
-	secret.Annotations["policy.k8s.elastic.co/secure-settings-secrets"] = fmt.Sprintf(`[{"namespace":"%s","secretName":"shared-secret"}]`, namespace)
+	secret.Annotations["policy.k8s.acceldata.io/secure-settings-secrets"] = fmt.Sprintf(`[{"namespace":"%s","secretName":"shared-secret"}]`, namespace)
 }

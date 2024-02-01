@@ -76,7 +76,7 @@ Simple full example Elastic Stack config policy to configure LDAP realm with use
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: stackconfigpolicy.k8s.elastic.co/v1alpha1
+apiVersion: stackconfigpolicy.k8s.acceldata.io/v1alpha1
 kind: StackConfigPolicy
 metadata:
   name: test-stack-config-policy
@@ -137,7 +137,7 @@ Example Elastic Stack config policy to configure LDAP realm with user DN templat
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: stackconfigpolicy.k8s.elastic.co/v1alpha1
+apiVersion: stackconfigpolicy.k8s.acceldata.io/v1alpha1
 kind: StackConfigPolicy
 metadata:
   name: test-stack-config-policy

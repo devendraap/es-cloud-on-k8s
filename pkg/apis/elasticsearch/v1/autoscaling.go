@@ -9,10 +9,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/stringsutil"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/stringsutil"
 )
 
 var (

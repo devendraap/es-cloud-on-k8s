@@ -11,9 +11,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/driver"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/name"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/driver"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/name"
 )
 
 // Resources holds all the resources needed to create a keystore in Kibana or in the APM server.

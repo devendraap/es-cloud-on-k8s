@@ -13,10 +13,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/comparison"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/compare"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/comparison"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/compare"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func TestReconcileService(t *testing.T) {
@@ -55,7 +55,7 @@ func mkService(owner *kbv1.Kibana) *corev1.Service {
 			Annotations: map[string]string{"ann1": "annval1", "ann2": "annval2"},
 			OwnerReferences: []metav1.OwnerReference{
 				{
-					APIVersion:         "kibana.k8s.elastic.co/v1",
+					APIVersion:         "kibana.k8s.acceldata.io/v1",
 					Kind:               "Kibana",
 					Name:               owner.Name,
 					Controller:         &trueVal,

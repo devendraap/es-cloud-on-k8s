@@ -13,9 +13,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	policyv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	policyv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_reconcileSecretMountSecretsESNamespace(t *testing.T) {
@@ -126,12 +126,12 @@ func getSecretMountSecret(t *testing.T, name string, namespace string, policyNam
 			Name:      name,
 			Namespace: namespace,
 			Labels: map[string]string{
-				"elasticsearch.k8s.elastic.co/cluster-name": "another-es",
-				"common.k8s.elastic.co/type":                "elasticsearch",
-				"asset.policy.k8s.elastic.co/on-delete":     orphanObjectOnPolicyDeleteStratergy,
-				"eck.k8s.elastic.co/owner-namespace":        policyNamespace,
-				"eck.k8s.elastic.co/owner-name":             policyName,
-				"eck.k8s.elastic.co/owner-kind":             policyv1alpha1.Kind,
+				"elasticsearch.k8s.acceldata.io/cluster-name": "another-es",
+				"common.k8s.acceldata.io/type":                "elasticsearch",
+				"asset.policy.k8s.acceldata.io/on-delete":     orphanObjectOnPolicyDeleteStratergy,
+				"eck.k8s.acceldata.io/owner-namespace":        policyNamespace,
+				"eck.k8s.acceldata.io/owner-name":             policyName,
+				"eck.k8s.acceldata.io/owner-kind":             policyv1alpha1.Kind,
 			},
 		},
 		Data: map[string][]byte{

@@ -9,27 +9,27 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	emsv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	eslabel "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/rbac"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	emsv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	eslabel "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/rbac"
 )
 
 const (
 	// MapsESAssociationLabelName marks resources created for an association originating from Maps with the
 	// Maps name.
-	MapsESAssociationLabelName = "mapsassociation.k8s.elastic.co/name"
+	MapsESAssociationLabelName = "mapsassociation.k8s.acceldata.io/name"
 	// MapsESAssociationLabelNamespace marks resources created for an association originating from Maps with the
 	// Maps namespace.
-	MapsESAssociationLabelNamespace = "mapsassociation.k8s.elastic.co/namespace"
+	MapsESAssociationLabelNamespace = "mapsassociation.k8s.acceldata.io/namespace"
 	// MapsESAssociationLabelType marks resources created for an association originating from Maps
 	// with the target resource type (e.g. "elasticsearch").
-	MapsESAssociationLabelType = "mapsassociation.k8s.elastic.co/type"
+	MapsESAssociationLabelType = "mapsassociation.k8s.acceldata.io/type"
 
 	// MapsSystemUserBuiltinRole is the name of the built-in role for the Maps system user.
 	MapsSystemUserBuiltinRole = user.ProbeUserRole

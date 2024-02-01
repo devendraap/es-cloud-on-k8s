@@ -13,7 +13,7 @@ linters-settings:
 
   goimports:
     # put imports beginning with prefix after 3rd-party packages;
-    local-prefixes: github.com/elastic/cloud-on-k8s
+    local-prefixes: github.com/devendra/es-cloud-on-k8s
 
   nolintlint:
     allow-leading-space: false

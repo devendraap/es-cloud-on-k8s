@@ -1,4 +1,4 @@
-apiVersion: logstash.k8s.elastic.co/v1alpha1
+apiVersion: logstash.k8s.acceldata.io/v1alpha1
 kind: Logstash
 metadata:
   name: logstash-sample

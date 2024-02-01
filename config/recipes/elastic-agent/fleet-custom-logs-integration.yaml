@@ -1,4 +1,4 @@
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana
@@ -63,7 +63,7 @@ spec:
                 symlinks: true
                 condition: ${kubernetes.namespace} == 'default'
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch
@@ -75,7 +75,7 @@ spec:
     config:
       node.store.allow_mmap: false
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: fleet-server
@@ -97,7 +97,7 @@ spec:
         securityContext:
           runAsUser: 0
 ---
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata: 
   name: elastic-agent

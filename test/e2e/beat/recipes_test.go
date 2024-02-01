@@ -18,17 +18,17 @@ import (
 	"k8s.io/apimachinery/pkg/util/rand"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	beatv1beta1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	beatcommon "github.com/elastic/cloud-on-k8s/v2/pkg/controller/beat/common"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/net"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/beat"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/helper"
+	beatv1beta1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	beatcommon "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/beat/common"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/net"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/beat"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/helper"
 )
 
 const (
@@ -190,7 +190,7 @@ func TestAuditbeatHostsRecipe(t *testing.T) {
 	if test.Ctx().Provider == "kind" || test.Ctx().HasTag(test.ArchARMTag) {
 		// Skipping test because recipe relies on syscall audit rules unavailable on arm64
 		// Also: kind doesn't support configuring required settings
-		// see https://github.com/elastic/cloud-on-k8s/issues/3328 for more context
+		// see https://github.com/devendra/es-cloud-on-k8s/issues/3328 for more context
 		t.SkipNow()
 	}
 

@@ -5,13 +5,13 @@
 package v1beta1
 
 import (
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
 )
 
 // GetIdentityLabels will return the common Elastic assigned labels for the Beat.
 func (b *Beat) GetIdentityLabels() map[string]string {
 	return map[string]string{
-		commonv1.TypeLabelName:     "beat",
-		"beat.k8s.elastic.co/name": b.Name,
+		commonv1.TypeLabelName:       "beat",
+		"beat.k8s.acceldata.io/name": b.Name,
 	}
 }

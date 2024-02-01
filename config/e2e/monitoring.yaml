@@ -1,5 +1,5 @@
 # This file contains all the resources (including RBAC resources) for E2E test monitoring
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: e2e-agent

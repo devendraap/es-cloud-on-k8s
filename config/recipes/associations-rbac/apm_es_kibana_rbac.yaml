@@ -25,7 +25,7 @@ metadata:
   name: elasticsearch-association
 rules:
   - apiGroups:
-      - elasticsearch.k8s.elastic.co
+      - elasticsearch.k8s.acceldata.io
     resources:
       - elasticsearches
     # It is also possible to do some fine grain filtering with some per cluster roles
@@ -78,7 +78,7 @@ subjects:
     name: apmserver-user
     namespace: apmserver-ns
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch-sample
@@ -91,7 +91,7 @@ spec:
       config:
         node.store.allow_mmap: false
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana-sample
@@ -109,7 +109,7 @@ spec:
   # Service account used by Kibana to get access to the Elasticsearch cluster
   serviceAccountName: kibana-user
 ---
-apiVersion: apm.k8s.elastic.co/v1
+apiVersion: apm.k8s.acceldata.io/v1
 kind: ApmServer
 metadata:
   name: apm-apm-sample

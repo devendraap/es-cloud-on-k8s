@@ -1,11 +1,11 @@
 resources:
-  - apm.k8s.elastic.co_apmservers.yaml
-  - elasticsearch.k8s.elastic.co_elasticsearches.yaml
-  - autoscaling.k8s.elastic.co_elasticsearchautoscalers.yaml
-  - kibana.k8s.elastic.co_kibanas.yaml
-  - enterprisesearch.k8s.elastic.co_enterprisesearches.yaml
-  - beat.k8s.elastic.co_beats.yaml
-  - agent.k8s.elastic.co_agents.yaml
-  - maps.k8s.elastic.co_elasticmapsservers.yaml
-  - stackconfigpolicy.k8s.elastic.co_stackconfigpolicies.yaml
-  - logstash.k8s.elastic.co_logstashes.yaml
+  - apm.k8s.acceldata.io_apmservers.yaml
+  - elasticsearch.k8s.acceldata.io_elasticsearches.yaml
+  - autoscaling.k8s.acceldata.io_elasticsearchautoscalers.yaml
+  - kibana.k8s.acceldata.io_kibanas.yaml
+  - enterprisesearch.k8s.acceldata.io_enterprisesearches.yaml
+  - beat.k8s.acceldata.io_beats.yaml
+  - agent.k8s.acceldata.io_agents.yaml
+  - maps.k8s.acceldata.io_elasticmapsservers.yaml
+  - stackconfigpolicy.k8s.acceldata.io_stackconfigpolicies.yaml
+  - logstash.k8s.acceldata.io_logstashes.yaml

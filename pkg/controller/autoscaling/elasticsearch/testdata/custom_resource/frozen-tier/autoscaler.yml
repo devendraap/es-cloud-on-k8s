@@ -1,5 +1,5 @@
 ---
-apiVersion: autoscaling.k8s.elastic.co/v1alpha1
+apiVersion: autoscaling.k8s.acceldata.io/v1alpha1
 kind: ElasticsearchAutoscaler
 metadata:
   name: test-autoscaler

@@ -1,6 +1,6 @@
 # How to serve Kibana from a path. In this example we make Kibana available at https://elastic.stack/kibana.
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: thor

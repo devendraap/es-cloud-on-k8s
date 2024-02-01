@@ -14,10 +14,10 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
 )
 
 // deleteOrphanedResources deletes resources created by this association that are left over from previous reconciliation
@@ -65,14 +65,14 @@ func deleteOrphanedResources(
 func isSecretForAssociation(info AssociationInfo, secret corev1.Secret, association commonv1.Association) bool {
 	ref := association.AssociationRef()
 
-	// grab name from label (eg. elasticsearch.k8s.elastic.co/cluster-name=elasticsearch1 or kibana.k8s.elastic.co/name=kibana1)
+	// grab name from label (eg. elasticsearch.k8s.acceldata.io/cluster-name=elasticsearch1 or kibana.k8s.acceldata.io/name=kibana1)
 	resourceName, ok := secret.Labels[info.AssociationResourceNameLabelName]
 	if !ok || resourceName != ref.Name {
 		// name points to a resource not involved in this `association`
 		return false
 	}
 
-	// grab namespace from label (eg. elasticsearch.k8s.elastic.co/cluster-namespace=default or kibana.k8s.elastic.co/namespace=default)
+	// grab namespace from label (eg. elasticsearch.k8s.acceldata.io/cluster-namespace=default or kibana.k8s.acceldata.io/namespace=default)
 	resourceNamespace, ok := secret.Labels[info.AssociationResourceNamespaceLabelName]
 	if !ok || resourceNamespace != ref.Namespace {
 		// namespace points to a resource not involved in this `association`

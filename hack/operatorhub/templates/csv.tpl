@@ -13,7 +13,7 @@ metadata:
     alm-examples: |-
       [
           {
-              "apiVersion": "elasticsearch.k8s.elastic.co/v1",
+              "apiVersion": "elasticsearch.k8s.acceldata.io/v1",
               "kind": "Elasticsearch",
               "metadata": {
                   "name": "elasticsearch-sample"
@@ -58,7 +58,7 @@ metadata:
               }
           },
           {
-              "apiVersion": "kibana.k8s.elastic.co/v1",
+              "apiVersion": "kibana.k8s.acceldata.io/v1",
               "kind": "Kibana",
               "metadata": {
                   "name": "kibana-sample"
@@ -96,7 +96,7 @@ metadata:
               }
           },
           {
-              "apiVersion": "apm.k8s.elastic.co/v1",
+              "apiVersion": "apm.k8s.acceldata.io/v1",
               "kind": "ApmServer",
               "metadata": {
                   "name": "apmserver-sample"
@@ -110,7 +110,7 @@ metadata:
               }
           },
           {
-              "apiVersion": "enterprisesearch.k8s.elastic.co/v1",
+              "apiVersion": "enterprisesearch.k8s.acceldata.io/v1",
               "kind": "EnterpriseSearch",
               "metadata": {
                   "name": "ent-sample"
@@ -127,7 +127,7 @@ metadata:
               }
           },
           {
-            "apiVersion": "beat.k8s.elastic.co/v1beta1",
+            "apiVersion": "beat.k8s.acceldata.io/v1beta1",
             "kind": "Beat",
             "metadata": {
               "name": "heartbeat-sample"
@@ -162,7 +162,7 @@ metadata:
             }
           },
           {
-            "apiVersion": "agent.k8s.elastic.co/v1alpha1",
+            "apiVersion": "agent.k8s.acceldata.io/v1alpha1",
             "kind": "Agent",
             "metadata": {
               "name": "agent-sample"
@@ -214,7 +214,7 @@ metadata:
             }
           },
           {
-              "apiVersion": "maps.k8s.elastic.co/v1alpha1",
+              "apiVersion": "maps.k8s.acceldata.io/v1alpha1",
               "kind": "ElasticMapsServer",
               "metadata": {
                   "name": "ems-sample"
@@ -228,7 +228,7 @@ metadata:
               }
           },
           {
-              "apiVersion": "logstash.k8s.elastic.co/v1alpha1",
+              "apiVersion": "logstash.k8s.acceldata.io/v1alpha1",
               "kind": "Logstash",
               "metadata" : {
                   "name": "logstash-sample"

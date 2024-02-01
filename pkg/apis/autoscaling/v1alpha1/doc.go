@@ -4,5 +4,5 @@
 
 // Package v1alpha1 contains API schema definitions for managing ElasticsearchAutoscaler resources.
 // +kubebuilder:object:generate=true
-// +groupName=autoscaling.k8s.elastic.co
+// +groupName=autoscaling.k8s.acceldata.io
 package v1alpha1

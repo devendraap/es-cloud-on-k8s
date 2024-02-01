@@ -8,11 +8,11 @@ import (
 	"context"
 	"fmt"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	entv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/checks"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	entv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/checks"
 )
 
 func (b Builder) CheckK8sTestSteps(k *test.K8sClient) test.StepList {
@@ -36,9 +36,9 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: entName + "-ent-config",
 				Keys: []string{"enterprise-search.yml", "readiness-probe.sh"},
 				Labels: map[string]string{
-					"common.k8s.elastic.co/type":           "enterprise-search",
-					"eck.k8s.elastic.co/credentials":       "true",
-					"enterprisesearch.k8s.elastic.co/name": entName,
+					"common.k8s.acceldata.io/type":           "enterprise-search",
+					"eck.k8s.acceldata.io/credentials":       "true",
+					"enterprisesearch.k8s.acceldata.io/name": entName,
 				},
 			},
 		}
@@ -48,19 +48,19 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: entName + "-ent-es-ca",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"elasticsearch.k8s.elastic.co/cluster-name": b.EnterpriseSearch.Spec.ElasticsearchRef.Name,
-						"entassociation.k8s.elastic.co/name":        entName,
-						"entassociation.k8s.elastic.co/namespace":   b.EnterpriseSearch.Namespace,
+						"elasticsearch.k8s.acceldata.io/cluster-name": b.EnterpriseSearch.Spec.ElasticsearchRef.Name,
+						"entassociation.k8s.acceldata.io/name":        entName,
+						"entassociation.k8s.acceldata.io/namespace":   b.EnterpriseSearch.Namespace,
 					},
 				},
 				test.ExpectedSecret{
 					Name: entName + "-ent-user",
 					Keys: []string{b.EnterpriseSearch.Namespace + "-" + entName + "-ent-user"},
 					Labels: map[string]string{
-						"eck.k8s.elastic.co/credentials":            "true",
-						"elasticsearch.k8s.elastic.co/cluster-name": b.EnterpriseSearch.Spec.ElasticsearchRef.Name,
-						"entassociation.k8s.elastic.co/name":        entName,
-						"entassociation.k8s.elastic.co/namespace":   b.EnterpriseSearch.Namespace,
+						"eck.k8s.acceldata.io/credentials":            "true",
+						"elasticsearch.k8s.acceldata.io/cluster-name": b.EnterpriseSearch.Spec.ElasticsearchRef.Name,
+						"entassociation.k8s.acceldata.io/name":        entName,
+						"entassociation.k8s.acceldata.io/namespace":   b.EnterpriseSearch.Namespace,
 					},
 				},
 			)
@@ -72,8 +72,8 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: entName + "-ent-http-ca-internal",
 					Keys: []string{"tls.crt", "tls.key"},
 					Labels: map[string]string{
-						"enterprisesearch.k8s.elastic.co/name": entName,
-						"common.k8s.elastic.co/type":           "enterprise-search",
+						"enterprisesearch.k8s.acceldata.io/name": entName,
+						"common.k8s.acceldata.io/type":           "enterprise-search",
 					},
 				},
 			)
@@ -85,16 +85,16 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: entName + "-ent-http-certs-internal",
 					Keys: []string{"tls.crt", "tls.key", "ca.crt"},
 					Labels: map[string]string{
-						"enterprisesearch.k8s.elastic.co/name": entName,
-						"common.k8s.elastic.co/type":           "enterprise-search",
+						"enterprisesearch.k8s.acceldata.io/name": entName,
+						"common.k8s.acceldata.io/type":           "enterprise-search",
 					},
 				},
 				test.ExpectedSecret{
 					Name: entName + "-ent-http-certs-public",
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"enterprisesearch.k8s.elastic.co/name": entName,
-						"common.k8s.elastic.co/type":           "enterprise-search",
+						"enterprisesearch.k8s.acceldata.io/name": entName,
+						"common.k8s.acceldata.io/type":           "enterprise-search",
 					},
 				},
 			)
@@ -118,8 +118,8 @@ func CheckStatus(b Builder, k *test.K8sClient) test.Step {
 			if err := test.CheckSelector(
 				ent.Status.Selector,
 				map[string]string{
-					"enterprisesearch.k8s.elastic.co/name": ent.Name,
-					"common.k8s.elastic.co/type":           "enterprise-search",
+					"enterprisesearch.k8s.acceldata.io/name": ent.Name,
+					"common.k8s.acceldata.io/type":           "enterprise-search",
 				}); err != nil {
 				return err
 			}

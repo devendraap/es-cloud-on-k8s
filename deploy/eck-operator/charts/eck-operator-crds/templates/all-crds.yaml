@@ -9,9 +9,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: agents.agent.k8s.elastic.co
+  name: agents.agent.k8s.acceldata.io
 spec:
-  group: agent.k8s.elastic.co
+  group: agent.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -1135,9 +1135,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: apmservers.apm.k8s.elastic.co
+  name: apmservers.apm.k8s.acceldata.io
 spec:
-  group: apm.k8s.elastic.co
+  group: apm.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -2354,9 +2354,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: beats.beat.k8s.elastic.co
+  name: beats.beat.k8s.acceldata.io
 spec:
-  group: beat.k8s.elastic.co
+  group: beat.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -2837,9 +2837,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: elasticmapsservers.maps.k8s.elastic.co
+  name: elasticmapsservers.maps.k8s.acceldata.io
 spec:
-  group: maps.k8s.elastic.co
+  group: maps.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -3433,9 +3433,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: elasticsearchautoscalers.autoscaling.k8s.elastic.co
+  name: elasticsearchautoscalers.autoscaling.k8s.acceldata.io
 spec:
-  group: autoscaling.k8s.elastic.co
+  group: autoscaling.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -3789,9 +3789,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: elasticsearches.elasticsearch.k8s.elastic.co
+  name: elasticsearches.elasticsearch.k8s.acceldata.io
 spec:
-  group: elasticsearch.k8s.elastic.co
+  group: elasticsearch.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -6498,9 +6498,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: enterprisesearches.enterprisesearch.k8s.elastic.co
+  name: enterprisesearches.enterprisesearch.k8s.acceldata.io
 spec:
-  group: enterprisesearch.k8s.elastic.co
+  group: enterprisesearch.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -7651,9 +7651,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: kibanas.kibana.k8s.elastic.co
+  name: kibanas.kibana.k8s.acceldata.io
 spec:
-  group: kibana.k8s.elastic.co
+  group: kibana.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -8948,9 +8948,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: logstashes.logstash.k8s.elastic.co
+  name: logstashes.logstash.k8s.acceldata.io
 spec:
-  group: logstash.k8s.elastic.co
+  group: logstash.k8s.acceldata.io
   names:
     categories:
     - elastic
@@ -10161,9 +10161,9 @@ metadata:
     app.kubernetes.io/name: '{{ include "eck-operator-crds.name" . }}'
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
     helm.sh/chart: '{{ include "eck-operator-crds.chart" . }}'
-  name: stackconfigpolicies.stackconfigpolicy.k8s.elastic.co
+  name: stackconfigpolicies.stackconfigpolicy.k8s.acceldata.io
 spec:
-  group: stackconfigpolicy.k8s.elastic.co
+  group: stackconfigpolicy.k8s.acceldata.io
   names:
     categories:
     - elastic

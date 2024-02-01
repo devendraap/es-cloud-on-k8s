@@ -12,9 +12,9 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/maps"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/maps"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 type APIError struct {

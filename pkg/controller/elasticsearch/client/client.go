@@ -15,16 +15,16 @@ import (
 	"go.elastic.co/apm/module/apmelasticsearch/v2"
 	"k8s.io/apimachinery/pkg/types"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/annotation"
-	commonhttp "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/http"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/net"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/annotation"
+	commonhttp "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/http"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/net"
 )
 
 const (
 	// ESClientTimeoutAnnotation is the name of the annotation used to set the Elasticsearch client timeout.
-	ESClientTimeoutAnnotation = "eck.k8s.elastic.co/es-client-timeout"
+	ESClientTimeoutAnnotation = "eck.k8s.acceldata.io/es-client-timeout"
 )
 
 // DefaultESClientTimeout is the default timeout value for Elasticsearch requests.

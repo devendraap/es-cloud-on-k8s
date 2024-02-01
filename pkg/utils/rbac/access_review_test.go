@@ -17,7 +17,7 @@ import (
 	"k8s.io/client-go/kubernetes/fake"
 	k8stesting "k8s.io/client-go/testing"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
 )
 
 type fakeClientProvider func() kubernetes.Interface
@@ -223,7 +223,7 @@ func Test_newSubjectAccessReview(t *testing.T) {
 	es := &esv1.Elasticsearch{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "Elasticsearch",
-			APIVersion: "elasticsearch.k8s.elastic.co/v1",
+			APIVersion: "elasticsearch.k8s.acceldata.io/v1",
 		},
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      "es-sample",
@@ -255,7 +255,7 @@ func Test_newSubjectAccessReview(t *testing.T) {
 						Namespace: "es-ns",
 						Verb:      "get",
 						Resource:  "elasticsearches",
-						Group:     "elasticsearch.k8s.elastic.co",
+						Group:     "elasticsearch.k8s.acceldata.io",
 						Version:   "v1",
 						Name:      "es-sample",
 					},

@@ -11,10 +11,10 @@ import (
 
 func TestApmEsAssociation_AssociationConfAnnotationName(t *testing.T) {
 	bea := BeatESAssociation{}
-	require.Equal(t, "association.k8s.elastic.co/es-conf", bea.AssociationConfAnnotationName())
+	require.Equal(t, "association.k8s.acceldata.io/es-conf", bea.AssociationConfAnnotationName())
 }
 
 func TestApmKibanaAssociation_AssociationConfAnnotationName(t *testing.T) {
 	bka := BeatKibanaAssociation{}
-	require.Equal(t, "association.k8s.elastic.co/kb-conf", bka.AssociationConfAnnotationName())
+	require.Equal(t, "association.k8s.acceldata.io/kb-conf", bka.AssociationConfAnnotationName())
 }

@@ -20,22 +20,22 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kibanav1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	policyv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
-	commonannotation "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/annotation"
-	commonesclient "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/esclient"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
-	commonlabels "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/labels"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/reconciler"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	esclient "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/filesettings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/net"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kibanav1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	policyv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/stackconfigpolicy/v1alpha1"
+	commonannotation "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/annotation"
+	commonesclient "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/esclient"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
+	commonlabels "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/labels"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/reconciler"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	esclient "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/filesettings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/net"
 )
 
 type fakeEsClient struct {
@@ -174,11 +174,11 @@ func TestReconcileStackConfigPolicy_Reconcile(t *testing.T) {
 			Namespace: "ns",
 			Name:      "test-es-es-file-settings",
 			Labels: map[string]string{
-				"common.k8s.elastic.co/type":                    "elasticsearch",
-				"elasticsearch.k8s.elastic.co/cluster-name":     "test-es",
-				"eck.k8s.elastic.co/owner-kind":                 "StackConfigPolicy",
-				"eck.k8s.elastic.co/owner-namespace":            "ns",
-				"eck.k8s.elastic.co/owner-name":                 "test-policy",
+				"common.k8s.acceldata.io/type":                  "elasticsearch",
+				"elasticsearch.k8s.acceldata.io/cluster-name":   "test-es",
+				"eck.k8s.acceldata.io/owner-kind":               "StackConfigPolicy",
+				"eck.k8s.acceldata.io/owner-namespace":          "ns",
+				"eck.k8s.acceldata.io/owner-name":               "test-policy",
 				commonlabels.StackConfigPolicyOnDeleteLabelName: commonlabels.OrphanSecretResetOnPolicyDelete,
 			},
 		},
@@ -186,23 +186,23 @@ func TestReconcileStackConfigPolicy_Reconcile(t *testing.T) {
 	}
 	secretHash, err := getSettingsHash(secretFixture)
 	assert.NoError(t, err)
-	secretFixture.Annotations = map[string]string{"policy.k8s.elastic.co/settings-hash": secretHash,
-		"policy.k8s.elastic.co/secure-settings-secrets": `[{"namespace":"ns","secretName":"shared-secret"},{"namespace":"ns","secretName":"shared-secret1"}]`}
+	secretFixture.Annotations = map[string]string{"policy.k8s.acceldata.io/settings-hash": secretHash,
+		"policy.k8s.acceldata.io/secure-settings-secrets": `[{"namespace":"ns","secretName":"shared-secret"},{"namespace":"ns","secretName":"shared-secret1"}]`}
 
 	conflictingSecretFixture := secretFixture.DeepCopy()
-	conflictingSecretFixture.Labels["eck.k8s.elastic.co/owner-name"] = "another-policy"
+	conflictingSecretFixture.Labels["eck.k8s.acceldata.io/owner-name"] = "another-policy"
 
 	orphanSecretFixture := secretFixture.DeepCopy()
 	orphanSecretFixture.Name = "another-es-es-file-settings"
-	orphanSecretFixture.Labels["elasticsearch.k8s.elastic.co/cluster-name"] = "another-es"
+	orphanSecretFixture.Labels["elasticsearch.k8s.acceldata.io/cluster-name"] = "another-es"
 
 	orphanElasticsearchConfigSecretFixture := corev1.Secret{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      esv1.StackConfigElasticsearchConfigSecretName("another-es"),
 			Namespace: "ns",
 			Labels: map[string]string{
-				"elasticsearch.k8s.elastic.co/cluster-name":     "another-es",
-				"common.k8s.elastic.co/type":                    "elasticsearch",
+				"elasticsearch.k8s.acceldata.io/cluster-name":   "another-es",
+				"common.k8s.acceldata.io/type":                  "elasticsearch",
 				commonlabels.StackConfigPolicyOnDeleteLabelName: commonlabels.OrphanSecretDeleteOnPolicyDelete,
 				reconciler.SoftOwnerNamespaceLabel:              policyFixture.Namespace,
 				reconciler.SoftOwnerNameLabel:                   policyFixture.Name,

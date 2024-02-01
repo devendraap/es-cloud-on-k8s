@@ -22,22 +22,22 @@ import (
 	"k8s.io/client-go/tools/record"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	entv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/events"
-	commonhttp "github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/http"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/tracing"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/net"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/stringsutil"
+	entv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/enterprisesearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/events"
+	commonhttp "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/http"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/tracing"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/net"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/stringsutil"
 )
 
 const (
 	// ReadOnlyModeAnnotationName stores "true" when read-only mode is enabled.
-	ReadOnlyModeAnnotationName = "enterprisesearch.k8s.elastic.co/read-only"
+	ReadOnlyModeAnnotationName = "enterprisesearch.k8s.acceldata.io/read-only"
 	// ReadOnlyModeAPIPath is the HTTP path of the read-only mode API.
 	ReadOnlyModeAPIPath = "/api/ent/v1/internal/read_only_mode"
 	// ReadOnlyModeReqTimeout is the duration after which a request to the read-only mode API should be canceled.

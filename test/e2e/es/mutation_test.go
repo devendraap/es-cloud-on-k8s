@@ -12,9 +12,9 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/elasticsearch"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/elasticsearch"
 )
 
 // TestMutationHTTPToHTTPS creates a 3 node cluster running without TLS on the HTTP layer,
@@ -161,7 +161,7 @@ func TestMutationSecondMasterSetDown(t *testing.T) {
 	mutated := b.WithNoESTopology().
 		WithESMasterDataNodes(1, elasticsearch.DefaultResources)
 
-	// added to debug https://github.com/elastic/cloud-on-k8s/issues/5865 can be removed once stable
+	// added to debug https://github.com/devendra/es-cloud-on-k8s/issues/5865 can be removed once stable
 	if version.MustParse(b.Elasticsearch.Spec.Version).GTE(version.MinFor(7, 7, 0)) {
 		b = b.WithAdditionalConfig(map[string]map[string]interface{}{
 			"masterdata": {

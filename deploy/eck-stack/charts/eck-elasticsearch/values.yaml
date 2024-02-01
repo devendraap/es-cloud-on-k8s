@@ -135,7 +135,7 @@ volumeClaimDeletePolicy: ""
 #     minAvailable: 2
 #     selector:
 #       matchLabels:
-#         elasticsearch.k8s.elastic.co/cluster-name: quickstart
+#         elasticsearch.k8s.acceldata.io/cluster-name: quickstart
 #   disabled: true
 
 # Used to check access from the current resource to a resource (for ex. a remote Elasticsearch cluster) in a different namespace.

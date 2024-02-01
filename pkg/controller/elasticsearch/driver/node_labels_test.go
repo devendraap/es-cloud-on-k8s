@@ -13,8 +13,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 // expectedPodsAnnotations holds pod -> expectedAnnotation -> expectedValue
@@ -65,7 +65,7 @@ func Test_annotatePodsWithNodeLabels(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name:        esName,
 						Namespace:   "ns",
-						Annotations: map[string]string{"eck.k8s.elastic.co/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
+						Annotations: map[string]string{"eck.k8s.acceldata.io/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
 					},
 				},
 				objects: []client.Object{
@@ -85,7 +85,7 @@ func Test_annotatePodsWithNodeLabels(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name:        esName,
 						Namespace:   "ns",
-						Annotations: map[string]string{"eck.k8s.elastic.co/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
+						Annotations: map[string]string{"eck.k8s.acceldata.io/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
 					},
 				},
 				objects: []client.Object{
@@ -114,7 +114,7 @@ func Test_annotatePodsWithNodeLabels(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name:        esName,
 						Namespace:   "ns",
-						Annotations: map[string]string{"eck.k8s.elastic.co/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
+						Annotations: map[string]string{"eck.k8s.acceldata.io/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
 					},
 				},
 				objects: []client.Object{
@@ -145,7 +145,7 @@ func Test_annotatePodsWithNodeLabels(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name:        esName,
 						Namespace:   "ns",
-						Annotations: map[string]string{"eck.k8s.elastic.co/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
+						Annotations: map[string]string{"eck.k8s.acceldata.io/downward-node-labels": "topology.kubernetes.io/region,topology.kubernetes.io/zone"},
 					},
 				},
 				objects: []client.Object{
@@ -216,7 +216,7 @@ func (pb *podBuilder) build() *corev1.Pod {
 	pod := corev1.Pod{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: pb.podName, Namespace: "ns",
-			Labels:      map[string]string{"elasticsearch.k8s.elastic.co/cluster-name": esName},
+			Labels:      map[string]string{"elasticsearch.k8s.acceldata.io/cluster-name": esName},
 			Annotations: pb.annotations,
 		},
 		Spec: corev1.PodSpec{

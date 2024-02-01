@@ -11,12 +11,12 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/defaults"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
-	esvolume "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/defaults"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/user"
+	esvolume "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/volume"
 )
 
 const (
@@ -58,8 +58,8 @@ func DefaultEnvVars(httpCfg commonv1.HTTPConfig, headlessServiceName string) []c
 			// In production testing, no negative impact on curl's behavior is observed from this setting.
 			// This setting is primarily targeted at curl invocation in the readinessProbe.
 			// References:
-			//   https://github.com/elastic/cloud-on-k8s/issues/1581#issuecomment-525527334
-			//   https://github.com/elastic/cloud-on-k8s/issues/1635
+			//   https://github.com/devendra/es-cloud-on-k8s/issues/1581#issuecomment-525527334
+			//   https://github.com/devendra/es-cloud-on-k8s/issues/1635
 			//   https://issuetracker.google.com/issues/140577001
 			{Name: "NSS_SDB_USE_CACHE", Value: "no"},
 		}...,

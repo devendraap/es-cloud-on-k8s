@@ -83,10 +83,10 @@ Determine the name for the webhook
 */}}
 {{- define "eck-operator.webhookName" -}}
 {{- if .Values.global.manifestGen -}}
-elastic-webhook.k8s.elastic.co
+elastic-webhook.k8s.acceldata.io
 {{- else -}}
 {{- $name := include "eck-operator.name" . -}}
-{{ printf "%s.%s.k8s.elastic.co" $name .Release.Namespace }}
+{{ printf "%s.%s.k8s.acceldata.io" $name .Release.Namespace }}
 {{- end -}}
 {{- end -}}
 
@@ -194,7 +194,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - patch
   - delete
 - apiGroups:
-  - elasticsearch.k8s.elastic.co
+  - elasticsearch.k8s.acceldata.io
   resources:
   - elasticsearches
   - elasticsearches/status
@@ -207,7 +207,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - autoscaling.k8s.elastic.co
+  - autoscaling.k8s.acceldata.io
   resources:
   - elasticsearchautoscalers
   - elasticsearchautoscalers/status
@@ -220,7 +220,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - kibana.k8s.elastic.co
+  - kibana.k8s.acceldata.io
   resources:
   - kibanas
   - kibanas/status
@@ -233,7 +233,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - apm.k8s.elastic.co
+  - apm.k8s.acceldata.io
   resources:
   - apmservers
   - apmservers/status
@@ -246,7 +246,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - enterprisesearch.k8s.elastic.co
+  - enterprisesearch.k8s.acceldata.io
   resources:
   - enterprisesearches
   - enterprisesearches/status
@@ -259,7 +259,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - beat.k8s.elastic.co
+  - beat.k8s.acceldata.io
   resources:
   - beats
   - beats/status
@@ -272,7 +272,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - agent.k8s.elastic.co
+  - agent.k8s.acceldata.io
   resources:
   - agents
   - agents/status
@@ -285,7 +285,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - maps.k8s.elastic.co
+  - maps.k8s.acceldata.io
   resources:
   - elasticmapsservers
   - elasticmapsservers/status
@@ -298,7 +298,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - stackconfigpolicy.k8s.elastic.co
+  - stackconfigpolicy.k8s.acceldata.io
   resources:
   - stackconfigpolicies
   - stackconfigpolicies/status
@@ -311,7 +311,7 @@ updating docs/operating-eck/eck-permissions.asciidoc file.
   - update
   - patch
 - apiGroups:
-  - logstash.k8s.elastic.co
+  - logstash.k8s.acceldata.io
   resources:
   - logstashes
   - logstashes/status

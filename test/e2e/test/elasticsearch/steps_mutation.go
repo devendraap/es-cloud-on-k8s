@@ -15,12 +15,12 @@ import (
 	"github.com/stretchr/testify/require"
 	k8serrors "k8s.io/apimachinery/pkg/util/errors"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	esclient "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/generation"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	esclient "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/generation"
 )
 
 const (
@@ -38,7 +38,7 @@ func clusterUnavailabilityThreshold(b Builder) time.Duration {
 	switch {
 	case (&v).GTE(version.MinFor(8, 3, 0)):
 		// as of 8.3. we see longer unavailability. This increases the timeout until the underlying problem is better understood,
-		// see: https://github.com/elastic/cloud-on-k8s/issues/5865
+		// see: https://github.com/devendra/es-cloud-on-k8s/issues/5865
 		return 40 * time.Second
 	case (&v).GTE(version.MinFor(7, 2, 0)):
 		// in version 7.2 and above, there is usually close to zero unavailability when a master node is killed

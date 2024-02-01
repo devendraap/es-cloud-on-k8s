@@ -11,7 +11,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/deployer/exec"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/deployer/exec"
 )
 
 func mergeKubeconfig(kubeConfig string) error {

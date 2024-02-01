@@ -7,18 +7,18 @@ package license
 import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
 )
 
 const (
 	// LicenseLabelName is a label pointing to the name of the source enterprise license.
-	LicenseLabelName         = "license.k8s.elastic.co/name"
-	LicenseLabelType         = "license.k8s.elastic.co/type"
-	LicenseLabelScope        = "license.k8s.elastic.co/scope"
+	LicenseLabelName         = "license.k8s.acceldata.io/name"
+	LicenseLabelType         = "license.k8s.acceldata.io/type"
+	LicenseLabelScope        = "license.k8s.acceldata.io/scope"
 	Type                     = "license"
 	EULAAnnotation           = "elastic.co/eula"
 	EULAAcceptedValue        = "accepted"
-	LicenseInvalidAnnotation = "license.k8s.elastic.co/invalid"
+	LicenseInvalidAnnotation = "license.k8s.acceldata.io/invalid"
 )
 
 type LicenseScope string //nolint:revive

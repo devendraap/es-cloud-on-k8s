@@ -11,7 +11,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/elastic/cloud-on-k8s/v2/hack/release-notes/github"
+	"github.com/devendra/es-cloud-on-k8s/v2/hack/release-notes/github"
 )
 
 const (

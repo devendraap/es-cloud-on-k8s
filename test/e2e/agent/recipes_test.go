@@ -14,12 +14,12 @@ import (
 	"k8s.io/apimachinery/pkg/util/rand"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	agentv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/agent"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/beat"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test/helper"
+	agentv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/agent/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/agent"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/beat"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test/helper"
 )
 
 func TestSystemIntegrationRecipe(t *testing.T) {
@@ -51,7 +51,7 @@ func TestKubernetesIntegrationRecipe(t *testing.T) {
 			WithDefaultESValidation(agent.HasWorkingDataStream(agent.LogsType, "elastic_agent.metricbeat", "default")).
 			WithDefaultESValidation(agent.HasWorkingDataStream(agent.MetricsType, "elastic_agent.metricbeat", "default")).
 			// TODO API server should generate event in time but on kind we see repeatedly no metrics being reported in time
-			// see https://github.com/elastic/cloud-on-k8s/issues/4092
+			// see https://github.com/devendra/es-cloud-on-k8s/issues/4092
 			// WithDefaultESValidation(agent.HasWorkingDataStream(agent.MetricsType, "kubernetes.apiserver", "k8s")).
 			WithDefaultESValidation(agent.HasWorkingDataStream(agent.MetricsType, "kubernetes.container", "k8s")).
 			// Might not generate an event in time for this check to succeed in all environments
@@ -96,7 +96,7 @@ func TestFleetKubernetesIntegrationRecipe(t *testing.T) {
 		builder = builder.
 			WithFleetAgentDataStreamsValidation().
 			// TODO API server should generate event in time but on kind we see repeatedly no metrics being reported in time
-			// see https://github.com/elastic/cloud-on-k8s/issues/4092
+			// see https://github.com/devendra/es-cloud-on-k8s/issues/4092
 			// WithDefaultESValidation(agent.HasWorkingDataStream(agent.MetricsType, "kubernetes.apiserver", "k8s")).
 			WithDefaultESValidation(agent.HasWorkingDataStream(agent.MetricsType, "kubernetes.container", "default")).
 			// Might not generate an event in time for this check to succeed in all environments
@@ -127,7 +127,7 @@ func TestFleetKubernetesIntegrationRecipe(t *testing.T) {
 func TestFleetKubernetesNonRootIntegrationRecipe(t *testing.T) {
 	v := version.MustParse(test.Ctx().ElasticStackVersion)
 
-	// https://github.com/elastic/cloud-on-k8s/issues/6331
+	// https://github.com/devendra/es-cloud-on-k8s/issues/6331
 	if v.LT(version.MinFor(8, 7, 0)) && v.GE(version.MinFor(8, 6, 0)) {
 		t.SkipNow()
 	}
@@ -145,7 +145,7 @@ func TestFleetKubernetesNonRootIntegrationRecipe(t *testing.T) {
 		return builder.
 			WithFleetAgentDataStreamsValidation().
 			// TODO API server should generate event in time but on kind we see repeatedly no metrics being reported in time
-			// see https://github.com/elastic/cloud-on-k8s/issues/4092
+			// see https://github.com/devendra/es-cloud-on-k8s/issues/4092
 			// WithDefaultESValidation(agent.HasWorkingDataStream(agent.MetricsType, "kubernetes.apiserver", "k8s")).
 			WithDefaultESValidation(agent.HasWorkingDataStream(agent.MetricsType, "kubernetes.container", "default")).
 			// Might not generate an event in time for this check to succeed in all environments
@@ -175,7 +175,7 @@ func TestFleetCustomLogsIntegrationRecipe(t *testing.T) {
 	v := version.MustParse(test.Ctx().ElasticStackVersion)
 
 	if v.GT(version.MinFor(8, 8, 0)) {
-		t.Skip("Disabled since 8.8.0, refer to https://github.com/elastic/cloud-on-k8s/issues/5105")
+		t.Skip("Disabled since 8.8.0, refer to https://github.com/devendra/es-cloud-on-k8s/issues/5105")
 	}
 
 	notLoggingPod := beat.NewPodBuilder("test")
@@ -223,7 +223,7 @@ func runAgentRecipe(
 			return builder
 		}
 
-		// TODO: remove once https://github.com/elastic/cloud-on-k8s/issues/4092 is resolved
+		// TODO: remove once https://github.com/devendra/es-cloud-on-k8s/issues/4092 is resolved
 		if test.Ctx().HasTag("ipv6") {
 			t.SkipNow()
 		}

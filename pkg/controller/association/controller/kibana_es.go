@@ -11,26 +11,26 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	kbv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/kibana/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	eslabel "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/rbac"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	kbv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/kibana/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	eslabel "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/rbac"
 )
 
 const (
 	// KibanaAssociationLabelName marks resources created for an association originating from Kibana with the
 	// Kibana name.
-	KibanaAssociationLabelName = "kibanaassociation.k8s.elastic.co/name"
+	KibanaAssociationLabelName = "kibanaassociation.k8s.acceldata.io/name"
 	// KibanaAssociationLabelNamespace marks resources created for an association originating from Kibana with the
 	// Kibana namespace.
-	KibanaAssociationLabelNamespace = "kibanaassociation.k8s.elastic.co/namespace"
+	KibanaAssociationLabelNamespace = "kibanaassociation.k8s.acceldata.io/namespace"
 	// KibanaAssociationLabelType marks resources created for an association originating from Kibana
 	// with the target resource type (e.g. "elasticsearch" or "ent).
-	KibanaAssociationLabelType = "kibanaassociation.k8s.elastic.co/type"
+	KibanaAssociationLabelType = "kibanaassociation.k8s.acceldata.io/type"
 
 	// KibanaSystemUserBuiltinRole is the name of the built-in role for the Kibana system user.
 	KibanaSystemUserBuiltinRole = "kibana_system"

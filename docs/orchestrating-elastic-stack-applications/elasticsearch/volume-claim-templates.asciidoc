@@ -41,7 +41,7 @@ In addition, you can control what ECK should do with the PersistentVolumeClaims 
 
 [source,yaml,subs=attributes,+macros]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: es

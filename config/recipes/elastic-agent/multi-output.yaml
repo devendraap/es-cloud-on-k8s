@@ -1,4 +1,4 @@
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent
@@ -191,7 +191,7 @@ spec:
         - uptime
         period: 10s
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch
@@ -203,7 +203,7 @@ spec:
     config:
       node.store.allow_mmap: false
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana
@@ -213,7 +213,7 @@ spec:
   elasticsearchRef:
     name: elasticsearch
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch-mon
@@ -225,7 +225,7 @@ spec:
     config:
       node.store.allow_mmap: false
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana-mon

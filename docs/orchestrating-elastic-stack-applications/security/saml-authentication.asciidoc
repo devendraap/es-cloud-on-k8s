@@ -29,7 +29,7 @@ Make sure not to disable Elasticsearch’s file realm set by ECK, as ECK relies 
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: elasticsearch-sample
@@ -66,7 +66,7 @@ Next, create a volume from the secret and mount it for the Elasticsearch contain
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: elasticsearch.k8s.elastic.co/{eck_crd_version}
+apiVersion: elasticsearch.k8s.acceldata.io/{eck_crd_version}
 kind: Elasticsearch
 metadata:
   name: elasticsearch-sample
@@ -102,7 +102,7 @@ For example:
 
 [source,yaml,subs="attributes"]
 ----
-apiVersion: kibana.k8s.elastic.co/{eck_crd_version}
+apiVersion: kibana.k8s.acceldata.io/{eck_crd_version}
 kind: Kibana
 metadata:
   name: kibana-sample

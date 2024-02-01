@@ -16,7 +16,7 @@ If you are experiencing this issue you must first patch the Elasticsearch CRD wi
 
 [source,bash]
 ----
-kubectl patch crd elasticsearches.elasticsearch.k8s.elastic.co --type json -p='[{"op": "remove", "path": "/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/nodeSets/items/properties/volumeClaimTemplates/x-kubernetes-preserve-unknown-fields"}]'
+kubectl patch crd elasticsearches.elasticsearch.k8s.acceldata.io --type json -p='[{"op": "remove", "path": "/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/nodeSets/items/properties/volumeClaimTemplates/x-kubernetes-preserve-unknown-fields"}]'
 ----
 
 Also refer to <<{p}-170-known-issues>> for more information.

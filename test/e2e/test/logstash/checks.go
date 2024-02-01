@@ -11,11 +11,11 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 
-	v1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	logstashv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/settings"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	v1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	logstashv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/logstash/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/settings"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 type Request struct {
@@ -42,16 +42,16 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 				Name: logstashName + "-ls-config",
 				Keys: []string{"logstash.yml", "API_KEYSTORE_PASS"},
 				Labels: map[string]string{
-					"eck.k8s.elastic.co/credentials": "true",
-					"logstash.k8s.elastic.co/name":   logstashName,
+					"eck.k8s.acceldata.io/credentials": "true",
+					"logstash.k8s.acceldata.io/name":   logstashName,
 				},
 			},
 			{
 				Name: logstashName + "-ls-pipeline",
 				Keys: []string{"pipelines.yml"},
 				Labels: map[string]string{
-					"eck.k8s.elastic.co/credentials": "true",
-					"logstash.k8s.elastic.co/name":   logstashName,
+					"eck.k8s.acceldata.io/credentials": "true",
+					"logstash.k8s.acceldata.io/name":   logstashName,
 				},
 			},
 		}
@@ -68,10 +68,10 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: fmt.Sprintf("%s-logstash-es-%s-%s-ca", lsName, esNamespace, ref.Name),
 					Keys: []string{"ca.crt", "tls.crt"},
 					Labels: map[string]string{
-						"elasticsearch.k8s.elastic.co/cluster-name":      ref.Name,
-						"elasticsearch.k8s.elastic.co/cluster-namespace": esNamespace,
-						"logstashassociation.k8s.elastic.co/name":        lsName,
-						"logstashassociation.k8s.elastic.co/namespace":   lsNamespace,
+						"elasticsearch.k8s.acceldata.io/cluster-name":      ref.Name,
+						"elasticsearch.k8s.acceldata.io/cluster-namespace": esNamespace,
+						"logstashassociation.k8s.acceldata.io/name":        lsName,
+						"logstashassociation.k8s.acceldata.io/namespace":   lsNamespace,
 					},
 				},
 			)
@@ -80,10 +80,10 @@ func CheckSecrets(b Builder, k *test.K8sClient) test.Step {
 					Name: fmt.Sprintf("%s-%s-%s-%s-logstash-user", lsNamespace, lsName, esNamespace, ref.Name),
 					Keys: []string{"name", "passwordHash", "userRoles"},
 					Labels: map[string]string{
-						"elasticsearch.k8s.elastic.co/cluster-name":      ref.Name,
-						"elasticsearch.k8s.elastic.co/cluster-namespace": esNamespace,
-						"logstashassociation.k8s.elastic.co/name":        lsName,
-						"logstashassociation.k8s.elastic.co/namespace":   lsNamespace,
+						"elasticsearch.k8s.acceldata.io/cluster-name":      ref.Name,
+						"elasticsearch.k8s.acceldata.io/cluster-namespace": esNamespace,
+						"logstashassociation.k8s.acceldata.io/name":        lsName,
+						"logstashassociation.k8s.acceldata.io/namespace":   lsNamespace,
 					},
 				},
 			)

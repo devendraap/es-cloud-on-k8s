@@ -15,8 +15,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	fixtures "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client/test_fixtures"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	fixtures "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client/test_fixtures"
 )
 
 func TestClient_GetLicense(t *testing.T) {

@@ -7,9 +7,9 @@ package remoteca
 import (
 	"fmt"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/certificates/remoteca"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/maps"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/certificates/remoteca"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/maps"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
@@ -17,9 +17,9 @@ import (
 
 const (
 	// RemoteClusterNamespaceLabelName used to represent the namespace of the RemoteCluster in a TrustRelationship.
-	RemoteClusterNamespaceLabelName = "elasticsearch.k8s.elastic.co/remote-cluster-namespace"
+	RemoteClusterNamespaceLabelName = "elasticsearch.k8s.acceldata.io/remote-cluster-namespace"
 	// RemoteClusterNameLabelName used to represent the name of the RemoteCluster in a TrustRelationship.
-	RemoteClusterNameLabelName = "elasticsearch.k8s.elastic.co/remote-cluster-name"
+	RemoteClusterNameLabelName = "elasticsearch.k8s.acceldata.io/remote-cluster-name"
 	// remoteCASecretSuffix is the suffix added to the aforementioned Secret.
 	remoteCASecretSuffix = "remote-ca"
 )

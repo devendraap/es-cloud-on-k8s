@@ -1,4 +1,4 @@
-apiVersion: beat.k8s.elastic.co/v1beta1
+apiVersion: beat.k8s.acceldata.io/v1beta1
 kind: Beat
 metadata:
   name: filebeat
@@ -97,7 +97,7 @@ roleRef:
   name: filebeat
   apiGroup: rbac.authorization.k8s.io
 ---
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch
@@ -109,7 +109,7 @@ spec:
     config:
       node.store.allow_mmap: false
 ---
-apiVersion: kibana.k8s.elastic.co/v1
+apiVersion: kibana.k8s.acceldata.io/v1
 kind: Kibana
 metadata:
   name: kibana

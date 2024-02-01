@@ -86,35 +86,35 @@ These permissions are needed to manage each Elastic Stack application. For examp
 |Name|API group|Optional?
 |Elasticsearch +
 Elasticsearch/status +
-Elasticsearch/finalizers|elasticsearch.k8s.elastic.co|no
+Elasticsearch/finalizers|elasticsearch.k8s.acceldata.io|no
 |Kibana +
 Kibana/status +
 Kibana/finalizers
-|kibana.k8s.elastic.co|no
+|kibana.k8s.acceldata.io|no
 |APMServer +
 APMServer/status +
 APMServer/finalizers
-|apm.k8s.elastic.co|no
+|apm.k8s.acceldata.io|no
 |EnterpriseSearch +
 EnterpriseSearch/status +
 EnterpriseSearch/finalizers
-|enterprisesearch.k8s.elastic.co|no
+|enterprisesearch.k8s.acceldata.io|no
 |Beat +
 Beat/status +
 Beat/finalizers
-|beat.k8s.elastic.co|no
+|beat.k8s.acceldata.io|no
 |Agent +
 Agent/status +
 Agent/finalizers
-|agent.k8s.elastic.co|no
+|agent.k8s.acceldata.io|no
 |ElasticMapsServer +
 ElasticMapsServer/status +
 ElasticMapsServer/finalizers
-|maps.k8s.elastic.co|no
+|maps.k8s.acceldata.io|no
 |Logstash +
 Logstash/status +
 Logstash/finalizers
-|logstashes.k8s.elastic.co|no
+|logstashes.k8s.acceldata.io|no
 
 |===
 

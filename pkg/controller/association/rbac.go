@@ -14,10 +14,10 @@ import (
 	"k8s.io/client-go/tools/record"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/events"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/rbac"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/events"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/rbac"
 )
 
 type Unbinder interface {
@@ -66,7 +66,7 @@ func CheckAndUnbind(
 // RequeueRbacCheck returns a reconcile result depending on the implementation of the AccessReviewer.
 // It is mostly used when using the subjectAccessReviewer implementation in which case a next reconcile loop should be
 // triggered later to keep the association in sync with the RBAC roles and bindings.
-// See https://github.com/elastic/cloud-on-k8s/issues/2468#issuecomment-579157063
+// See https://github.com/devendra/es-cloud-on-k8s/issues/2468#issuecomment-579157063
 func RequeueRbacCheck(accessReviewer rbac.AccessReviewer) reconcile.Result {
 	switch accessReviewer.(type) {
 	case *rbac.SubjectAccessReviewer:

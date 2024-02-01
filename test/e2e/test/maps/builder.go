@@ -10,12 +10,12 @@ import (
 	"k8s.io/apimachinery/pkg/util/rand"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	commonv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/version"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/cmd/run"
-	"github.com/elastic/cloud-on-k8s/v2/test/e2e/test"
+	commonv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/maps/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/version"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/cmd/run"
+	"github.com/devendra/es-cloud-on-k8s/v2/test/e2e/test"
 )
 
 type Builder struct {
@@ -84,7 +84,7 @@ func (b Builder) WithNamespace(namespace string) Builder {
 
 func (b Builder) WithVersion(version string) Builder {
 	if version == "8.8.2" {
-		version = "8.8.1" // 8.8.2 is defective and won't start see: https://github.com/elastic/cloud-on-k8s/pull/7005
+		version = "8.8.1" // 8.8.2 is defective and won't start see: https://github.com/devendra/es-cloud-on-k8s/pull/7005
 	}
 	b.EMS.Spec.Version = version
 	return b
@@ -96,7 +96,7 @@ func (b Builder) WithNodeCount(count int) Builder {
 }
 
 // WithPodLabel sets the label in the pod template. All invocations can be removed when
-// https://github.com/elastic/cloud-on-k8s/issues/2652 is implemented.
+// https://github.com/devendra/es-cloud-on-k8s/issues/2652 is implemented.
 func (b Builder) WithPodLabel(key, value string) Builder {
 	labels := b.EMS.Spec.PodTemplate.Labels
 	if labels == nil {

@@ -9,8 +9,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	beatv1beta1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
-	esclient "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	beatv1beta1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/beat/v1beta1"
+	esclient "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
 )
 
 const (

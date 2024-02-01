@@ -16,14 +16,14 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	ulog "github.com/elastic/cloud-on-k8s/v2/pkg/utils/log"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/set"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	ulog "github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/log"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/set"
 )
 
-// +kubebuilder:webhook:path=/validate-elasticsearch-k8s-elastic-co-v1-elasticsearch,mutating=false,failurePolicy=ignore,groups=elasticsearch.k8s.elastic.co,resources=elasticsearches,verbs=create;update,versions=v1,name=elastic-es-validation-v1.k8s.elastic.co,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
+// +kubebuilder:webhook:path=/validate-elasticsearch-k8s-elastic-co-v1-elasticsearch,mutating=false,failurePolicy=ignore,groups=elasticsearch.k8s.acceldata.io,resources=elasticsearches,verbs=create;update,versions=v1,name=elastic-es-validation-v1.k8s.acceldata.io,sideEffects=None,admissionReviewVersions=v1;v1beta1,matchPolicy=Exact
 
 const (
 	webhookPath = "/validate-elasticsearch-k8s-elastic-co-v1-elasticsearch"
@@ -69,7 +69,7 @@ func (wh *validatingWebhook) validateUpdate(ctx context.Context, prev esv1.Elast
 	}
 	if len(errs) > 0 {
 		return apierrors.NewInvalid(
-			schema.GroupKind{Group: "elasticsearch.k8s.elastic.co", Kind: esv1.Kind},
+			schema.GroupKind{Group: "elasticsearch.k8s.acceldata.io", Kind: esv1.Kind},
 			curr.Name, errs)
 	}
 	return ValidateElasticsearch(ctx, curr, wh.licenseChecker, wh.exposedNodeLabels)
@@ -118,7 +118,7 @@ func ValidateElasticsearch(ctx context.Context, es esv1.Elasticsearch, checker l
 	errs := check(es, validations(ctx, checker, exposedNodeLabels))
 	if len(errs) > 0 {
 		return apierrors.NewInvalid(
-			schema.GroupKind{Group: "elasticsearch.k8s.elastic.co", Kind: esv1.Kind},
+			schema.GroupKind{Group: "elasticsearch.k8s.acceldata.io", Kind: esv1.Kind},
 			es.Name,
 			errs,
 		)

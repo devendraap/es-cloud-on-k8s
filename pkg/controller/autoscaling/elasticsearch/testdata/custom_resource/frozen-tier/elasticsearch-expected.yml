@@ -1,9 +1,9 @@
-apiVersion: elasticsearch.k8s.elastic.co/v1
+apiVersion: elasticsearch.k8s.acceldata.io/v1
 kind: Elasticsearch
 metadata:
   annotations:
-    common.k8s.elastic.co/controller-version: 1.6.0-SNAPSHOT
-    elasticsearch.k8s.elastic.co/cluster-uuid: 7GtNZyD1QbezolOIL9vSNQ
+    common.k8s.acceldata.io/controller-version: 1.6.0-SNAPSHOT
+    elasticsearch.k8s.acceldata.io/cluster-uuid: 7GtNZyD1QbezolOIL9vSNQ
   name: testes
   namespace: testns
 spec:

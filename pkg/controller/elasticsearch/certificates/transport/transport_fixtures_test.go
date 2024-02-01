@@ -18,10 +18,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/uuid"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/certificates"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/sset"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/certificates"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/label"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/sset"
 )
 
 const (
@@ -269,9 +269,9 @@ func newStatefulSet(esName, ssetName string) *v1.StatefulSet {
 			Namespace: testNamespace,
 			Name:      ssetName,
 			Labels: map[string]string{
-				"elasticsearch.k8s.elastic.co/statefulset-name": ssetName,
-				"common.k8s.elastic.co/type":                    "elasticsearch",
-				"elasticsearch.k8s.elastic.co/cluster-name":     esName,
+				"elasticsearch.k8s.acceldata.io/statefulset-name": ssetName,
+				"common.k8s.acceldata.io/type":                    "elasticsearch",
+				"elasticsearch.k8s.acceldata.io/cluster-name":     esName,
 			},
 		},
 	}

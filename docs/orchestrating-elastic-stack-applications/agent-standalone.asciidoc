@@ -24,7 +24,7 @@ NOTE: Running standalone Elastic Agent on ECK is compatible only with Stack vers
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
 cat $$<<$$EOF | kubectl apply -f -
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: quickstart
@@ -85,7 +85,7 @@ quickstart      green    3           3          {version}    15s
 +
 [source,sh]
 ----
-kubectl get pods --selector='agent.k8s.elastic.co/name=quickstart'
+kubectl get pods --selector='agent.k8s.acceldata.io/name=quickstart'
 ----
 +
 [source,sh]
@@ -132,7 +132,7 @@ The Elastic Agent configuration is defined in the `config` element:
 
 [source,yaml,subs="attributes,+macros,callouts"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: quickstart
@@ -175,7 +175,7 @@ spec:
 Alternatively, it can be provided through a Secret specified in the `configRef` element. The Secret must have an `agent.yml` entry with this configuration:
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: quickstart
@@ -233,7 +233,7 @@ To send Elastic Agent's internal monitoring and log data to a different Elastics
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: quickstart
@@ -279,7 +279,7 @@ The outputs can also be set manually. To do that, remove the `elasticsearchRefs`
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: quickstart
@@ -310,7 +310,7 @@ Similarly, you can set the link:https://kubernetes.io/docs/tasks/manage-daemon/u
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: quickstart
@@ -337,7 +337,7 @@ Some Elastic Agent features, such as the link:https://epr.elastic.co/package/kub
 
 [source,yaml,subs="attributes,+macros"]
 ----
-apiVersion: agent.k8s.elastic.co/v1alpha1
+apiVersion: agent.k8s.acceldata.io/v1alpha1
 kind: Agent
 metadata:
   name: elastic-agent

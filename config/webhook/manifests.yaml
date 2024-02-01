@@ -14,10 +14,10 @@ webhooks:
       path: /validate-agent-k8s-elastic-co-v1alpha1-agent
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-agent-validation-v1alpha1.k8s.elastic.co
+  name: elastic-agent-validation-v1alpha1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - agent.k8s.elastic.co
+    - agent.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:
@@ -36,10 +36,10 @@ webhooks:
       path: /validate-apm-k8s-elastic-co-v1-apmserver
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-apm-validation-v1.k8s.elastic.co
+  name: elastic-apm-validation-v1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - apm.k8s.elastic.co
+    - apm.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -58,10 +58,10 @@ webhooks:
       path: /validate-apm-k8s-elastic-co-v1beta1-apmserver
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-apm-validation-v1beta1.k8s.elastic.co
+  name: elastic-apm-validation-v1beta1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - apm.k8s.elastic.co
+    - apm.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -80,10 +80,10 @@ webhooks:
       path: /validate-beat-k8s-elastic-co-v1beta1-beat
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-beat-validation-v1beta1.k8s.elastic.co
+  name: elastic-beat-validation-v1beta1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - beat.k8s.elastic.co
+    - beat.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -102,10 +102,10 @@ webhooks:
       path: /validate-elasticsearch-k8s-elastic-co-v1beta1-elasticsearch
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-es-validation-v1beta1.k8s.elastic.co
+  name: elastic-es-validation-v1beta1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - elasticsearch.k8s.elastic.co
+    - elasticsearch.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -124,10 +124,10 @@ webhooks:
       path: /validate-enterprisesearch-k8s-elastic-co-v1-enterprisesearch
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-ent-validation-v1.k8s.elastic.co
+  name: elastic-ent-validation-v1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - enterprisesearch.k8s.elastic.co
+    - enterprisesearch.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -146,10 +146,10 @@ webhooks:
       path: /validate-enterprisesearch-k8s-elastic-co-v1beta1-enterprisesearch
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-ent-validation-v1beta1.k8s.elastic.co
+  name: elastic-ent-validation-v1beta1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - enterprisesearch.k8s.elastic.co
+    - enterprisesearch.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -168,10 +168,10 @@ webhooks:
       path: /validate-kibana-k8s-elastic-co-v1-kibana
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-kb-validation-v1.k8s.elastic.co
+  name: elastic-kb-validation-v1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - kibana.k8s.elastic.co
+    - kibana.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -190,10 +190,10 @@ webhooks:
       path: /validate-kibana-k8s-elastic-co-v1beta1-kibana
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-kb-validation-v1beta1.k8s.elastic.co
+  name: elastic-kb-validation-v1beta1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - kibana.k8s.elastic.co
+    - kibana.k8s.acceldata.io
     apiVersions:
     - v1beta1
     operations:
@@ -212,10 +212,10 @@ webhooks:
       path: /validate-logstash-k8s-elastic-co-v1alpha1-logstash
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-logstash-validation-v1alpha1.k8s.elastic.co
+  name: elastic-logstash-validation-v1alpha1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - logstash.k8s.elastic.co
+    - logstash.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:
@@ -234,10 +234,10 @@ webhooks:
       path: /validate-ems-k8s-elastic-co-v1alpha1-mapsservers
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-ems-validation-v1alpha1.k8s.elastic.co
+  name: elastic-ems-validation-v1alpha1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - maps.k8s.elastic.co
+    - maps.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:
@@ -256,10 +256,10 @@ webhooks:
       path: /validate-scp-k8s-elastic-co-v1alpha1-stackconfigpolicies
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-scp-validation-v1alpha1.k8s.elastic.co
+  name: elastic-scp-validation-v1alpha1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - stackconfigpolicy.k8s.elastic.co
+    - stackconfigpolicy.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:
@@ -278,10 +278,10 @@ webhooks:
       path: /validate-elasticsearch-k8s-elastic-co-v1-elasticsearch
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-es-validation-v1.k8s.elastic.co
+  name: elastic-es-validation-v1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - elasticsearch.k8s.elastic.co
+    - elasticsearch.k8s.acceldata.io
     apiVersions:
     - v1
     operations:
@@ -300,10 +300,10 @@ webhooks:
       path: /validate-autoscaling-k8s-elastic-co-v1alpha1-elasticsearchautoscaler
   failurePolicy: Ignore
   matchPolicy: Exact
-  name: elastic-esa-validation-v1alpha1.k8s.elastic.co
+  name: elastic-esa-validation-v1alpha1.k8s.acceldata.io
   rules:
   - apiGroups:
-    - autoscaling.k8s.elastic.co
+    - autoscaling.k8s.acceldata.io
     apiVersions:
     - v1alpha1
     operations:

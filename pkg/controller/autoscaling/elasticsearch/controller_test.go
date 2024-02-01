@@ -24,18 +24,18 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/about"
-	autoscalingv1alpha1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/autoscaling/elasticsearch/resources"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/license"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/operator"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/watches"
-	esclient "github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/elasticsearch/services"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/net"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/about"
+	autoscalingv1alpha1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/autoscaling/v1alpha1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/common/v1alpha1"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/autoscaling/elasticsearch/resources"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/license"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/operator"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/watches"
+	esclient "github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/client"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/elasticsearch/services"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/net"
 )
 
 var (
@@ -106,7 +106,7 @@ func TestReconcile(t *testing.T) {
 			},
 			want: defaultRequeue,
 			wantErr: &wantedErr{ // Autoscaling API error should be returned.
-				message: `ElasticsearchAutoscaler.autoscaling.k8s.elastic.co "test-autoscaler" is invalid: metadata.annotations.elasticsearch.alpha.elastic.co/autoscaling-spec: Invalid value: "elasticsearch.alpha.elastic.co/autoscaling-spec": Autoscaling annotation is no longer supported, please remove the annotation`,
+				message: `ElasticsearchAutoscaler.autoscaling.k8s.acceldata.io "test-autoscaler" is invalid: metadata.annotations.elasticsearch.alpha.elastic.co/autoscaling-spec: Invalid value: "elasticsearch.alpha.elastic.co/autoscaling-spec": Autoscaling annotation is no longer supported, please remove the annotation`,
 				fatal:   true, // We are not expecting the autoscaling controller to update the cluster.
 			},
 			wantEvents: []string{},

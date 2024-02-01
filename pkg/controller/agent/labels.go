@@ -9,8 +9,8 @@ const (
 	TypeLabelValue = "agent"
 
 	// NameLabelName used to represent an Agent in k8s resources
-	NameLabelName = "agent.k8s.elastic.co/name"
+	NameLabelName = "agent.k8s.acceldata.io/name"
 
 	// NamespaceLabelName used to represent an Agent in k8s resources
-	NamespaceLabelName = "agent.k8s.elastic.co/namespace"
+	NamespaceLabelName = "agent.k8s.acceldata.io/namespace"
 )

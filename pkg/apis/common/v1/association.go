@@ -12,7 +12,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/common/hash"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/common/hash"
 )
 
 const (
@@ -92,21 +92,21 @@ func (asm AssociationStatusMap) AllEstablished() bool {
 }
 
 const (
-	ElasticsearchConfigAnnotationNameBase = "association.k8s.elastic.co/es-conf"
+	ElasticsearchConfigAnnotationNameBase = "association.k8s.acceldata.io/es-conf"
 	ElasticsearchAssociationType          = "elasticsearch"
 	EsMonitoringAssociationType           = "es-monitoring"
 
-	KibanaConfigAnnotationNameBase = "association.k8s.elastic.co/kb-conf"
+	KibanaConfigAnnotationNameBase = "association.k8s.acceldata.io/kb-conf"
 	KibanaAssociationType          = "kibana"
 	KbMonitoringAssociationType    = "kb-monitoring"
 
-	EntConfigAnnotationNameBase = "association.k8s.elastic.co/ent-conf"
+	EntConfigAnnotationNameBase = "association.k8s.acceldata.io/ent-conf"
 	EntAssociationType          = "ent"
 
-	FleetServerConfigAnnotationNameBase = "association.k8s.elastic.co/fs-conf"
+	FleetServerConfigAnnotationNameBase = "association.k8s.acceldata.io/fs-conf"
 	FleetServerAssociationType          = "fleetserver"
 
-	BeatConfigAnnotationNameBase  = "association.k8s.elastic.co/beat-conf"
+	BeatConfigAnnotationNameBase  = "association.k8s.acceldata.io/beat-conf"
 	BeatAssociationType           = "beat"
 	BeatMonitoringAssociationType = "beat-monitoring"
 

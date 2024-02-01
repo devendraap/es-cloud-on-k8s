@@ -15,8 +15,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 func Test_listAffectedLicenses(t *testing.T) {
@@ -40,14 +40,14 @@ func Test_listAffectedLicenses(t *testing.T) {
 						ObjectMeta: metav1.ObjectMeta{
 							Name:      "foo-cluster",
 							Namespace: "default",
-							SelfLink:  "/apis/elasticsearch.k8s.elastic.co/",
+							SelfLink:  "/apis/elasticsearch.k8s.acceldata.io/",
 						},
 					},
 					&esv1.Elasticsearch{
 						ObjectMeta: metav1.ObjectMeta{
 							Name:      "bar-cluster",
 							Namespace: "default",
-							SelfLink:  "/apis/elasticsearch.k8s.elastic.co/",
+							SelfLink:  "/apis/elasticsearch.k8s.acceldata.io/",
 						},
 					},
 				},

@@ -12,9 +12,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	esv1 "github.com/elastic/cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/controller/association"
-	"github.com/elastic/cloud-on-k8s/v2/pkg/utils/k8s"
+	esv1 "github.com/devendra/es-cloud-on-k8s/v2/pkg/apis/elasticsearch/v1"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/controller/association"
+	"github.com/devendra/es-cloud-on-k8s/v2/pkg/utils/k8s"
 )
 
 var (
@@ -28,7 +28,7 @@ var (
 )
 
 // Test_EsMonitoringReconciler_NoAssociation tests that an Elasticsearch resource is not updated by the EsMonitoring
-// reconciler when there is no EsMonitoring association. Covers the bug https://github.com/elastic/cloud-on-k8s/issues/4985.
+// reconciler when there is no EsMonitoring association. Covers the bug https://github.com/devendra/es-cloud-on-k8s/issues/4985.
 func Test_EsMonitoringReconciler_NoAssociation(t *testing.T) {
 	es := sampleES
 	resourceVersion := es.ResourceVersion

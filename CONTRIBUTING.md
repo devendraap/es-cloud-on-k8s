@@ -36,7 +36,7 @@ Check requirements and steps in this [guide](dev-setup.md).
 2. Make sure you only have, at maximum, 3 groups in your imports:
    - a group for packages from the standard library
    - (optionally) a group for third parties
-   - (optionally) a group for 'local' imports (local being 'github.com/elastic/cloud-on-k8s')
+   - (optionally) a group for 'local' imports (local being 'github.com/devendra/es-cloud-on-k8s')
 
 ### Scripts
 
@@ -145,7 +145,7 @@ Test the doc build locally:
 1. Move to the directory where the [elastic/docs](https://github.com/elastic/docs) repository has been pulled
 1. Run the following command:
 
-   `./build_docs --asciidoctor --doc $GOPATH/src/github.com/elastic/cloud-on-k8s/docs/index.asciidoc --chunk 1 --open`
+   `./build_docs --asciidoctor --doc $GOPATH/src/github.com/devendra/es-cloud-on-k8s/docs/index.asciidoc --chunk 1 --open`
 
 Push a PR for review and add the label `>docs`.
 
